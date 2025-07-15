@@ -1,0 +1,110 @@
+<div class="container my-5">
+
+    <div class="card shadow-lg border-0 mb-5">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">{{ $updateMode ? 'Edit FAQ' : 'Add New FAQ' }}</h3>
+        </div>
+
+        <div class="card-body">
+
+            @if (session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
+
+            <form wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}">
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Question</label>
+                        <input type="text" wire:model="question" class="form-control rounded-3 shadow-sm"
+                            placeholder="Enter the question">
+                        @error('question') <span class="text-danger small">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Answer</label>
+                        <textarea wire:model="answer" class="form-control rounded-3 shadow-sm" rows="4"
+                            placeholder="Enter the answer"></textarea>
+                        @error('answer') <span class="text-danger small">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Display Order</label>
+                        <input type="number" wire:model="order" class="form-control rounded-3 shadow-sm"
+                            placeholder="Enter display order (e.g., 1 for first)">
+                        @error('order') <span class="text-danger small">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" wire:model="is_active" id="isActive">
+                    <label class="form-check-label" for="isActive">Mark as Active</label>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button class="btn btn-success px-4">{{ $updateMode ? 'Update' : 'Save' }}</button>
+                    @if($updateMode)
+                        <button type="button" wire:click="resetFields" class="btn btn-outline-secondary px-4">
+                            Cancel
+                        </button>
+                    @endif
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">FAQ List</h4>
+        </div>
+
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th style="width: 90px;">Order</th>
+                            <th>Status</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($faqs as $faq)
+                            <tr>
+                                <td>{{ $faq->question }}</td>
+                                <td>{{ Str::limit($faq->answer, 80) }}</td>
+                                <td>{{ $faq->order }}</td>
+                                <td>
+                                    <span class="badge {{ $faq->is_active ? 'bg-success' : 'bg-secondary' }}">
+                                        {{ $faq->is_active ? 'Active' : 'Inactive' }}
+                                    </span>
+                                </td>
+                                <td class="text-end">
+                                    <button wire:click="edit({{ $faq->id }})"
+                                        class="btn btn-sm btn-outline-warning me-2">Edit</button>
+                                    <button wire:click="delete({{ $faq->id }})"
+                                        class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Are you sure you want to delete this FAQ?')">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center py-4 text-muted">No FAQs available.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
