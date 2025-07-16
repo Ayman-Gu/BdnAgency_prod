@@ -70,6 +70,25 @@
                Kit Media
            </a>
        </li>
+      <div class="dropdown ms-3">
+    <div 
+        class="d-flex align-items-center dropdown-toggle" 
+        data-bs-toggle="dropdown" 
+        aria-expanded="false" 
+        style="cursor: pointer;"
+    >
+        <img src="{{ asset('assets/img/flags/fr.svg') }}" alt="FR" width="24">
+    </div>
+
+    <div class="dropdown-menu dropdown-menu-end" style="min-width: 30px;">
+        <a href="#" class="d-flex align-items-center">
+            <img src="{{ asset('assets/img/flags/uk.svg') }}" alt="EN" width="24">
+        </a>
+    </div>
+</div>
+
+
+
        <!-- User is logged in: link to profile 
        @auth
            
