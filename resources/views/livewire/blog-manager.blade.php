@@ -4,19 +4,25 @@
     @endif
 
            
-    <div class="col-md-12 mb-3">
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <h6 class="card-title">Add New Category</h6>
-                <form wire:submit.prevent="addCategory" class="d-flex">
-                    <input type="text" wire:model="newCategory" class="form-control me-2" placeholder="Category name">
-                    <button type="submit" class="btn btn-primary mt-3">Add</button>
-                </form>
-                @error('newCategory') <small class="text-danger">{{ $message }}</small> @enderror
+    <!-- Add New Category -->
+    <div class="row mb-3 mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6 class="card-title">Add New Category</h6>
+                    <form wire:submit.prevent="addCategory" class="row g-2">
+                        <div class="col-md-10">
+                            <input type="text" wire:model="newCategory" class="form-control" placeholder="Category name">
+                            @error('newCategory') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+                        <div class="col-md-2 d-grid">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-
     <form wire:submit.prevent="{{ $editMode ? 'update' : 'store' }}">
         <div class="row d-flex">
             <!-- Left Card -->

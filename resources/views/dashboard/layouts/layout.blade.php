@@ -5,6 +5,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
       #sidebar {
@@ -199,15 +200,16 @@
 
         <!-- Main Content -->
         <div class="flex-grow-1 d-flex flex-column  main-content">
-            <header class="d-flex align-items-center justify-content-end px-4 py-3 border-bottom bg-white shadow-sm">
-                <button class="btn btn-outline-secondary d-md-none" id="sidebarToggle" aria-label="Toggle sidebar">
+          <header class="d-flex align-items-center justify-content-between px-4 py-3 border-bottom bg-white shadow-sm">
+                <button class="btn d-md-none  " id="sidebarToggle" aria-label="Toggle sidebar">
                     <i class="bi bi-list fs-3"></i>
                 </button>
 
 
-                <div class="header-icons d-flex align-items-center">
+                <div class="header-icons d-flex align-items-center ms-auto">
+                  <!--
                   <i class="bi bi-bell-fill fs-5"></i>
-
+                  -->
                   <!-- Dropdown -->
                   <div class="dropdown ms-3">
                       <button class="btn border-0 bg-transparent p-0 d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">

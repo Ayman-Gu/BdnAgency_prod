@@ -356,7 +356,7 @@
             <p class=" text-center mt-3" style="max-width: 900px; margin: 0 auto;">Vous voulez lancer votre projet ? Confiez-nous votre stratégie de communication et bénéficiez d'une analyse sur mesure. <br class="d-none d-md-block">Notre équipe est là pour vous accompagner à chaque étape.</p>
           </div>
           <div class=" cta-btn-container text-center mt-2">
-            <a class="cta-btn align-middle" href="#">Demander un devis</a>
+            <a class="cta-btn align-middle" href="#contact">Demander un devis</a>
           </div>
         </div>
 
@@ -877,7 +877,6 @@
                 </div>
               
                 <div class="col-md-12">
-                  <label for="services">Services souhaités</label>
                   <div class="dropdown-multiselect">
                     <div class="dropdown-header" onclick="toggleDropdown()">Sélectionnez les services</div>
                     <div class="dropdown-list" id="servicesDropdown">

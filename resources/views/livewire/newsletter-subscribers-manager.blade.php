@@ -10,7 +10,7 @@
             />
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 mt-3 mt-md-2">
             <input
                 type="date"
                 wire:model.live="dateFrom"
@@ -19,7 +19,7 @@
             />
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 mt-3 mt-md-2">
             <input
                 type="date"
                 wire:model.live="dateTo"
@@ -28,7 +28,7 @@
             />
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-2 mt-3 mt-md-2">
             <button 
                 wire:click="clearFilters" 
                 class="btn btn-secondary"

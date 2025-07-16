@@ -53,17 +53,17 @@
                        placeholder="Nom de l'offre">
 
                 <!-- Toggle active/inactive -->
-                <button class="btn btn-sm btn-outline-secondary me-2" 
+                <button class="btn btn-sm btn-outline-success me-2" 
                         wire:click="toggleOfferActive({{ $index }})">
-                    {{ $offer['active'] ? '✔️ Active' : '🚫 NA' }}
+                    {{ $offer['active'] ? 'Active' : '🚫 NA' }}
                 </button>
-            <button
-                class="btn btn-sm btn-danger"
-                wire:click.prevent="removeOffer({{ $offer['id'] ?? 'null' }})"
-                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette offre ?')"
-            >
-                Supprimer
-            </button>
+                <button
+                    class="btn btn-sm btn-danger"
+                    wire:click.prevent="removeOffer({{ $offer['id'] ?? 'null' }})"
+                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette offre ?')"
+                >
+                    Supprimer
+                </button>
 
               
             </div>

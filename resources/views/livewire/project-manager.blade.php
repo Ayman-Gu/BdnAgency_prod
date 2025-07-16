@@ -1,28 +1,34 @@
-<div>
+<div class="container-fluid px-2 px-md-4">
     @if(session()->has('message'))
-        <div class="alert alert-success">{{ session('message') }}</div>
+        <div class="alert alert-success mt-3">{{ session('message') }}</div>
     @endif
 
     <!-- Add New Category -->
-    <div class="col-md-12 mb-3">
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <h6 class="card-title">Add New Category</h6>
-                <form wire:submit.prevent="addCategory" class="d-flex">
-                    <input type="text" wire:model="newCategory" class="form-control me-2" placeholder="Category name">
-                    <button type="submit" class="btn btn-primary mt-3">Add</button>
-                </form>
-                @error('newCategory') <small class="text-danger">{{ $message }}</small> @enderror
+    <div class="row mb-3 mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6 class="card-title">Add New Category</h6>
+                    <form wire:submit.prevent="addCategory" class="row g-2">
+                        <div class="col-md-10">
+                            <input type="text" wire:model="newCategory" class="form-control" placeholder="Category name">
+                            @error('newCategory') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+                        <div class="col-md-2 d-grid">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Create/Update Project Form -->
     <form wire:submit.prevent="{{ $editMode ? 'update' : 'store' }}">
-        <div class="row d-flex">
+        <div class="row">
             <!-- Project Info -->
-            <div class="col-md-6 mb-3 d-flex">
-                <div class="card shadow-sm flex-fill">
+            <div class="col-md-6 mb-3">
+                <div class="card shadow-sm h-100">
                     <div class="card-body">
                         <h5 class="card-title mb-3">Project Info</h5>
 
@@ -54,7 +60,7 @@
 
             <!-- Image & SEO -->
             <div class="col-md-6 mb-3">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm h-100">
                     <div class="card-body">
                         <h5 class="card-title mb-3">Image & SEO</h5>
 
@@ -93,12 +99,14 @@
         </div>
 
         <!-- Submit Buttons -->
-        <div class="d-flex">
+        <div class="d-flex flex-column flex-md-row gap-2 mb-4">
             <button type="submit" class="btn btn-primary">
                 {{ $editMode ? 'Update' : 'Create' }}
             </button>
             @if($editMode)
-                <button type="button" wire:click="resetForm" class="btn btn-secondary ms-2">Cancel</button>
+                <button type="button" wire:click="resetForm" class="btn btn-secondary">
+                    Cancel
+                </button>
             @endif
         </div>
     </form>
@@ -106,9 +114,9 @@
     <hr>
 
     <!-- Projects Table -->
-    <h4>All Projects</h4>
+    <h4 class="mt-4">All Projects</h4>
     <div class="table-responsive">
-        <table class="table align-middle table-hover table-bordered shadow-sm rounded mt-3">
+        <table class="table align-middle table-hover table-bordered shadow-sm mt-3">
             <thead class="table-dark">
                 <tr>
                     <th>Image</th>
@@ -148,7 +156,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center py-4">Please Add your project</td>
+                        <td colspan="7" class="text-center py-4">Please add your project</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -156,16 +164,16 @@
     </div>
 
     <!-- Pagination -->
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center my-4">
         {{ $projects->links() }}
     </div>
 
     <hr>
 
     <!-- Categories Table -->
-    <h4>All Categories</h4>
+    <h4 class="mt-4">All Categories</h4>
     <div class="table-responsive">
-        <table class="table align-middle table-hover table-bordered shadow-sm rounded mt-3">
+        <table class="table align-middle table-hover table-bordered shadow-sm mt-3">
             <thead class="table-dark">
                 <tr>
                     <th>Name</th>
