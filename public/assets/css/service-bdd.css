@@ -71,18 +71,17 @@
   justify-content: center;
   gap: 0.5rem;
   text-align: center;
-  background:#28a745;
   width:320px;
   padding:3px;
 }
 .trust strong{
-      color: white;
+      color: #202c39;
       font-size:15px;
       font-weight:400;
 }
 
 .trust i {
-  color: white;
+  color: #202c39;
 }
 
 /* Features Section */
@@ -345,7 +344,7 @@
 
 .benefit-card {
     background: #464753;
-    border:1px solid #ef6603;
+    border:1px solid white;
     padding: 20px; 
     transition: all 0.3s ease;
 }

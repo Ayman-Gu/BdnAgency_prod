@@ -89,11 +89,6 @@
               <div class="feature-icon"><i class="fas fa-pencil-ruler"></i></div>
               <h3>Création de Logo et Slogan</h3>
               <p>Conception d'un logo original et percutant, accompagné d'un slogan mémorable qui capture l'essence de votre marque et sa promesse.</p>
-              <ul class="feature-points-fst">
-               <li>Analyse approfondie de votre vision et de votre marché</li>
-                <li>Propositions créatives et itérations</li>
-                <li>Livraison de fichiers vectoriels et multi-formats</li>
-              </ul>
             </div>
           </div>
         
@@ -102,11 +97,6 @@
               <div class="feature-icon"><i class="fas fa-palette"></i></div>
               <h3>Développement de Charte Graphique Complète</h3>
               <p>Définition des éléments visuels fondamentaux : couleurs, typographies, iconographie, styles d'images, et règles d'utilisation pour une cohérence parfaite sur tous vos supports.</p>
-              <ul class="feature-points">
-                <li>Manuel d'identité visuelle détaillé</li>
-                <li>Application sur différents supports (web, print, réseaux sociaux)</li>
-                <li>Cohérence et professionnalisme garantis</li>
-              </ul>
             </div>
           </div>
         
@@ -115,11 +105,6 @@
               <div class="feature-icon"><i class="fas fa-print"></i></div>
               <h3>Design de Supports de Communication</h3>
               <p>Création de tous vos supports de communication : cartes de visite, papier en-tête, brochures, plaquettes commerciales, présentations, signatures email, etc.</p>
-              <ul class="feature-points">
-                    <li>Design sur mesure et adapté à votre charte</li>
-                    <li>Optimisation pour l'impression et le digital</li>
-                    <li>Impact visuel maximal</li>
-              </ul>
             </div>
           </div>
         
@@ -128,11 +113,7 @@
               <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
               <h3>Refonte d'Identité Visuelle</h3>
               <p>Modernisation de votre image de marque existante pour la rendre plus actuelle, plus pertinente et mieux adaptée aux évolutions de votre entreprise et de votre marché.</p>
-              <ul class="feature-points">
-                    <li>Audit de l'identité actuelle</li>
-                    <li>Stratégie de transition et de déploiement</li>
-                    <li>Rajeunissement et dynamisation de votre image</li>
-              </ul>
+              
             </div>
           </div>
         
@@ -141,12 +122,7 @@
               <div class="feature-icon"><i class="fas fa-globe"></i></div>
               <h3>Création de Site Web</h3>
               <p>Conception et développement de sites web professionnels, vitrines ou e-commerce, en parfaite harmonie avec votre nouvelle identité visuelle.</p>
-              <ul class="feature-points">
-                    <li>Design responsive et UX/UI optimisé</li>
-                    <li>Intégration de votre charte graphique</li>
-                    <li>Développement sur mesure ou CMS (WordPress, Shopify, etc.)</li>
-                    <li>Optimisation SEO et performance</li>
-              </ul>
+              
             </div>
           </div>
         </div>
@@ -276,6 +252,8 @@
             <div class="row gy-3">
                 @foreach ($orderedPacks as $pack)
                     <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}" data-service="{{ $pack->packType->name ?? 'Pack' }}">
+                      <div class="pricing-item-wrapper" style="height: 100%; display: flex; flex-direction: column;">
+
                         <div class="pricing-item {{ $loop->index === 1 ? 'featured' : '' }}">
                             @if ($loop->last)
                                 <span class="advanced">Personnalisé</span>
@@ -291,6 +269,7 @@
                                 <a href="#" class="btn-buy">Buy Now</a>
                             </div>
                         </div>
+                      </div>
                     </div>
                 @endforeach
             </div>

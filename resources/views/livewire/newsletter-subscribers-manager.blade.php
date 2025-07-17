@@ -1,5 +1,6 @@
 <div>
-    <div class="row mb-3">
+    <div class="row mb-3 align-items-end g-2">
+
         <div class="col-md-4">
             <input
                 type="text"
@@ -9,8 +10,8 @@
                 value="{{ $search }}"
             />
         </div>
-
-        <div class="col-md-3 mt-3 mt-md-2">
+    
+        <div class="col-md-2">
             <input
                 type="date"
                 wire:model.live="dateFrom"
@@ -18,8 +19,8 @@
                 value="{{ $dateFrom }}"
             />
         </div>
-
-        <div class="col-md-3 mt-3 mt-md-2">
+    
+        <div class="col-md-2">
             <input
                 type="date"
                 wire:model.live="dateTo"
@@ -27,17 +28,38 @@
                 value="{{ $dateTo }}"
             />
         </div>
-
-        <div class="col-md-2 mt-3 mt-md-2">
+    
+        <div class="col-md-1">
             <button 
                 wire:click="clearFilters" 
-                class="btn btn-secondary"
+                class="btn btn-secondary w-100"
                 type="button"
             >
-                Clear Filters
+                Clear
             </button>
         </div>
+    
+        <div class="col-md-1">
+            <button 
+                wire:click="deleteAll" 
+                class="btn btn-danger w-100"
+                onclick="confirm('Are you sure you want to delete all subscribers?') || event.stopImmediatePropagation()"
+            >
+                Delete
+            </button>
+        </div>
+    
+        <div class="col-md-2">
+            <button 
+                wire:click="exportAsExcel" 
+                class="btn btn-success w-100"
+            >
+                Export as Excel
+            </button>
+        </div>
+    
     </div>
+    
 
     <div class="row mb-3">
         <div class="col-12">
@@ -58,6 +80,8 @@
                 <th>Subscribed At</th>
                 <th>Country</th>
                 <th>IP Address</th>
+                <th>Actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -71,6 +95,14 @@
                     </td>
 
                     <td>{{ $subscriber->ip_address ?? '-' }}</td>
+                    <td>
+                        <button 
+                            class="btn btn-sm btn-outline-danger"
+                            wire:click="deleteSubscriber({{ $subscriber->id }})"
+                        >
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
                 </tr>
             @empty
                 <tr>

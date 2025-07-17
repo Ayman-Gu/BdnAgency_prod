@@ -49,7 +49,7 @@
                     <h1>Touchez votre audience en temps réel avec les SMS professionnels</h1>
                     <p class="description mt-3 mb-md-5">Envoyez des campagnes SMS personnalisées, suivez les performances et boostez votre engagement client grâce à notre plateforme fiable et rapide.</p>
                     <a href="#demo" class="cta-button">Demander une démo</a>
-                    <p class="no-credit-card mt-sm-5 mb-5">
+                    <p class="no-credit-card mb-5">
                         <i class="fas fa-check"></i>
                         <strong>
                         Pas de carte de crédit requise
@@ -172,7 +172,7 @@
             <div class="stats-grid"  data-aos="fade-left" data-aos-delay="200" >
               <div class="stat-card">
                 <div class="stat-number counter" data-target="190" data-suffix="+">0</div>
-                <div class="stat-label">Pays couverts</div>
+                <div class="stat-label">Clients</div>
               </div>
               <div class="stat-card">
                 <div class="stat-number counter" data-target="99" data-suffix="%">0</div>

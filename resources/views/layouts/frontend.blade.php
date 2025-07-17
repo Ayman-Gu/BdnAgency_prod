@@ -19,16 +19,16 @@
   <!-- icons-->
    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <!-- Vendor CSS Files (with asset()) -->
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  
+  <!-- Main CSS File (with asset()) -->
+  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
   
   @livewireStyles
 
@@ -42,7 +42,7 @@
 
    <a href="{{ route('index') }}" class="logo d-flex align-items-center">
      <div class="sitename">
-       <img src="assets/img/hero/1.png" class="header-logo" />
+       <img src="{{asset('assets/img/hero/1.png')}}" class="header-logo" />
      </div>
    </a>
 
@@ -55,7 +55,7 @@
            <li><a href="{{ route('serviceEmailing') }}">Plateforme Emailing</a></li>
            <li><a href="{{ route('serviceSMS') }}">Plateforme SMS</a></li>
            <li><a href="{{ route('serviceBDD') }}">Base de données</a></li>
-           <li><a href="{{ route('serviceNewsletter') }}">Newsletter</a></li>
+           <li><a href="{{ route('serviceNewsletter') }}">Gestion des Newsletters</a></li>
            <li><a href="{{ route('serviceVisionnaire') }}">Le Visionnaire</a></li>
            <li><a href="{{ route('serviceBranding') }}">Branding & Identité Visuelle</a></li>
          </ul>
@@ -70,24 +70,7 @@
                Kit Media
            </a>
        </li>
-      <div class="dropdown ms-3">
-    <div 
-        class="d-flex align-items-center dropdown-toggle" 
-        data-bs-toggle="dropdown" 
-        aria-expanded="false" 
-        style="cursor: pointer;"
-    >
-        <img src="{{ asset('assets/img/flags/fr.svg') }}" alt="FR" width="24">
-    </div>
-
-    <div class="dropdown-menu dropdown-menu-end" style="min-width: 30px;">
-        <a href="#" class="d-flex align-items-center">
-            <img src="{{ asset('assets/img/flags/uk.svg') }}" alt="EN" width="24">
-        </a>
-    </div>
-</div>
-
-
+    
 
        <!-- User is logged in: link to profile 
        @auth
@@ -122,7 +105,7 @@
       <div class="footer-content py-5">
         <div class="first-div">
           <div class="footer-logo">
-            <img src="assets/img/footer/2.png" class="footer-logo-img" alt="Selecao Logo">
+            <img src="{{asset('assets/img/footer/2.png')}}" class="footer-logo-img" alt="Selecao Logo">
           </div>
           <div class="description">
             <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, sint alias. </div>
@@ -180,20 +163,21 @@
 
     </div>
   </footer>
-<!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+ <!-- Vendor JS Files -->
+ <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+ <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+ <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+ <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+ <script src="{{ asset('assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+ <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+ <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+ 
+ <!-- Main JS File -->
+ <script src="{{ asset('assets/js/main.js') }}"></script>
+ <script src="{{ asset('assets/js/filter-pricing.js') }}"></script>
+ 
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/filter-pricing.js"></script>
-
-  @livewireScripts
+ @livewireScripts
 
 
 </body>

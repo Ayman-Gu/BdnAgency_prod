@@ -13,7 +13,7 @@
 
     <div class="mb-3">
         <label class="form-label">Choisissez un service :</label>
-        <select wire:change="selectService($event.target.value)" class="form-select">
+        <select wire:model="selectedService" wire:change="selectService($event.target.value)" class="form-select">
             <option value="">-- Choisir un service --</option>
             @foreach($services as $service)
                 <option value="{{ $service->id }}"

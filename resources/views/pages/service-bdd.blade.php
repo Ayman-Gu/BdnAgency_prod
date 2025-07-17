@@ -52,7 +52,7 @@
                     <h1 data-aos="fade-down" data-aos-delay="100">Accédez à des bases de données <span style="color:#ef6603">qualifiées</span> et <span style="color:#ef6603">conformes</span> pour booster vos campagnes</h1>
                     <p data-aos="fade-down" data-aos-delay="200">BDN Agency vous offre un service de location de bases de données B2B et B2C, segmentées et constamment mises à jour, pour cibler précisément vos prospects et maximiser l'impact de vos actions marketing.</p>
                     <a href="#demo" class="cta-button mt-5" data-aos="fade-up" data-aos-delay="100">Demander une consultation gratuite</a>
-                    <p class="trust text-center mt-5" data-aos="fade-up" data-aos-delay="200">
+                    <p class="trust text-center mt-4" data-aos="fade-up" data-aos-delay="200">
                        <i class="fas fa-check"></i>
                        <strong>Données 100% conformes CNDP</strong>
                      </p>
@@ -156,31 +156,42 @@
                 Nos solutions de location de BDD s'adaptent à une multitude de secteurs pour répondre à vos besoins spécifiques.
             </p>
             <div class="examples-grid">
-                <div class="example-card text-center" data-aos="fade-right" data-aos-delay="100">
-                    <div class="example-icon"><i class="fas fa-hotel"></i></div>
-                    <h4>Immobilier</h4>
-                    <p>+25% de réservations directes avec des offres exclusives et des campagnes ciblées.</p>
-                </div>
-                <div class="example-card text-center" data-aos="fade-down" data-aos-delay="100">
-                    <div class="example-icon"><i class="fas fa-car"></i></div>
-                    <h4>Services Financiers</h4>
-                    <p>+15% de visites en concession grâce à la promotion de nouveaux modèles.</p>
-                </div>
-                <div class="example-card text-center" data-aos="fade-left" data-aos-delay="100">
-                    <div class="example-icon"><i class="fas fa-hands-helping"></i></div>
-                    <h4>Éducation</h4>
-                    <p>+30% d'engagement des membres et collecte de fonds optimisée.</p>
-                </div>
-                <div class="example-card text-center" data-aos="fade-left" data-aos-delay="100">
-                    <div class="example-icon"><i class="fas fa-shopping-cart"></i></div>
-                    <h4>Santé & Bien-être</h4>
-                    <p>+15% de conversion via relance de paniers abandonnés et offres ciblées.</p>
-                </div>
-                <div class="example-card text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="example-icon"><i class="fas fa-briefcase"></i></div>
-                    <h4>Commerce de Détail</h4>
-                    <p>+20% de demandes de démo et notoriété renforcée avec des contenus experts.</p>
-                </div>
+              <div class="example-card text-center" data-aos="fade-right" data-aos-delay="100">
+                <div class="example-icon"><i class="fas fa-hotel"></i></div>
+                <h4>Tourisme & Hôtellerie</h4>
+                <p>+25% de réservations directes avec des offres exclusives et des campagnes ciblées.</p>
+              </div>
+            
+              <div class="example-card text-center" data-aos="fade-down" data-aos-delay="200">
+                <div class="example-icon"><i class="fas fa-car"></i></div>
+                <h4>Automobile</h4>
+                <p>+15% de visites en concession grâce à la promotion de nouveaux modèles.</p>
+              </div>
+            
+              <div class="example-card text-center" data-aos="fade-left" data-aos-delay="300">
+                <div class="example-icon"><i class="fas fa-hands-helping"></i></div>
+                <h4>Associations</h4>
+                <p>+30% d'engagement des membres et collecte de fonds optimisée.</p>
+              </div>
+            
+              <div class="example-card text-center" data-aos="fade-right" data-aos-delay="400">
+                <div class="example-icon"><i class="fas fa-shopping-cart"></i></div>
+                <h4>E-commerce</h4>
+                <p>+15% de conversion via relance de paniers abandonnés et offres ciblées.</p>
+              </div>
+            
+              <div class="example-card text-center" data-aos="fade-up" data-aos-delay="500">
+                <div class="example-icon"><i class="fas fa-briefcase"></i></div>
+                <h4>Services B2B</h4>
+                <p>+20% de demandes de démo et notoriété renforcée avec des contenus experts.</p>
+              </div>
+            
+              <div class="example-card text-center" data-aos="fade-left" data-aos-delay="600">
+                <div class="example-icon"><i class="fas fa-bolt"></i></div>
+                <h4>Divers</h4>
+                <p>Communication interne et externe boostée pour écoles, clubs, startups, etc.</p>
+              </div>
+            </div>
             </div>
         </div>
     </section>

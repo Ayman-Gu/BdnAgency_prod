@@ -509,6 +509,7 @@
 .examples-section-title {
   text-align: center;
   font-size: 2.8rem;
+  font-weight:700;
   color: #2a2c39;
   margin-bottom: 10px;
 }

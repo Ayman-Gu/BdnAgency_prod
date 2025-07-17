@@ -37,12 +37,6 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Description</label>
-                            <textarea wire:model="description" class="form-control"></textarea>
-                            @error('description') <small class="text-danger">{{ $message }}</small> @enderror
-                        </div>
-
-                        <div class="mb-3">
                             <label class="form-label">Category</label>
                            <select wire:model="blog_category_id" class="form-select" required>
                                 <option value="">-- Choose --</option>
@@ -95,6 +89,21 @@
                 </div>
             </div>
         </div>
+        <!-- Description Card Full Width -->
+        <div class="col-12 mb-3">
+            <div class="card shadow-sm w-100">
+                <div class="card-body" wire:ignore>
+                    <h5 class="card-title mb-3">Description</h5>
+                
+                    <input id="description_input" type="hidden" name="description" wire:model="description">
+                    <trix-editor id="trix-editor" input="description_input"></trix-editor>
+                
+                    @error('description') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+            </div>
+        </div>
+
+        
         <!-- Status Small Card -->
         <div class="card shadow-sm mb-3">
             <div class="card-body">
@@ -225,9 +234,59 @@
             </tbody>
         </table>
     </div>
-    
+    <style>
+        trix-editor {
+    display: block;
+    min-height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
+    }
+    </style>
 
 </div>
 
+<script>
+    function bindTrixWithLivewire() {
+        const trixEditor = document.querySelector('trix-editor');
+        const trixInput = document.getElementById('description_input');
+        if (!trixEditor || !trixInput) return;
 
+        // Remove previous listener to avoid duplicates
+        if (trixEditor._livewireTrixChange) {
+            trixEditor.removeEventListener('trix-change', trixEditor._livewireTrixChange);
+        }
 
+        // Sync Trix changes to Livewire
+        trixEditor._livewireTrixChange = function () {
+            const livewireId = trixInput.closest('[wire\\:id]')?.getAttribute('wire:id');
+            if (livewireId) {
+                window.Livewire.find(livewireId).set('description', trixInput.value);
+            }
+        };
+        trixEditor.addEventListener('trix-change', trixEditor._livewireTrixChange);
+
+        // Listen for Livewire event to load content into Trix editor
+        Livewire.on('loadDescription', description => {
+            let safeDescription = '';
+            if (typeof description === 'string') {
+                safeDescription = description;
+            } else if (description) {
+                safeDescription = String(description);
+            }
+            trixInput.value = safeDescription;
+            trixEditor.editor.loadHTML(safeDescription);
+        });
+    }
+
+    document.addEventListener('livewire:init', () => {
+        bindTrixWithLivewire();
+
+        Livewire.hook('afterDomUpdate', () => {
+            bindTrixWithLivewire();
+        });
+    });
+</script>

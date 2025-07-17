@@ -55,7 +55,7 @@ Route::get('/service-bdd', [NavigationController::class ,'getServiceBDD'])->name
 Route::get('/service-newsletter', [NavigationController::class ,'getServiceNewsletter'])->name('serviceNewsletter');
 Route::get('/service-visionnaire', [NavigationController::class ,'getServiceVisionnaire'])->name('serviceVisionnaire');
 Route::get('/service-Branding', [NavigationController::class ,'getServiceBranding'])->name('serviceBranding');
-
+Route::get('/blog/{id}', [NavigationController::class, 'showSingleBlog'])->name('blog.show');
 
 /*
 --------------------------------------------------------------------------

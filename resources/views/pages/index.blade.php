@@ -164,15 +164,15 @@
       <!-- Section Title -->
       <div class="container section-title mt-5" data-aos="fade-up" style="margin-top: 70px !important;">
         <h2>À PROPOS</h2>
-        <p class="mt-5 mb-3">Qui sommes-nous</p>
+        <p class="mt-4 mb-3">Qui sommes-nous</p>
       </div><!-- End Section Title -->
 
       <div class="container">
 
-        <div class="row mt-4">
+        <div class="row mt-4 gx-5">
 
           <div class="col-lg-7 content" data-aos="fade-up" data-aos-delay="100">
-            <p>
+            <p style="text-align:justify">
              <strong>BDN Agency</strong>, votre booster de communication directe, est une agence spécialisée dans la création de stratégies d’emailing sur-mesure. Nous gérons vos campagnes de newsletters pour vous aider à communiquer efficacement avec vos clients et transformer l’attention en action. On ne vend pas du rêve. On crée des campagnes qui parlent à vos clients et génèrent des résultats concrets.
             </p>
             <ul class="custom-list">
@@ -249,7 +249,7 @@
             <div class="row mt-3">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
                 <h3 class="mt-3">Le début d'une vision ambitieuse, guidée par la passion.</h3>
-                <p class="fst-italic mt-4">
+                <p class="mt-4">
                  <strong>BDN Agency</strong>  a vu le jour à partir d’un besoin réel : permettre aux entreprises de communiquer efficacement dans un monde digital saturé.
                   Notre aventure a commencé avec des campagnes personnalisées, un ordinateur, et beaucoup d’ambition. Aujourd’hui, nous accompagnons des marques avec des solutions complètes, humaines et mesurables.
 
@@ -633,26 +633,29 @@
               <div class="row gy-3">
                   @foreach($service->packs as $pack)
                       <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}" data-service="{{ $pack->packType->name ?? 'pack' }}">
-                          <div class="pricing-item {{ $loop->index === 1 ? 'featured' : '' }}">
-                              @if ($loop->last)
-                                  <span class="advanced">Personnalisé</span>
-                              @endif
-                              <h3>{{ $pack->packType->name ?? 'Pack' }}</h3>
-                              <h4><sup>$</sup>{{ number_format($pack->price, 2) }}<span> / month</span></h4>
-                              <ul>
-                                  @foreach($pack->offers as $offer)
-                                      <li class="{{ $offer->active ? '' : 'na' }}">{{ $offer->name }}</li>
-                                  @endforeach
-                              </ul>
-                              <div class="btn-wrap">
-                                  <a href="#" class="btn-buy">Buy Now</a>
+                          <div class="pricing-item-wrapper" style="height: 100%; display: flex; flex-direction: column;">
+                              <div class="pricing-item {{ $loop->index === 1 ? 'featured' : '' }}" style="flex: 1; display: flex; flex-direction: column;">
+                                  @if ($loop->last)
+                                      <span class="advanced">Personnalisé</span>
+                                  @endif
+                                  <h3>{{ $pack->packType->name ?? 'Pack' }}</h3>
+                                  <h4><sup>$</sup>{{ number_format($pack->price, 2) }}<span> / month</span></h4>
+                                  <ul>
+                                      @foreach($pack->offers as $offer)
+                                          <li class="{{ $offer->active ? '' : 'na' }}">{{ $offer->name }}</li>
+                                      @endforeach
+                                  </ul>
+                                  <div class="btn-wrap" style="margin-top: auto;">
+                                      <a href="#" class="btn-buy">Buy Now</a>
+                                  </div>
                               </div>
                           </div>
                       </div>
                   @endforeach
               </div>
           </div>
-      @endforeach
+        @endforeach
+
 
     </section>
 @endif

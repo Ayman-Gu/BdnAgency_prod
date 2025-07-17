@@ -15,6 +15,7 @@ return new class extends Migration
         $table->id();
         $table->unsignedBigInteger('idBlogs')->nullable();
         $table->string('title');
+        $table->string('slug')->unique();
         $table->text('description');
         $table->string('image');
         $table->string('status')->default('pending');

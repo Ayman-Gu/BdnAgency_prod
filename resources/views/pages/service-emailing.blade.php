@@ -285,7 +285,6 @@
           <div class="col-lg-6 mb-4 mb-lg-0 cta-left-column" data-aos="fade-right" data-aos-delay="100">
             <h2 class="mb-3">Commencer avec BDN Agency</h2>
             <p class="mb-4">Obtenez tous les éléments essentiels avec le plan d'emailing gratuit</p>
-            <a href="#" class="px-4 py-2 ">Créer un compte gratuit <i class="bi bi-arrow-up-right-circle"></i></a>
           </div>
         
           <!-- Right column -->
@@ -401,7 +400,10 @@
                 <i class="fas fa-chevron-right"></i>
               </div>
         </div>
-        
+         <!-- demo -->
+          <div class="text-center demo-button" data-aos="fade-up" data-aos-delay="100">
+            <a href="#" class="px-4 py-3 mb-5 ">Demander un démo <i class="bi bi-arrow-up-right-circle"></i></a>
+          </div>
         </div>
         </div>
       </div>

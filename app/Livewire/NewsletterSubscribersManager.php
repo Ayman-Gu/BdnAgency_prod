@@ -6,6 +6,7 @@ use App\Models\NewsletterSubscriber;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
+use Illuminate\Support\Facades\DB;
 
 class NewsletterSubscribersManager extends Component
 {
@@ -109,5 +110,18 @@ class NewsletterSubscribersManager extends Component
         $subscribers = $query->orderBy('created_at', 'desc')->paginate(10);
 
         return view('livewire.newsletter-subscribers-manager', compact('subscribers'));
+    }
+
+    public function deleteSubscriber($id)
+    {
+    NewsletterSubscriber::findOrFail($id)->delete();
+    session()->flash('message', 'Subscriber deleted successfully.');
+    }
+
+    public function deleteAll()
+    {
+        DB::table('newsletter_subscribers')->delete();
+        session()->flash('message', 'All subscribers have been deleted.');
+        $this->resetPage();
     }
 }

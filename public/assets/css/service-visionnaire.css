@@ -610,6 +610,25 @@
   opacity: 0.9;
 }
 
+.demo-button a {
+  background-color: #ef6603;
+  color: white;
+  border: none;
+  font-weight: 500;
+  border-radius: 25px;
+  padding: 12px 28px;
+  marging:0 auto;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  box-shadow: 0 8px 20px rgba(16, 16, 16, 0.2);
+}
+.demo-button a:hover {
+  box-shadow: 0 12px 30px rgba(14, 14, 14, 0.35);
+  color: white;
+  transform: translateY(-4px) scale(1.03);
+}
+
 
 /* ----Responsive-----*/
 

@@ -92,11 +92,6 @@
               <div class="feature-icon"><i class="fas fa-ad"></i></div>
               <h3>Insertions de Bannières Stratégiques</h3>
               <p>Affichez votre message sur des emplacements premium de notre site. Nos formats IAB standards garantissent une visibilité optimale et un impact immédiat auprès d'une audience engagée.</p>
-              <ul class="feature-points-fst">
-                <li>Formats : Leaderboard (728x90), Skyscraper (160x600), Rectangle Moyen (300x250)</li>
-                <li>Emplacements : Page d'accueil, articles thématiques, pages de catégories</li>
-                <li>Ciblage : Par secteur d'activité, par type d'audience</li>
-              </ul>
             </div>
           </div>
         
@@ -106,11 +101,6 @@
               <div class="feature-icon"><i class="fas fa-newspaper"></i></div>
               <h3>Articles Sponsorisés et Brand Content</h3>
               <p>Racontez votre histoire ou partagez votre expertise à travers des articles rédigés par nos équipes éditoriales, en parfaite adéquation avec le ton et la ligne éditoriale du Visionnaire.</p>
-              <ul class="feature-points">
-                <li>Rédaction : Par nos journalistes spécialisés en business</li>
-                <li>Intégration : Publication fluide au sein de notre contenu éditorial</li>
-                <li>Avantages : Crédibilité accrue, engagement prolongé, SEO optimisé</li>
-              </ul>
             </div>
           </div>
         
@@ -120,11 +110,6 @@
               <div class="feature-icon"><i class="fas fa-envelope-open-text"></i></div>
               <h3>Newsletters Partenaires</h3>
               <p>Intégrez votre message ou une section dédiée dans nos newsletters quotidiennes ou hebdomadaires, directement dans les boîtes de réception de nos abonnés les plus influents.</p>
-              <ul class="feature-points">
-                <li>Fréquence : Quotidienne ou hebdomadaire</li>
-                <li>Audience : Abonnés qualifiés (investisseurs, DG, startups, jeunes actifs)</li>
-                <li>Format : Bannières dédiées, blocs de contenu, articles en vedette</li>
-              </ul>
             </div>
           </div>
         
@@ -134,11 +119,6 @@
               <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
               <h3>Événements et Webinaires Sponsorisés</h3>
               <p>Organisez ou sponsorisez des événements exclusifs (conférences, tables rondes, webinaires) en partenariat avec Le Visionnaire pour créer un engagement direct avec votre audience cible.</p>
-              <ul class="feature-points">
-                <li>Formats : Webinaires, conférences en ligne, tables rondes</li>
-                <li>Audience : Participation sur invitation pour les profils les plus qualifiés</li>
-                <li>Avantages : Génération de leads, positionnement d'expert, networking premium</li>
-              </ul>
             </div>
           </div>
         
@@ -148,11 +128,6 @@
               <div class="feature-icon"><i class="fas fa-user-tie"></i></div>
               <h3>Études de Cas et Interviews Exclusives</h3>
               <p>Mettez en avant votre expertise à travers des interviews de dirigeants, des études de cas détaillées ou des analyses sectorielles réalisées par nos journalistes.</p>
-              <ul class="feature-points">
-                <li>Format : Articles longs, interviews vidéo, podcasts</li>
-                <li>Diffusion : Multi-canal (site, newsletter, réseaux sociaux)</li>
-                <li>Avantages : Thought leadership, crédibilité renforcée, SEO premium</li>
-              </ul>
             </div>
           </div>
         
@@ -161,26 +136,7 @@
             <div class="feature-card h-100">
               <div class="feature-icon"><i class="fas fa-handshake"></i></div>
               <h3>Partenariats de Contenu Thématique</h3>
-              <p>Créez des sections dédiées ou des dossiers spéciaux en partenariat avec Le Visionnaire sur des thématiques liées à votre secteur d'activité.</p>
-              <ul class="feature-points">
-                <li>Durée : Partenariats mensuels ou trimestriels</li>
-                <li>Contenu : Dossiers thématiques, séries d'articles, analyses sectorielles</li>
-                <li>Visibilité : Mise en avant sur toutes nos plateformes</li>
-              </ul>
-            </div>
-          </div>
-        
-          <!-- Campagnes de Retargeting et Data -->
-          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="700">
-            <div class="feature-card h-100">
-              <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-              <h3>Campagnes de Retargeting et Data</h3>
-              <p>Exploitez notre base de données qualifiée pour des campagnes de retargeting ciblées et des analyses comportementales approfondies de votre audience business.</p>
-              <ul class="feature-points">
-                <li>Ciblage : Données first-party de qualité premium</li>
-                <li>Formats : Display, email, notifications push</li>
-                <li>Analytics : Rapports détaillés sur le comportement des décideurs</li>
-              </ul>
+              <p>Créez des sections dédiées ou des dossiers spéciaux en partenariat avec Le Visionnaire sur des thématiques liées à votre secteur d'activité.</p>           
             </div>
           </div>
         
@@ -265,7 +221,7 @@
          Découvrez comment nos annonceurs ont amplifié leur impact grâce à Le Visionnaire.
         </p>
       
-        <div class="examples-grid">
+        <!--<div class="examples-grid">
           <div class="example-card text-center" data-aos="fade-right" data-aos-delay="100">
             <div class="example-icon-img"><img src="assets/img/service-visionnaire/fst-icon.png" alt="" loading="lazy"></div>
             <h4>Société de Capital Risque</h4>
@@ -283,7 +239,11 @@
             <h4>Startup Tech</h4>
             <p>Accroissement de la notoriété et du trafic de 40% grâce à une série d'insertions dans nos newsletters et un partenariat de contenu thématique.</p>
           </div>
-        </div>
+        </div>-->
+         <!-- devenir un partenaire  -->
+          <div class="text-center demo-button" data-aos="fade-up" data-aos-delay="100">
+            <a href="#" class="px-4 py-3 mb-5">Devenir un partenaire <i class="bi bi-arrow-up-right-circle"></i></a>
+          </div>
 
       </div>
     </section>

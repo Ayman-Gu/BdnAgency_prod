@@ -32,11 +32,11 @@
             @else
                 @foreach($projects as $project)
                     <div class="col-lg-4 col-md-6 portfolio-item isotope-item">
-                        <img src="{{ asset('storage/' . $project->image) }}" class="img-fluid" alt="{{ $project->image_alt }}">
+                        <img src="{{ asset('storage/' . $project->image) }}" class="img-fluid" alt="{{ $project->image_alt }}" style="object-fit: cover ; height:100%">
                         <div class="portfolio-info">
                             <h4>{{ $project->title }}</h4>
                             <p>{{ Str::limit($project->description, 50) }}</p>
-                            <a href="{{ asset('storage/' . $project->image) }}" title="{{ $project->image_title }}"
+                            <a href="{{ asset('storage/' . $project->image) }}" title="{{ $project->image_title }}" 
                                data-gallery="portfolio-gallery" class="glightbox preview-link">
                                 <i class="bi bi-zoom-in"></i>
                             </a>

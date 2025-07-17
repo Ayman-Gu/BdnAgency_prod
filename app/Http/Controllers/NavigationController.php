@@ -256,4 +256,13 @@ class NavigationController extends Controller
     public function getBlogsManager(){
         return view('dashboard.blogs', compact('blogs'));
     }
+
+    public function showSingleBlog($id)
+    {
+        $blog = Blog::findOrFail($id);
+        $categories = BlogCategory::pluck('name');
+    
+        return view('pages.blog-single', compact('blog', 'categories'));
+    }
+
 }

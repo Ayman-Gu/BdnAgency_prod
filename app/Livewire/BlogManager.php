@@ -7,6 +7,7 @@ use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use Illuminate\Support\Str;
 
 class BlogManager extends Component
 {
@@ -48,6 +49,7 @@ class BlogManager extends Component
         $this->meta_description = '';
         $this->editMode = false;
         $this->blog_id = null;
+        
     }
 
     public function addCategory()
@@ -63,7 +65,7 @@ class BlogManager extends Component
 
     public function store()
     {
-        $validated = $this->validate([
+        $this->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
             'blog_category_id' => 'required|exists:blog_categories,id',
@@ -75,12 +77,23 @@ class BlogManager extends Component
             'meta_description' => 'nullable|string|max:500',
         ]);
 
-        $validated['image'] = $this->image->store('blogs', 'public');
-        $validated['category'] = BlogCategory::find($this->blog_category_id)->name;
+       $imagePath = $this->image->store('blogs', 'public');
 
-        Blog::create($validated);
+        Blog::create([
+            'title' => $this->title,
+            'slug' => Str::slug($this->title) . '-' . uniqid(),
+            'description' => $this->description,
+            'blog_category_id' => $this->blog_category_id,
+            'image' => $imagePath,
+            'image_alt' => $this->image_alt,
+            'image_title' => $this->image_title,
+            'meta_keywords' => $this->meta_keywords,
+            'meta_description' => $this->meta_description,
+            'status' => $this->status,
+        ]);
 
         $this->resetForm();
+        $this->dispatch('loadDescription', '');
         session()->flash('message', 'Blog Created Successfully.');
     }
 
@@ -98,11 +111,14 @@ class BlogManager extends Component
         $this->blog_category_id = $blog->blog_category_id;
 
         $this->editMode = true;
+
+        $this->dispatch('loadDescription', $blog->description);
+
     }
 
     public function update()
     {
-        $validated = $this->validate([
+        $this->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
             'blog_category_id' => 'required|exists:blog_categories,id',
@@ -113,18 +129,30 @@ class BlogManager extends Component
             'meta_description' => 'nullable|string|max:500',
         ]);
 
+        
         $blog = Blog::findOrFail($this->blog_id);
-
+    
+        $blog->title = $this->title;
+        $blog->slug = Str::slug($this->title) . '-' . $blog->id;
+        $blog->description = $this->description;
+        $blog->blog_category_id = $this->blog_category_id;
+        $blog->image_alt = $this->image_alt;
+        $blog->image_title = $this->image_title;
+        $blog->meta_keywords = $this->meta_keywords;
+        $blog->meta_description = $this->meta_description;
+        $blog->status = $this->status;
+    
         if ($this->image) {
-            $validated['image'] = $this->image->store('blogs', 'public');
+            $imagePath = $this->image->store('blogs', 'public');
+            $blog->image = $imagePath;
         }
-
-        $validated['category'] = BlogCategory::find($this->blog_category_id)->name;
-
-        $blog->update($validated);
+    
+        $blog->save();
 
         $this->resetForm();
+        $this->dispatch('loadDescription', '');
         session()->flash('message', 'Blog Updated Successfully.');
+
     }
 
     public function delete($id)

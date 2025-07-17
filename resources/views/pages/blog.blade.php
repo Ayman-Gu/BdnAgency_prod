@@ -40,9 +40,9 @@
                     <div class="post-img">
                       <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->image_alt }}" title="{{ $blog->image_title }}" class="img-fluid">
                     </div>
-                    <p class="post-category">{{ $blog->category?->name }}</p>
+                    <p class="post-category">{{ $blog->category?->name}}</p>
                     <h2 class="title">
-                      <a href="#">
+                      <a href="{{ route('blog.show', $blog->id) }}">
                         {{ $blog->title }}
                       </a>
                     </h2>
@@ -77,7 +77,7 @@
                   </ul>
               </div>
 
-            
+            <!--
               <div class="sidebar-widget mb-5">
                   <h5 class="sidebar-title ps-3 fw-bold">
                       <i class="bi bi-folder-fill pe-3"></i>Recent Posts
@@ -109,7 +109,7 @@
                       @endforeach
                   </ul>
               </div>
-
+            --->
             
             
               <div class="sidebar-widget mb-5">
