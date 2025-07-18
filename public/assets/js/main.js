@@ -261,6 +261,9 @@ function setActiveNavLink() {
 function toggleDropdown() {
   const dropdown = document.getElementById('servicesDropdown');
   dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+
+  const arrow = document.getElementById('dropdownArrow');
+  arrow.style.transform = arrow.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 
 // Optional: Hide dropdown when clicking outside

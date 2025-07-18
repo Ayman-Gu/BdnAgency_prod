@@ -7,6 +7,10 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+
+use Illuminate\Support\Facades\Response;
+use Spatie\SimpleExcel\SimpleExcelWriter;
 
 class NewsletterSubscribersManager extends Component
 {
@@ -57,7 +61,7 @@ class NewsletterSubscribersManager extends Component
     /*----- test ipAddress with countries ----
     use App\Livewire\NewsletterSubscribersManager;
     $manager = new NewsletterSubscribersManager();
-    $manager->addTestSubscriber('test2@example.com', '1.179.112.0');
+    $manager->addTestSubscriber('test2@example.com', '1.179.112.0');*/
 
     public function addTestSubscriber($email, $ip)
     {
@@ -68,7 +72,7 @@ class NewsletterSubscribersManager extends Component
         'ip_address' => $ip,
         'country' => $country,
     ]);
-    }*/
+    }
 
    public function getCountryByIp($ip)
     {
@@ -78,14 +82,18 @@ class NewsletterSubscribersManager extends Component
     }
 
     try {
-        $response = @file_get_contents("https://ipapi.co/{$ip}/country_name/");
-        if ($response) {
-            return trim($response);
+        $response = Http::timeout(5)->withHeaders([
+            'User-Agent' => 'LaravelApp'
+        ])->get("https://ipapi.co/{$ip}/country_name/");
+        
+         if ($response->successful()) {
+            return trim($response->body());
         }
     } catch (\Exception $e) {
-        return null;
+        logger()->error("Failed to fetch country: " . $e->getMessage());
     }
-    return null;
+
+    return 'Unknown';
     }
 
     public function render()
@@ -124,4 +132,46 @@ class NewsletterSubscribersManager extends Component
         session()->flash('message', 'All subscribers have been deleted.');
         $this->resetPage();
     }
+
+  public function exportAsExcel()
+{
+    $query = NewsletterSubscriber::query();
+
+    // Apply filters
+    if (!empty($this->search)) {
+        $query->where('email', 'like', '%' . $this->search . '%');
+    }
+    if (!empty($this->dateFrom)) {
+        $query->whereDate('created_at', '>=', $this->dateFrom);
+    }
+    if (!empty($this->dateTo)) {
+        $query->whereDate('created_at', '<=', $this->dateTo);
+    }
+
+    $subscribers = $query->get();
+
+    return response()->streamDownload(function () use ($subscribers) {
+        $writer = SimpleExcelWriter::streamDownload('newsletter_subscribers.xlsx');
+
+        $writer->addHeader([
+            'ID',
+            'Email',
+            'IP Address',
+            'Country',
+            'Subscribed At',
+        ]);
+
+        foreach ($subscribers as $subscriber) {
+            $writer->addRow([
+                $subscriber->id,
+                $subscriber->email,
+                $subscriber->ip_address ?? 'N/A',
+                $subscriber->country ?? 'Unknown',
+                $subscriber->created_at->format('Y-m-d H:i:s'),
+            ]);
+        }
+
+        $writer->close();
+    }, 'newsletter_subscribers.xlsx');
+} 
 }

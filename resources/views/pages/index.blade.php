@@ -480,133 +480,71 @@
 @endif
     <!-- Testimonials Section -->
 @if(!empty($sections['testimonials_section']) && $sections['testimonials_section'] == 1)
+<section id="testimonials" class="testimonials section {{ (!$showHero && $firstSection === 'testimonials_section') ? 'first-section-margin' : '' }}">
+  <div class="container section-title pb-0 mt-4" data-aos="fade-up">
+    <h2>Témoignages</h2>
+    <p class="mt-5 mb-4">Votre retour, notre fierté</p>
+  </div>
 
-    <section id="testimonials" class="testimonials section {{ (!$showHero && $firstSection === 'testimonials_section') ? 'first-section-margin' : '' }}">
-
-      <!-- Section Title -->
-      <div class="container section-title pb-0 mt-4" data-aos="fade-up">
-        <h2>Témoignages</h2>
-        <p class="mt-5 mb-4">Votre retour, notre fierté</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
-                },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 10
-                }
-              }
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="swiper init-swiper">
+      <script type="application/json" class="swiper-config">
+        {
+          "loop": true,
+          "speed": 600,
+          "autoplay": {
+            "delay": 5000
+          },
+          "slidesPerView": "auto",
+          "pagination": {
+            "el": ".swiper-pagination",
+            "type": "bullets",
+            "clickable": true
+          },
+          "breakpoints": {
+            "320": {
+              "slidesPerView": 1,
+              "spaceBetween": 40
+            },
+            "1200": {
+              "slidesPerView": 3,
+              "spaceBetween": 10
             }
-          </script>
-          <div class="swiper-wrapper">
+          }
+        }
+      </script>
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
+      <div class="swiper-wrapper">
+        @foreach ($testimonials as $testimonial)
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <h4>{{ $testimonial->author }}</h4>
+              @if ($testimonial->position)
+                <h4>{{ $testimonial->position }}</h4>
+              @endif
+              <div class="stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
               </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
+              <p>
+                <i class="bi bi-quote quote-icon-left"></i>
+                <span>{{ $testimonial->content }}</span>
+                <i class="bi bi-quote quote-icon-right"></i>
+              </p>
+            </div>
           </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
+        @endforeach
       </div>
 
-    </section><!-- /Testimonials Section -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
 @endif
+
 @if(!empty($sections['pricing_section']) && $sections['pricing_section'] == 1)
     <section id="nosTarifs" class="pricing section {{ (!$showHero && $firstSection === 'pricing_section') ? 'first-section-margin' : '' }}">
         <div class="container section-title" data-aos="fade-up">
@@ -791,18 +729,21 @@
       <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
         <article class="d-flex flex-column h-100">
 
-          <div class="post-img">
-            <img src="{{ asset('storage/' . $post->image) }}"  alt="{{ $post->image_alt }}" title="{{ $post->image_title }}" class="img-fluid">
+          <div class="post-img" style=" height: 250px; overflow: hidden; position: relative;">
+            <img src="{{ asset('storage/' . $post->image) }}"  alt="{{ $post->image_alt }}" title="{{ $post->image_title }}" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
 
           <p class="post-category">{{ $post->category?->name }}</p>
 
           <h2 class="title">
-            <a href="#">{{ $post->title }}</a>
+            <a href="{{ route('blog.show', $post->id) }}">{{ $post->title }}</a>
           </h2>
 
-          <p>{{ \Illuminate\Support\Str::limit($post->description, 100) }}</p>
-
+          <div class="blog-content preview">
+                {!! $post->description !!}
+          </div>
+                  
+          <a href="{{ route('blog.show', $post->id) }}" class="read-more">… lire la suite</a>
           <div class="mt-auto d-flex align-items-center">
             <div class="post-meta d-flex align-items-end ms-auto">
               <p class="post-date"><time datetime="{{ $post->created_at->toDateString() }}">{{ $post->created_at->format('M d, Y') }}</time></p>
@@ -881,7 +822,11 @@
               
                 <div class="col-md-12">
                   <div class="dropdown-multiselect">
-                    <div class="dropdown-header" onclick="toggleDropdown()">Sélectionnez les services</div>
+                    <div class="dropdown-header d-flex align-items-center justify-content-between" onclick="toggleDropdown()" style="cursor: pointer;">
+                      <span>Sélectionnez les Objets</span>
+                      <i class="bi bi-chevron-down" id="dropdownArrow" style="transition: transform 0.3s;"></i>
+                    </div>
+
                     <div class="dropdown-list" id="servicesDropdown">
                       @foreach($services as $service)
                         <label class="dropdown-item">
@@ -889,7 +834,13 @@
                           {{ $service->name }}
                         </label>
                       @endforeach
+
+                      <label class="dropdown-item">
+                          <input type="checkbox" name="services[]" value="Autre">
+                          Autre 
+                      </label>
                     </div>
+
                   </div>
                 </div>
               

@@ -8,7 +8,6 @@ use App\Livewire\Frontend\ServiceBddPage;
 use App\Http\Controllers\DevisController;
 
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -32,8 +31,8 @@ Route::get('/newsletter_subscribers', [DashboardController::class ,'getNewslette
 Route::get('/manage-faq', [DashboardController::class ,'getFaqManager'])->name('faq-manager');
 Route::get('/manage-services', [DashboardController::class ,'getServicesManager'])->name('services-manager');
 Route::get('/manage-projects', [DashboardController::class ,'getProjectsManager'])->name('projects-manager');
-
-
+Route::get('/manage-testimonials', [DashboardController::class ,'getTestimonialsManager'])->name('testimonials-manager');
+Route::get('/manage-pdf-files', [DashboardController::class ,'getPdfManager'])->name('importPdf-manager');
 
 
 

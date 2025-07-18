@@ -35,4 +35,12 @@ class DashboardController extends Controller
     public function getProjectsManager(){
         return view('dashboard.projects');
     }
+
+    public function getTestimonialsManager(){
+        return view('dashboard.testimonials');
+    }
+
+    public function getPdfManager(){
+        return view('dashboard.importPdf');
+    }
 }

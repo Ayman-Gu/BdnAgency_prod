@@ -191,7 +191,21 @@
                 <li class="nav-item">
                    <a href="{{ route('projects-manager') }}" 
                       class="nav-link text-dark sidebar-link {{ request()->url() == route('projects-manager') ? 'active' : '' }}">
-                      Projets-Management
+                      Projects-Management
+                   </a>
+                </li>
+
+                <li class="nav-item">
+                   <a href="{{ route('testimonials-manager') }}" 
+                      class="nav-link text-dark sidebar-link {{ request()->url() == route('testimonials-manager') ? 'active' : '' }}">
+                      Testimonials-Management
+                   </a>
+                </li>
+
+                <li class="nav-item">
+                   <a href="{{ route('importPdf-manager') }}" 
+                      class="nav-link text-dark sidebar-link {{ request()->url() == route('importPdf-manager') ? 'active' : '' }}">
+                      Import-Pdf-Files
                    </a>
                 </li>
 

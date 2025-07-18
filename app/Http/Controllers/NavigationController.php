@@ -9,6 +9,7 @@ use App\Models\ContactInfo;
 use App\Models\Faq;
 use App\Models\BlogCategory;
 use App\Models\Service;
+use App\Models\Testimonial;
 
 
 class NavigationController extends Controller
@@ -52,8 +53,12 @@ class NavigationController extends Controller
         
         $faqs = Faq::where('is_active', true)->orderBy('order')->get();
 
+        $testimonials = Testimonial::latest()->get();
 
-        return view('pages.index', compact('sections', 'teamMembers', 'recentPosts','contactInfo' ,'faqs','services'));
+
+
+        return view('pages.index', compact('sections', 'teamMembers', 'recentPosts','contactInfo' ,
+                                          'faqs','services','testimonials'));
 
     }
 
@@ -121,7 +126,6 @@ class NavigationController extends Controller
             'cta_section' => $page->cta_section,
             'pricing_section' => $page->pricing_section,
         ];
-        // Fetch the service named 'Location de Plateforme Emailing'
         $service = \App\Models\Service::where('name', 'Location de Plateforme SMS')
             ->with(['packs.packType', 'packs.offers'])
             ->first();
@@ -165,8 +169,9 @@ class NavigationController extends Controller
                 return array_search($pack->packType->name ?? '', $order);
             })->values();
         }
-
-    return view('pages.service-bdd', compact('sections','orderedPacks'));
+        // Get the last 2 testimonials
+        $testimonials = Testimonial::latest()->take(2)->get();
+        return view('pages.service-bdd', compact('sections','orderedPacks', 'testimonials'));
     }
     
     public function getServiceNewsletter(){
@@ -180,7 +185,6 @@ class NavigationController extends Controller
             'cta_section' => $page->cta_section,
             'pricing_section' => $page->pricing_section,
         ];
-        // Fetch the service named 'Location de Plateforme Emailing'
         $service = \App\Models\Service::where('name', 'Newsletter')
             ->with(['packs.packType', 'packs.offers'])
             ->first();
@@ -207,7 +211,6 @@ class NavigationController extends Controller
             'cta_section' => $page->cta_section,
             'pricing_section' => $page->pricing_section,
         ];
-        // Fetch the service named 'Location de Plateforme Emailing'
         $service = \App\Models\Service::where('name', 'Le Visionnaire')
             ->with(['packs.packType', 'packs.offers'])
             ->first();
@@ -235,7 +238,6 @@ class NavigationController extends Controller
             'cta_section' => $page->cta_section,
             'pricing_section' => $page->pricing_section,
         ];
-        // Fetch the service named 'Location de Plateforme Emailing'
         $service = \App\Models\Service::where('name', 'Branding & Identité Visuelle')
             ->with(['packs.packType', 'packs.offers'])
             ->first();

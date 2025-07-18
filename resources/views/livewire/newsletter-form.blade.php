@@ -8,30 +8,72 @@
         </button>
     </form>
 
-   @if (session()->has('success'))
-        <div
-            x-data="{ show: true }"
-            x-init="setTimeout(() => show = false, 3000)"
-            x-show="show"
-            x-transition
-            class="newsletter-success mt-3 text-center"
-        >
-            <i class="bi bi-check-circle-fill me-2"></i>
-            {{ session('success') }}
-        </div>
-    @endif
+  <div
+  x-data="{ showSidebarPopup: false }"
+  @open-sidebar-modal.window="showSidebarPopup = true"
+  @close-sidebar-modal.window="showSidebarPopup = false"
+  x-effect="showSidebarPopup ? document.body.classList.add('no-scroll') : document.body.classList.remove('no-scroll')"
+>
+  <!-- STEP 2: Sidebar popup form -->
+  <div
+    x-show="showSidebarPopup"
+    x-cloak
+    class="popup-overlay"
+  >
+    <div class="popup-content" @click.stop>
+      <form wire:submit.prevent="submitSidebarModal" class="send-newsletter-popup">
+        <!-- Close button -->
+        <button
+          @click="showSidebarPopup = false"
+          type="button"
+          class="popup-close-btn"
+        >&times;</button>
 
-    @error('sidebarEmail')
-        <div
-            x-data="{ show: true }"
-            x-init="setTimeout(() => show = false, 3000)"
-            x-show="show"
-            x-transition
-            class="newsletter-error mt-3 text-center"
-        >
-            <i class="bi bi-exclamation-circle-fill me-2"></i>
-            {{ $message }}
+        <!-- Nom & Prénom -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sidebar-nom" class="popup-newsletter-label">Nom</label>
+            <input id="sidebar-nom" type="text" wire:model.defer="first_name" placeholder="Entrez votre nom" class="form-input popup-newsletter-input" autocomplete="off" required>
+          </div>
+          <div class="form-group">
+            <label for="sidebar-prenom" class="popup-newsletter-label">Prénom</label>
+            <input id="sidebar-prenom" type="text" wire:model.defer="last_name" placeholder="Entrez votre prénom" class="form-input popup-newsletter-input" autocomplete="off" required>
+          </div>
         </div>
-    @enderror
+
+        <!-- Email (readonly) -->
+        <div class="form-group">
+          <label for="sidebar-email" class="popup-newsletter-label">Email</label>
+          <input id="sidebar-email" type="email" wire:model.defer="sidebarEmail" class="form-input popup-newsletter-input">
+        </div>
+
+        <!-- Téléphone -->
+        <div class="form-group">
+          <label for="sidebar-telephone" class="popup-newsletter-label">Téléphone (optionnel)</label>
+          <input id="sidebar-telephone" type="tel" wire:model.defer="phone" placeholder="Entrez votre téléphone" class="form-input popup-newsletter-input" autocomplete="off">
+        </div>
+
+        <!-- Checkboxes -->
+        <div class="form-group checkbox-group">
+          <div>
+            <input type="checkbox" id="sidebar-checkbox1" required>
+            <label for="sidebar-checkbox1">J’ai lu et j’accepte la note légale <strong><a href="{{ asset('storage/' . $pdfFile->file_path) }}" target="_blank">"BDN-AGENCY"</a></strong></label>
+          </div>
+          <div>
+            <input type="checkbox" id="sidebar-checkbox2" required>
+            <label for="sidebar-checkbox2">J'accepte de recevoir la newsletter quotidienne...</label>
+          </div>
+          <div>
+            <input type="checkbox" id="sidebar-checkbox3" required>
+            <label for="sidebar-checkbox3">J'accepte de recevoir la newsletter des partenaires...</label>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="submit-button envoyer-popup-newsletter mt-4">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</div>
 
 </div>

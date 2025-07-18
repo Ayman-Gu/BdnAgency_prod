@@ -410,7 +410,7 @@
 
 .benefit-card {
     background: #464753;
-    border:1px solid #ef6603;
+    border:1px solid white;
     padding: 20px; 
     transition: all 0.3s ease;
 }

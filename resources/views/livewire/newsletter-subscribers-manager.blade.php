@@ -1,7 +1,7 @@
 <div>
     <div class="row mb-3 align-items-end g-2">
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <input
                 type="text"
                 wire:model.live.debounce.500ms="search"
@@ -39,13 +39,13 @@
             </button>
         </div>
     
-        <div class="col-md-1">
+        <div class="col-md-2">
             <button 
                 wire:click="deleteAll" 
                 class="btn btn-danger w-100"
                 onclick="confirm('Are you sure you want to delete all subscribers?') || event.stopImmediatePropagation()"
             >
-                Delete
+                Delete All
             </button>
         </div>
     
@@ -106,7 +106,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4" class="text-center">No subscribers found.</td>
+                    <td colspan="6" class="text-center">No subscribers found.</td>
                 </tr>
             @endforelse
         </tbody>

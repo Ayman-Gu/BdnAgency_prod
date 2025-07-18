@@ -37,22 +37,39 @@
               @foreach($blogs as $blog)
                 <div class="col-md-6">
                   <article class="d-flex flex-column h-100">
-                    <div class="post-img">
-                      <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->image_alt }}" title="{{ $blog->image_title }}" class="img-fluid">
+                    <div class="post-img" style=" height: 250px; overflow: hidden; position: relative;">
+                      <img 
+                        src="{{ asset('storage/' . $blog->image) }}" 
+                        alt="{{ $blog->image_alt }}" 
+                        title="{{ $blog->image_title }}" 
+                        class="img-fluid" 
+                        style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                      >
                     </div>
-                    <p class="post-category">{{ $blog->category?->name}}</p>
+                  
+                    <p class="post-category">{{ $blog->category?->name }}</p>
+                  
                     <h2 class="title">
                       <a href="{{ route('blog.show', $blog->id) }}">
                         {{ $blog->title }}
                       </a>
                     </h2>
-                    <p>{{ Str::limit($blog->description, 100) }}</p>
+                  
+                    <div class="blog-content preview">
+                      {!! $blog->description !!}
+                    </div>
+                  
+                    <a href="{{ route('blog.show', $blog->id) }}" class="read-more">… lire la suite</a>
+                  
                     <div class="mt-auto d-flex align-items-center">
                       <div class="post-meta d-flex align-items-end ms-auto">
-                        <p class="post-date"><time datetime="{{ $blog->created_at->toDateString() }}">{{ $blog->created_at->format('M d, Y') }}</time></p>
+                        <p class="post-date">
+                          <time datetime="{{ $blog->created_at->toDateString() }}">{{ $blog->created_at->format('M d, Y') }}</time>
+                        </p>
                       </div>
                     </div>
                   </article>
+
                 </div>
               @endforeach
 

@@ -203,17 +203,20 @@
         <div class="container">
             <h2 class="section-testimonials-title" data-aos="fade-up" data-aos-delay="100">Ce que nos clients disent de nous</h2>
             <div class="testimonials-grid mb-5">
-                <div class="testimonial-card" data-aos="fade-right" data-aos-delay="100">
-                    <div class="testimonial-text">
-                        "Grâce aux bases de données de BDN Agency, nous avons considérablement amélioré la pertinence de nos campagnes et notre ROI. La qualité des données est exceptionnelle."
+                @foreach ($testimonials as $index => $testimonial)
+                    <div class="testimonial-card"
+                         data-aos="{{ $index % 2 === 0 ? 'fade-right' : 'fade-left' }}"
+                         data-aos-delay="100">
+                        <div class="testimonial-text">
+                            " {{ $testimonial->content }}"
+                        </div>
+                        <div class="testimonial-author">
+                            {{ $testimonial->position ? $testimonial->position . ', ' : '' }}{{ $testimonial->author }}
+                        </div>
                     </div>
-                    <div class="testimonial-author">Directeur Marketing, Groupe Immobilier</div>
-                </div>
-                <div class="testimonial-card" data-aos="fade-left" data-aos-delay="100">
-                    <div class="testimonial-text">
-                        "La conformité CNDP était cruciale pour nous, et BDN Agency a dépassé nos attentes en matière de sécurité des données. Un partenaire de confiance."
-                    </div>
-                    <div class="testimonial-author">Responsable Conformité, Banque</div>
+                @endforeach
+            </div>
+
                 </div>
             </div>
         </div>
