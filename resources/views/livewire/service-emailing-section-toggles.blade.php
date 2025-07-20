@@ -1,7 +1,7 @@
 <div>
     <div class="card shadow-sm mt-5">
         <div class="card-header bg-dark text-white">
-            <h3 class="mb-0">Manage Service Emailing Sections Display</h3>
+            <h3 class="mb-0">Gérer l’Affichage des Sections de Service d’Emailing</h3>
         </div>
         <div class="card-body">
             <form>

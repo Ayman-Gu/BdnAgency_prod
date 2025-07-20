@@ -142,124 +142,125 @@
                 <li class="nav-item">
                    <a href="{{ route('dashboard') }}" 
                       class="nav-link text-dark sidebar-link {{ request()->url() == route('dashboard') ? 'active' : '' }}">
-                      Pages-Management
+                      Gestion des Pages
                    </a>
                 </li>
-
+              
                  <li class="nav-item">
                    <a href="{{ route('blogs-manager') }}" 
                       class="nav-link text-dark sidebar-link {{ request()->url() == route('blogs-manager') ? 'active' : '' }}">
-                      Blogs-Management
+                      Gestion des Blogs
                    </a>
                 </li>
-
+              
                 <li class="nav-item">
                    <a href="{{ route('team-manager') }}" 
                       class="nav-link text-dark sidebar-link {{ request()->url() == route('team-manager') ? 'active' : '' }}">
-                      Team-Management
+                      Gestion de l'Équipe
                    </a>
                 </li>
-
+              
                 <li class="nav-item">
                    <a href="{{ route('contact-manager') }}" 
                       class="nav-link text-dark sidebar-link {{ request()->url() == route('contact-manager') ? 'active' : '' }}">
-                      Contact-Management
+                      Gestion des Contacts
                    </a>
                 </li>
-
+              
                 <li class="nav-item">
                    <a href="{{ route('newsletter') }}" 
                       class="nav-link text-dark sidebar-link {{ request()->url() == route('newsletter') ? 'active' : '' }}">
-                      Newsletter-Subscribers
+                      Abonnés à la Newsletter
                    </a>
                 </li>
-
+              
                 <li class="nav-item">
                    <a href="{{ route('faq-manager') }}" 
                       class="nav-link text-dark sidebar-link {{ request()->url() == route('faq-manager') ? 'active' : '' }}">
-                      Faq-Management
+                      Gestion des FAQ
                    </a>
                 </li>
-
+              
                 <li class="nav-item">
                    <a href="{{ route('services-manager') }}" 
                       class="nav-link text-dark sidebar-link {{ request()->url() == route('services-manager') ? 'active' : '' }}">
-                      Services-Management
+                      Gestion des Services
                    </a>
                 </li>
-
+              
                 <li class="nav-item">
                    <a href="{{ route('projects-manager') }}" 
                       class="nav-link text-dark sidebar-link {{ request()->url() == route('projects-manager') ? 'active' : '' }}">
-                      Projects-Management
+                      Gestion des Projets
                    </a>
                 </li>
-
+              
                 <li class="nav-item">
                    <a href="{{ route('testimonials-manager') }}" 
                       class="nav-link text-dark sidebar-link {{ request()->url() == route('testimonials-manager') ? 'active' : '' }}">
-                      Testimonials-Management
+                      Gestion des Témoignages
                    </a>
                 </li>
-
+              
                 <li class="nav-item">
                    <a href="{{ route('importPdf-manager') }}" 
                       class="nav-link text-dark sidebar-link {{ request()->url() == route('importPdf-manager') ? 'active' : '' }}">
-                      Import-Pdf-Files
+                      Importer des Fichiers PDF
                    </a>
                 </li>
-
+              
             </ul>
         </nav>
+
 
         <!-- Overlay for mobile -->
         <div id="sidebar-overlay"></div>
 
         <!-- Main Content -->
-        <div class="flex-grow-1 d-flex flex-column  main-content">
-          <header class="d-flex align-items-center justify-content-between px-4 py-3 border-bottom bg-white shadow-sm">
-                <button class="btn d-md-none  " id="sidebarToggle" aria-label="Toggle sidebar">
+        <div class="flex-grow-1 d-flex flex-column main-content">
+            <header class="d-flex align-items-center justify-content-between px-4 py-3 border-bottom bg-white shadow-sm">
+                <button class="btn d-md-none" id="sidebarToggle" aria-label="Basculer le menu">
                     <i class="bi bi-list fs-3"></i>
                 </button>
-
-
+              
                 <div class="header-icons d-flex align-items-center ms-auto">
-                  <!--
-                  <i class="bi bi-bell-fill fs-5"></i>
-                  -->
-                  <!-- Dropdown -->
-                  <div class="dropdown ms-3">
-                      <button class="btn border-0 bg-transparent p-0 d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                          <div class="name-circle d-flex justify-content-center align-items-center text-white fw-bold me-2">
-                              {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                          </div>
-                          <i class="bi bi-chevron-down fs-5 text-dark"></i>
-                      </button>
-                      <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded" aria-labelledby="userDropdown" style="min-width: 150px;">
-                          <li>
-                              <span class="dropdown-item-text fw-semibold">{{ Auth::user()->name }}</span>
-                          </li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li>
-                              <form method="POST" action="{{ route('logout') }}">
-                                  @csrf
-                                  <button type="submit" class="dropdown-item text-danger">
-                                      <i class="bi bi-box-arrow-right me-2"></i> Logout
-                                  </button>
-                              </form>
-                          </li>
-                      </ul>
+                    <!--
+                    <i class="bi bi-bell-fill fs-5"></i>
+                    -->
+                    <!-- Dropdown -->
+                    <div class="dropdown ms-3">
+                        <button class="btn border-0 bg-transparent p-0 d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="name-circle d-flex justify-content-center align-items-center text-white fw-bold me-2">
+                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                            </div>
+                            <i class="bi bi-chevron-down fs-5 text-dark"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded" aria-labelledby="userDropdown" style="min-width: 150px;">
+                            <li>
+                                <span class="dropdown-item-text fw-semibold">{{ Auth::user()->name }}</span>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        <i class="bi bi-box-arrow-right me-2"></i> Déconnexion
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-
-
             </header>
+          
             <!-- Content area -->
             <main class="p-4 flex-grow-1 bg-light">
-                <h1 class="mb-4">Dashboard</h1>
-
+                <h1 class="mb-4">Tableau de bord</h1>
+            
                 @yield('content')
             </main>
         </div>
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

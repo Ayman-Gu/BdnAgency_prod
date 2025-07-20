@@ -5,7 +5,7 @@
             <input
                 type="text"
                 wire:model.live.debounce.500ms="search"
-                placeholder="Search by email..."
+                placeholder="Rechercher par email..."
                 class="form-control"
                 value="{{ $search }}"
             />
@@ -29,13 +29,13 @@
             />
         </div>
     
-        <div class="col-md-1">
+        <div class="col-md-2">
             <button 
                 wire:click="clearFilters" 
                 class="btn btn-secondary w-100"
                 type="button"
             >
-                Clear
+                Réinitialiser
             </button>
         </div>
     
@@ -43,9 +43,9 @@
             <button 
                 wire:click="deleteAll" 
                 class="btn btn-danger w-100"
-                onclick="confirm('Are you sure you want to delete all subscribers?') || event.stopImmediatePropagation()"
+                onclick="confirm('Êtes-vous sûr de vouloir supprimer tous les abonnés ?') || event.stopImmediatePropagation()"
             >
-                Delete All
+                Supprimer tout
             </button>
         </div>
     
@@ -54,7 +54,7 @@
                 wire:click="exportAsExcel" 
                 class="btn btn-success w-100"
             >
-                Export as Excel
+                Exporter en Excel
             </button>
         </div>
     
@@ -64,9 +64,9 @@
     <div class="row mb-3">
         <div class="col-12">
             <p class="text-muted">
-                Showing {{ $subscribers->total() }} subscriber(s)
+                Affichage de {{ $subscribers->total() }} abonné(s)
                 @if(!empty($search) || !empty($dateFrom) || !empty($dateTo))
-                    (filtered)
+                    (filtré)
                 @endif
             </p>
         </div>
@@ -77,9 +77,9 @@
             <tr>
                 <th>#</th>
                 <th>Email</th>
-                <th>Subscribed At</th>
-                <th>Country</th>
-                <th>IP Address</th>
+                <th>Abonné le</th>
+                <th>Pays</th>
+                <th>Adresse IP</th>
                 <th>Actions</th>
 
             </tr>
@@ -91,7 +91,7 @@
                     <td>{{ $subscriber->email }}</td>
                     <td>{{ $subscriber->created_at->format('Y-m-d H:i') }}</td>
                     <td>
-                        {{ $subscriber->ip_address === '127.0.0.1' ? 'Localhost (Testing)' : app(\App\Livewire\NewsletterSubscribersManager::class)->getCountryByIp($subscriber->ip_address) }}
+                        {{ $subscriber->ip_address === '127.0.0.1' ? 'Localhost (Test)' : app(\App\Livewire\NewsletterSubscribersManager::class)->getCountryByIp($subscriber->ip_address) }}
                     </td>
 
                     <td>{{ $subscriber->ip_address ?? '-' }}</td>
@@ -106,7 +106,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="text-center">No subscribers found.</td>
+                    <td colspan="6" class="text-center">Aucun abonné trouvé.</td>
                 </tr>
             @endforelse
         </tbody>

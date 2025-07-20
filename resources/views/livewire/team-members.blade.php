@@ -4,24 +4,24 @@
       <div class="col-md-6">
         <div class="card shadow-lg h-100">
           <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">{{ $editingId ? 'Edit' : 'Add' }} Team Member</h5>
+            <h5 class="mb-0">{{ $editingId ? 'Modifier' : 'Ajouter' }} un membre de l’équipe</h5>
           </div>
           <div class="card-body">
             <form wire:submit.prevent="save" enctype="multipart/form-data" id="leftForm">
               <div class="mb-3">
-                <label class="form-label">Full Name</label>
-                <input type="text" class="form-control" wire:model.defer="name" placeholder="Full Name" required>
+                <label class="form-label">Nom complet</label>
+                <input type="text" class="form-control" wire:model.defer="name" placeholder="Nom complet" required>
               </div>
               <div class="mb-3">
-                <label class="form-label">Job</label>
-                <input type="text" class="form-control" wire:model.defer="position" placeholder="Position" required>
+                <label class="form-label">Poste</label>
+                <input type="text" class="form-control" wire:model.defer="position" placeholder="Poste" required>
               </div>
               <div class="mb-3">
                 <label class="form-label">Image</label>
                 <input type="file" class="form-control" wire:model="image">
                 @if ($image)
                   <div class="mt-2">
-                    <img src="{{ $image->temporaryUrl() }}" alt="Preview" class="img-thumbnail" width="100">
+                    <img src="{{ $image->temporaryUrl() }}" alt="Aperçu" class="img-thumbnail" width="100">
                   </div>
                 @endif
               </div>
@@ -34,34 +34,35 @@
       <div class="col-md-6">
         <div class="card shadow-lg h-100">
           <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Social Media Links</h5>
+            <h5 class="mb-0">Liens des réseaux sociaux</h5>
           </div>
           <div class="card-body">
-            <!-- No separate form tag so submit button can stay in left card, or you can merge forms -->
+            <!-- Pas de balise form séparée pour que le bouton de soumission reste dans la carte gauche, ou vous pouvez fusionner les formulaires -->
             <div class="mb-3">
               <label class="form-label">Twitter</label>
-              <input type="text" class="form-control" wire:model.defer="twitter" placeholder="Twitter Link">
+              <input type="text" class="form-control" wire:model.defer="twitter" placeholder="Lien Twitter">
             </div>
             <div class="mb-3">
               <label class="form-label">Facebook</label>
-              <input type="text" class="form-control" wire:model.defer="facebook" placeholder="Facebook Link">
+              <input type="text" class="form-control" wire:model.defer="facebook" placeholder="Lien Facebook">
             </div>
             <div class="mb-3">
               <label class="form-label">Instagram</label>
-              <input type="text" class="form-control" wire:model.defer="instagram" placeholder="Instagram Link">
+              <input type="text" class="form-control" wire:model.defer="instagram" placeholder="Lien Instagram">
             </div>
             <div class="mb-3">
               <label class="form-label">LinkedIn</label>
-              <input type="text" class="form-control" wire:model.defer="linkedin" placeholder="LinkedIn Link">
+              <input type="text" class="form-control" wire:model.defer="linkedin" placeholder="Lien LinkedIn">
             </div>
           </div>
-          <div class="card-footer d-flex justify-content-end">
-            <button type="submit" class="btn btn-success" form="leftForm">
-              {{ $editingId ? 'Update Member' : 'Add Member' }}
-            </button>
-          </div>
+          
         </div>
       </div>
+      <div class="card-footer d-flex justify-content-start ms-3">
+            <button type="submit" class="btn btn-success" form="leftForm">
+              {{ $editingId ? 'Mettre à jour le membre' : 'Ajouter un membre' }}
+            </button>
+          </div>
     </div>
 
     <hr class="my-4">
@@ -85,10 +86,10 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <button wire:click="edit({{ $member->id }})" class="btn btn-warning btn-sm">
-                            <i class="bi bi-pencil-square"></i> Edit
+                            <i class="bi bi-pencil-square"></i> Modifier
                         </button>
-                        <button wire:click="delete({{ $member->id }})" class="btn btn-danger btn-sm" onclick="confirm('Are you sure?') || event.stopImmediatePropagation()">
-                            <i class="bi bi-trash"></i> Delete
+                        <button wire:click="delete({{ $member->id }})" class="btn btn-danger btn-sm" onclick="confirm('Êtes-vous sûr ?') || event.stopImmediatePropagation()">
+                            <i class="bi bi-trash"></i> Supprimer
                         </button>
                     </div>
                 </div>

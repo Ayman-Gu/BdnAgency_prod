@@ -15,11 +15,13 @@
     <div class="page-title blog-hero-section mb-5">
       <div class="container position-relative">
         <h1 class="text-white">Blog</h1>
-        <p class="text-white">Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
+        <p class="text-white">
+            Bienvenue sur notre blog ! Découvrez nos derniers articles et conseils sur l’e-mail marketing.
+        </p>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current text-white">Blog</li>
+            <li><a href="index.html" class="fw-bold">Home</a></li>
+            <li class="current text-white fw-bold">Blog</li>
           </ol>
         </nav>
       </div>
@@ -73,6 +75,41 @@
                 </div>
               @endforeach
 
+               <!-- Blog Pagination Section -->
+                 @if ($blogs->hasPages())
+              <section id="blog-pagination" class="blog-pagination section mt-5 mb-5">
+                  <div class="container">
+                      <div class="d-flex">
+                          <ul>
+                              {{-- Previous Page Link --}}
+                              @if ($blogs->onFirstPage())
+                                  <li><span class="disabled"><i class="bi bi-chevron-left"></i></span></li>
+                              @else
+                                  <li>
+                                      <a href="{{ $blogs->previousPageUrl() }}"><i class="bi bi-chevron-left"></i></a>
+                                  </li>
+                              @endif
+                                
+                              {{-- Pagination Elements --}}
+                              @foreach ($blogs->getUrlRange(1, $blogs->lastPage()) as $page => $url)
+                                  @if ($page == $blogs->currentPage())
+                                      <li><a href="#" class="active">{{ $page }}</a></li>
+                                  @else
+                                      <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                  @endif
+                              @endforeach
+                                
+                              {{-- Next Page Link --}}
+                              @if ($blogs->hasMorePages())
+                                  <li><a href="{{ $blogs->nextPageUrl() }}"><i class="bi bi-chevron-right"></i></a></li>
+                              @else
+                                  <li><span class="disabled"><i class="bi bi-chevron-right"></i></span></li>
+                              @endif
+                          </ul>
+                      </div>
+                  </div>
+              </section>
+              @endif
             </div>
           </div>
           <!-- Right Sidebar -->
@@ -128,7 +165,7 @@
               </div>
             --->
             
-            
+            <!--
               <div class="sidebar-widget mb-5">
                 <h5 class="sidebar-title  ps-3 fw-bold"><i class="bi bi-folder-fill pe-3"></i>Archives</h5>
                 <ul class="list-unstyled mt-3 sidebar-list">
@@ -139,8 +176,31 @@
                   <li><a href="#"><i class="bi bi-chevron-right pe-2"></i>April 2025</a></li>
                 </ul>
               </div>
-            
+            -->
+
             @livewire('newsletter-form', [], key('sidebar-newsletter'))
+
+            <div class="sidebar-widget mt-5">
+                <h5 class="sidebar-title-popular fw-bold mb-4">Populaires</h5>
+
+                @foreach($randomPosts as $post)
+                    <div class="d-flex justify-content-between align-items-center bg-white p-3 mb-4 rounded shadow">
+                        <div class="flex-grow-1 pe-3 ">
+                            <h6 class="fw-semibold mb-1 text-dark text-truncate" style="max-width: 180px;">
+                                <a href="{{ route('blog.show', $post->id) }}" class="text-decoration-none text-dark">
+                                    {{ $post->title }}
+                                </a>
+                            </h6>
+                            <div class="text-muted small">
+                                {{ $post->created_at->format('d F') }}
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="rounded" style="width: 70px; height: 70px; object-fit: cover;">
+                        </div>
+                    </div>
+                @endforeach
+            </div>
 
             
             </aside>
@@ -152,44 +212,45 @@
     </section>
     <!-- /Blog Posts Section -->
 
-
-    <!-- Blog Pagination Section -->
-   @if ($blogs->hasPages())
-<section id="blog-pagination" class="blog-pagination section mt-4 mb-5">
-    <div class="container">
-        <div class="d-flex justify-content-center">
-            <ul>
-                {{-- Previous Page Link --}}
-                @if ($blogs->onFirstPage())
-                    <li><span class="disabled"><i class="bi bi-chevron-left"></i></span></li>
-                @else
-                    <li>
-                        <a href="{{ $blogs->previousPageUrl() }}"><i class="bi bi-chevron-left"></i></a>
-                    </li>
-                @endif
-
-                {{-- Pagination Elements --}}
-                @foreach ($blogs->getUrlRange(1, $blogs->lastPage()) as $page => $url)
-                    @if ($page == $blogs->currentPage())
-                        <li><a href="#" class="active">{{ $page }}</a></li>
-                    @else
-                        <li><a href="{{ $url }}">{{ $page }}</a></li>
-                    @endif
-                @endforeach
-
-                {{-- Next Page Link --}}
-                @if ($blogs->hasMorePages())
-                    <li><a href="{{ $blogs->nextPageUrl() }}"><i class="bi bi-chevron-right"></i></a></li>
-                @else
-                    <li><span class="disabled"><i class="bi bi-chevron-right"></i></span></li>
-                @endif
-            </ul>
+<!-- latest Blog Section -->
+<section class="latest-blogs">
+  <div class="container">
+    <h5 class="sidebar-title-popular fw-bold mb-4">Derniers articles</h5>
+    <div class="row">
+      @foreach ($latestCategories as $category)
+        <div class="col-md-4 mb-4">
+          <h5 class="border-bottom section-latest-blogs-title pb-2 mb-3">
+            {{ $category->name }}
+          </h5>
+          @foreach ($categorizedPosts[$category->name] as $post)
+            <div class="d-flex mb-4  blog-item">
+              <div class="me-3 flex-shrink-0">
+                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" style="width: 100px; height: 100px; object-fit: cover;" class="rounded">
+              </div>
+              <div>
+                <h6 class="fw-semibold mb-1 text-truncate" style="max-width: 200px;">
+                  <a href="{{ route('blog.show', $post->id) }}" class="text-decoration-none text-dark">
+                    {{ $post->title }}
+                  </a>
+                </h6>
+                <div class="text-muted small">
+                  {{ \Carbon\Carbon::parse($post->created_at)->format('d F') }}
+                </div>
+              </div>
+            </div>
+          @endforeach
         </div>
+      @endforeach
     </div>
+  </div>
 </section>
-@endif
+
+<!-- / latest Blog Section -->
+
+   
 
 <!-- /Blog Pagination Section -->
+
 
   </main>
 

@@ -41,7 +41,7 @@
 
         <div class="mb-3">
             <label class="form-label">Prix :</label>
-            <input type="number" step="0.01" class="form-control" wire:model="price" placeholder="ex: 29.99">
+            <input type="number" step="0.01" class="form-control" wire:model="price" placeholder="ex : 29.99">
         </div>
 
         <h5 class="mt-4">Offres du pack</h5>
@@ -52,7 +52,7 @@
                        wire:model="offers.{{ $index }}.name" 
                        placeholder="Nom de l'offre">
 
-                <!-- Toggle active/inactive -->
+                <!-- Bouton activer/désactiver -->
                 <button class="btn btn-sm btn-outline-success me-2" 
                         wire:click="toggleOfferActive({{ $index }})">
                     {{ $offer['active'] ? 'Active' : '🚫 NA' }}
@@ -64,8 +64,6 @@
                 >
                     Supprimer
                 </button>
-
-              
             </div>
         @endforeach
 
@@ -89,7 +87,7 @@
                         <div class="card-body">
                             <p>Service : {{ $pack->service->name }}</p>
                             <h5 class="mt-3 mb-4">Pack : {{ $pack->packType->name }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">${{ number_format($pack->price, 2) }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ number_format($pack->price, 2) }} $</h6>
                         
                             <ul class="list-group list-group-flush mb-3">
                                 @foreach($pack->offers as $offer)
@@ -99,14 +97,13 @@
                                             <span class="badge bg-secondary ms-2">NA</span>
                                         @endif
                                     </li>
-                                    
                                 @endforeach
                             </ul>
                         
                             <div class="d-flex justify-content-between align-items-center">
                                 <button class="btn btn-primary btn-sm" wire:click="editPack({{ $pack->id }})">Modifier</button>
                             
-                                <!-- Toggle pack activation -->
+                                <!-- Activation du pack -->
                                 <div class="form-check form-switch">
                                     <input class="form-check-input switch-orange"
                                            type="checkbox"
@@ -120,7 +117,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             @endforeach
         </div>

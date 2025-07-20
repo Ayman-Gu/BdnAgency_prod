@@ -66,23 +66,30 @@ class NavigationController extends Controller
         return view('pages.a-propos');
     }
 
-   public function getBlogs(Request $request)
+    public function getBlogs(Request $request)
     {
-    $categories = BlogCategory::orderBy('name')->pluck('name');
+        $categories = BlogCategory::orderBy('name')->pluck('name');
 
-    $blogs = Blog::where('status', 'published')
-        ->when($request->category, function ($query) use ($request) {
-            $query->whereHas('category', function ($q) use ($request) {
-                $q->where('name', $request->category);
-            });
-        })
-        ->with('category')
-        ->latest()
-        ->paginate(6);
+        $blogs = Blog::where('status', 'published')
+            ->when($request->category, function ($query) use ($request) {
+                $query->whereHas('category', function ($q) use ($request) {
+                    $q->where('name', $request->category);
+                });
+            })
+            ->with('category')
+            ->latest()
+            ->paginate(4);
 
-    $recentPosts = Blog::where('status', 'published')->latest()->take(3)->get();
+        $recentPosts = Blog::where('status', 'published')->latest()->take(3)->get();
+        $randomPosts = Blog::where('status', 'published')->inRandomOrder()->take(3)->get();
+        $latestCategories = BlogCategory::latest()->take(3)->get();
 
-    return view('pages.blog', compact('blogs', 'categories', 'recentPosts'));
+        $categorizedPosts = [];
+        foreach ($latestCategories as $category) {
+            $categorizedPosts[$category->name] = Blog::where('status', 'published')
+                ->where('blog_category_id', $category->id)->latest()->take(3)->get();}  
+
+        return view('pages.blog', compact('blogs', 'categories', 'recentPosts','randomPosts','latestCategories', 'categorizedPosts'));
     }
 
 
@@ -263,8 +270,16 @@ class NavigationController extends Controller
     {
         $blog = Blog::findOrFail($id);
         $categories = BlogCategory::pluck('name');
+
+        $randomPosts = Blog::where('status', 'published')->inRandomOrder()->take(3)->get();
+        $latestCategories = BlogCategory::latest()->take(3)->get();
+
+        $categorizedPosts = [];
+        foreach ($latestCategories as $category) {
+            $categorizedPosts[$category->name] = Blog::where('status', 'published')
+                ->where('blog_category_id', $category->id)->latest()->take(3)->get();}  
     
-        return view('pages.blog-single', compact('blog', 'categories'));
+        return view('pages.blog-single', compact('blog', 'categories','randomPosts','latestCategories' ,'categorizedPosts'));
     }
 
 }

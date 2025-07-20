@@ -118,14 +118,16 @@
           </div>
           <div class="links">
             <div class="left-links">
-               <a href="#"><i class="bi bi-chevron-right"></i>Link</a>
-               <a href="#"><i class="bi bi-chevron-right"></i>Link</a>
-               <a href="#"><i class="bi bi-chevron-right"></i>Link</a>
+               <a href="{{ route('serviceEmailing') }}"><i class="bi bi-chevron-right"></i>Plateforme Emailing</a>
+               <a href="{{ route('serviceSMS') }}"><i class="bi bi-chevron-right"></i>Plateforme SMS</a>
+               <a href="{{ route('serviceBDD') }}"><i class="bi bi-chevron-right"></i>Base de données</a>
             </div>
              <div class="right-links">
-                <a href="#"><i class="bi bi-chevron-right"></i>Link</a>
-                <a href="#"><i class="bi bi-chevron-right"></i>Link</a>
-                <a href="#"><i class="bi bi-chevron-right"></i>Link</a>
+                <a href="{{ route('serviceNewsletter') }}"><i class="bi bi-chevron-right"></i>Gestion des Newsletters</a>
+                <a href="{{ route('serviceVisionnaire') }}"><i class="bi bi-chevron-right"></i>Le Visionnaire</a>
+                <a href="{{ route('serviceBranding') }}"><i class="bi bi-chevron-right"></i>Branding & Identité Visuelle</a>
+                <a href="/#contact"><i class="bi bi-chevron-right"></i>Se désaboner</a>
+                <a href="{{ asset('assets/pdf/note-legale.pdf') }}" target="_blank"><i class="bi bi-chevron-right"></i>Note légale</a>
             </div>
           </div>
         </div>
