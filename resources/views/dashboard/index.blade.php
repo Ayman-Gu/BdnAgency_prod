@@ -9,4 +9,6 @@
     <livewire:service-newsletter-section-toggles/>
     <livewire:service-visionnaire-section-toggles/>
     <livewire:service-branding-section-toggles/>
+    <livewire:apropos-page-section-toggles/>
+
 @endsection

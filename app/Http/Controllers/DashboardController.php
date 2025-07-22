@@ -43,4 +43,13 @@ class DashboardController extends Controller
     public function getPdfManager(){
         return view('dashboard.importPdf');
     }
+    public function getUsersManager(){
+        return view('dashboard.users-management');
+    }
+    public function getRolesManager(){
+        return view('dashboard.roles-management');
+    }
+    public function getPermissionsManager(){
+        return view('dashboard.permissions-management');
+    }
 }

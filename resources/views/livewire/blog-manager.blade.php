@@ -8,6 +8,7 @@
         <div class="col-12">
             <div class="card shadow-sm">
                 <div class="card-body">
+                    @can('manageCategories', App\Models\Blog::class)
                     <h6 class="card-title">Ajouter une nouvelle catégorie</h6>
                     <form wire:submit.prevent="addCategory" class="row g-2">
                         <div class="col-md-10">
@@ -18,6 +19,8 @@
                             <button type="submit" class="btn btn-primary">Ajouter</button>
                         </div>
                     </form>
+                    @endcan
+
                 </div>
             </div>
         </div>
@@ -116,9 +119,13 @@
     
         <!-- Boutons -->
         <div class="d-flex">
+
+            @can('create', App\Models\Blog::class)
             <button type="submit" class="btn btn-primary">
                 {{ $editMode ? 'Mettre à jour' : 'Créer' }}
             </button>
+            @endcan
+
             @if($editMode)
                 <button type="button" wire:click="resetForm" class="btn btn-secondary ms-2">
                     Annuler
@@ -159,12 +166,19 @@
                             </span>
                         </td>
                         <td>
+                            @can('update', App\Models\Blog::class)
+
                             <button class="btn btn-sm btn-outline-success me-1" wire:click="edit({{ $blog->id }})">
                                 <i class="bi bi-pen-fill"></i>
                             </button>
+                            @endcan
+                            @can('delete', App\Models\Blog::class)
+
                             <button class="btn btn-sm btn-outline-danger" wire:click="delete({{ $blog->id }})" onclick="return confirm('Supprimer ?')">
                                 <i class="bi bi-trash3"></i>
                             </button>
+                            @endcan
+
                         </td>
                     </tr>
                 @empty
@@ -214,12 +228,16 @@
                                     <i class="bi bi-x-lg"></i>
                                 </button>
                             @else
+
+                                @can('manageCategories', App\Models\Blog::class)
                                 <button wire:click="editCategory({{ $category->id }})" class="btn btn-sm btn-outline-primary me-1">
                                     <i class="bi bi-pen-fill"></i>
                                 </button>
                                 <button wire:click="deleteCategory({{ $category->id }})" class="btn btn-sm btn-outline-danger" onclick="return confirm('Supprimer ?')">
                                     <i class="bi bi-trash3-fill"></i>
                                 </button>
+                                @endcan
+
                             @endif
                         </td>
                     </tr>

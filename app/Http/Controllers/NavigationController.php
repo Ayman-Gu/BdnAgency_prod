@@ -63,7 +63,22 @@ class NavigationController extends Controller
     }
 
     public function getApropos(){
-        return view('pages.a-propos');
+        
+        $page = \App\Models\AproposPage::first();
+        
+        $sections = [
+        'hero_section' => $page->hero_section,
+        'qui_sommes_nous_section' => $page->qui_sommes_nous_section,
+        'nos_valeurs_section' => $page->nos_valeurs_section,
+        'nos_valeurs_section' => $page->nos_valeurs_section,
+        'notre_histoire_section' => $page->notre_histoire_section,
+        'notre_equipe_section' => $page->notre_equipe_section,
+        'cta_section' => $page->cta_section,
+        ];
+
+        $teamMembers = \App\Models\Team::all();
+
+        return view('pages.a-propos', compact('sections', 'teamMembers'));
     }
 
     public function getBlogs(Request $request)

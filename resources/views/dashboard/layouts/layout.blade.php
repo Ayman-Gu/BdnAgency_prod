@@ -208,6 +208,27 @@
                       Importer des Fichiers PDF
                    </a>
                 </li>
+
+                 <li class="nav-item">
+                   <a href="{{ route('users-manager') }}" 
+                      class="nav-link text-dark sidebar-link {{ request()->url() == route('users-manager') ? 'active' : '' }}">
+                      Gestion des utilisateurs
+                   </a>
+                </li>
+
+                 <li class="nav-item">
+                   <a href="{{ route('roles-manager') }}" 
+                      class="nav-link text-dark sidebar-link {{ request()->url() == route('roles-manager') ? 'active' : '' }}">
+                      Gestion des roles
+                   </a>
+                </li>
+
+                 <li class="nav-item">
+                   <a href="{{ route('permissions-manager') }}" 
+                      class="nav-link text-dark sidebar-link {{ request()->url() == route('permissions-manager') ? 'active' : '' }}">
+                      Gestion des permissions
+                   </a>
+                </li>
               
             </ul>
         </nav>

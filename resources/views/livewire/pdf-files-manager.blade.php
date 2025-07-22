@@ -19,6 +19,9 @@
         <div class="mb-3">
             <label for="name" class="form-label">Nom du PDF</label>
             <input type="text" wire:model="name" id="name" placeholder="Entrez le nom du PDF" required class="form-control">
+        <p class="text-secondary">
+          NB : Le nom du fichier doit être écrit comme ceci : "note légale" ou "note-légale" *
+        </p>
             @error('name') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
         </div>
 

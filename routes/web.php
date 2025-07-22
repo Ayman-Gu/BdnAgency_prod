@@ -27,12 +27,18 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/manage-blogs', [DashboardController::class ,'getBlogsManager'])->name('blogs-manager');
 Route::get('/manage-team', [DashboardController::class ,'getTeamManager'])->name('team-manager');
 Route::get('/manage-contact-infos', [DashboardController::class ,'getContactManager'])->name('contact-manager');
-Route::get('/newsletter_subscribers', [DashboardController::class ,'getNewsletterSubscribers'])->name('newsletter');
+Route::get('/newsletter-subscribers', [DashboardController::class ,'getNewsletterSubscribers'])->name('newsletter');
 Route::get('/manage-faq', [DashboardController::class ,'getFaqManager'])->name('faq-manager');
 Route::get('/manage-services', [DashboardController::class ,'getServicesManager'])->name('services-manager');
 Route::get('/manage-projects', [DashboardController::class ,'getProjectsManager'])->name('projects-manager');
 Route::get('/manage-testimonials', [DashboardController::class ,'getTestimonialsManager'])->name('testimonials-manager');
 Route::get('/manage-pdf-files', [DashboardController::class ,'getPdfManager'])->name('importPdf-manager');
+Route::get('/manage-users', [DashboardController::class ,'getUsersManager'])->name('users-manager');
+Route::get('/manage-roles', [DashboardController::class ,'getRolesManager'])->name('roles-manager');
+Route::get('/manage-permissions', [DashboardController::class ,'getPermissionsManager'])->name('permissions-manager');
+
+
+
 
 
 

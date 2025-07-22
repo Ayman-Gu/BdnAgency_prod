@@ -8,10 +8,11 @@ use Livewire\WithPagination;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class BlogManager extends Component
 {
-    use WithFileUploads, WithPagination;
+    use AuthorizesRequests,WithFileUploads, WithPagination;
 
     public $title, $description, $image, $blog_id;
     public $image_alt, $image_title, $meta_keywords, $meta_description;
@@ -52,8 +53,16 @@ class BlogManager extends Component
         
     }
 
+    public function mount()
+    {
+        // Enforce view permission
+        $this->authorize('viewAny', Blog::class);
+    }
+
     public function addCategory()
     {
+        $this->authorize('manageCategories', Blog::class);
+
         $this->validate([
             'newCategory' => 'required|string|max:255|unique:blog_categories,name',
         ]);
@@ -65,6 +74,8 @@ class BlogManager extends Component
 
     public function store()
     {
+        $this->authorize('create', Blog::class);
+
         $this->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
@@ -99,6 +110,8 @@ class BlogManager extends Component
 
     public function edit($id)
     {
+        $this->authorize('update', Blog::class);
+
         $blog = Blog::findOrFail($id);
         $this->blog_id = $id;
         $this->title = $blog->title;
@@ -118,6 +131,8 @@ class BlogManager extends Component
 
     public function update()
     {
+        $this->authorize('update', Blog::class);
+
         $this->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
@@ -157,12 +172,16 @@ class BlogManager extends Component
 
     public function delete($id)
     {
+        $this->authorize('delete', Blog::class);
+
         Blog::destroy($id);
         session()->flash('message', 'Blog Deleted Successfully.');
     }
 
     public function editCategory($id)
     {
+        $this->authorize('manageCategories', Blog::class);
+
         $category = BlogCategory::findOrFail($id);
         $this->editCategoryId = $category->id;
         $this->editCategoryName = $category->name;
@@ -171,6 +190,8 @@ class BlogManager extends Component
     // Update category
     public function updateCategory()
     {
+        $this->authorize('manageCategories', Blog::class);
+
         $this->validate([
             'editCategoryName' => 'required|string|max:255|unique:blog_categories,name,' . $this->editCategoryId,
         ]);
@@ -186,6 +207,8 @@ class BlogManager extends Component
     // Delete category
     public function deleteCategory($id)
     {
+        $this->authorize('manageCategories', Blog::class);
+
         BlogCategory::destroy($id);
         session()->flash('message', 'Category deleted successfully.');
     }

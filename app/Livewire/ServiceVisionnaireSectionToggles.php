@@ -13,6 +13,7 @@ class ServiceVisionnaireSectionToggles extends Component
 
     public function mount()
     {
+        
         $this->page = ServiceVisionnaire::first();
 
         
@@ -28,6 +29,8 @@ class ServiceVisionnaireSectionToggles extends Component
 
     public function toggleSectionSwitch(string $section)
     {
+        $this->authorize('manageDisplaySections', $this->page);
+
 
         $this->sections[$section] = $this->sections[$section] == 1 ? 0 : 1;
 
@@ -37,6 +40,8 @@ class ServiceVisionnaireSectionToggles extends Component
 
     public function render()
     {
+        $this->authorize('viewAny', $this->page);
+
         return view('livewire.service-visionnaire-section-toggles');
     }
 }

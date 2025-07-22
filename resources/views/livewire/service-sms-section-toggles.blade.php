@@ -4,6 +4,7 @@
             <h3 class="mb-0">Gérer l’Affichage des Sections du Service SMS</h3>
         </div>
         <div class="card-body">
+            @can('manageDisplaySections', $page)
             <form>
                 <div class="row">
                     @foreach($sections as $section => $enabled)
@@ -26,6 +27,7 @@
                     @endforeach
                 </div>
             </form>
+            @endcan
         </div>
     </div>
 
