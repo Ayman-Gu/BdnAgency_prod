@@ -1,6 +1,5 @@
 <div class="container py-4">
 
-    {{-- Session messages for user feedback --}}
     @if(session()->has('success'))
         <div class="alert alert-success mb-3" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)">{{ session('success') }}</div>
     @endif
@@ -8,7 +7,7 @@
         <div class="alert alert-danger mb-3" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)">{{ session('error') }}</div>
     @endif
 
-    <!-- Section 1: Assign Permissions to Role -->
+    @can('update', \App\Models\Permission::class)
     <div class="card mb-4">
         <div class="card-header">
             <h2 class="h4 mb-0">Assign Permissions to a Role</h2>
@@ -29,8 +28,9 @@
             @endif
         </div>
     </div>
+    @endcan
 
-    <!-- Section 2: Permissions List (with CRUD actions) -->
+    @can('viewAny', \App\Models\Permission::class)
     @if($selectedRoleId)
         <h3 class="mt-4">Available Permissions</h3>
         @foreach($this->permissions as $group => $perms)
@@ -57,16 +57,20 @@
                                             {{ $permission->name }}
                                         </label>
                                     </div>
+                                    @can('update', \App\Models\Permission::class)
                                     <div class="btn-group">
                                         <button wire:click="editPermission({{ $permission->id }})" class="btn btn-sm btn-outline-secondary" title="Edit">
                                             <i class="bi bi-pen-fill"></i>
                                         </button>
+                                        @can('delete', \App\Models\Permission::class)
                                         <button wire:click="deletePermission({{ $permission->id }})" 
                                                 wire:confirm="Are you sure you want to delete the '{{ $permission->name }}' permission? This cannot be undone."
                                                 class="btn btn-sm btn-outline-danger" title="Delete">
                                             <i class="bi bi-trash-fill"></i>
                                         </button>
+                                        @endcan
                                     </div>
+                                    @endcan
                                 </div>
                             </div>
                         @endforeach
@@ -75,17 +79,16 @@
             </div>
         @endforeach
     @endif
+    @endcan
 
-   <!-- Section 3: Create / Edit Permission Form -->
+    @canany(['create', 'update'], \App\Models\Permission::class)
     <div class="card mt-4">
         <div class="card-header">
             <h2 class="h4 mb-0">{{ $editingPermissionId ? 'Edit Permission' : 'Create New Permission' }}</h2>
         </div>
         <div class="card-body">
-            {{-- Use the correct form submission method based on editing state --}}
             <form wire:submit.prevent="{{ $editingPermissionId ? 'updatePermission' : 'createPermission' }}">
                 <div class="row">
-                    <!-- Name Input -->
                     <div class="col-md-4 mb-3">
                         <label for="{{ $editingPermissionId ? 'editingPermissionName' : 'newPermissionName' }}" class="form-label">Permission Name</label>
                         <input type="text" class="form-control @error($editingPermissionId ? 'editingPermissionName' : 'newPermissionName') is-invalid @enderror"
@@ -95,7 +98,6 @@
                         @error($editingPermissionId ? 'editingPermissionName' : 'newPermissionName') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
-                    <!-- Key Input (THE MISSING FIELD) -->
                     <div class="col-md-3 mb-3">
                         <label for="{{ $editingPermissionId ? 'editingPermissionKey' : 'newPermissionKey' }}" class="form-label">Permission Key</label>
                         <input type="text" class="form-control @error($editingPermissionId ? 'editingPermissionKey' : 'newPermissionKey') is-invalid @enderror"
@@ -105,7 +107,6 @@
                         @error($editingPermissionId ? 'editingPermissionKey' : 'newPermissionKey') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
-                    <!-- Group Input -->
                     <div class="col-md-3 mb-3">
                         <label for="{{ $editingPermissionId ? 'editingPermissionTableName' : 'newPermissionTableName' }}" class="form-label">Group Name (Table)</label>
                         <input type="text" class="form-control @error($editingPermissionId ? 'editingPermissionTableName' : 'newPermissionTableName') is-invalid @enderror"
@@ -115,7 +116,6 @@
                         @error($editingPermissionId ? 'editingPermissionTableName' : 'newPermissionTableName') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
-                    <!-- Buttons -->
                     <div class="col-md-2 d-flex align-items-end mb-3">
                         @if($editingPermissionId)
                             <button type="submit" class="btn btn-success w-100">Update</button>
@@ -128,4 +128,6 @@
             </form>
         </div>
     </div>
+    @endcanany
+
 </div>

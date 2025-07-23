@@ -39,24 +39,29 @@
             </button>
         </div>
     
-        <div class="col-md-2">
-            <button 
-                wire:click="deleteAll" 
-                class="btn btn-danger w-100"
-                onclick="confirm('Êtes-vous sûr de vouloir supprimer tous les abonnés ?') || event.stopImmediatePropagation()"
-            >
-                Supprimer tout
-            </button>
-        </div>
-    
-        <div class="col-md-2">
-            <button 
-                wire:click="exportAsExcel" 
-                class="btn btn-success w-100"
-            >
-                Exporter en Excel
-            </button>
-        </div>
+        @can('deleteAll', \App\Models\NewsletterSubscriber::class)
+            <div class="col-md-2">
+                <button 
+                    wire:click="deleteAll" 
+                    class="btn btn-danger w-100"
+                    onclick="confirm('Êtes-vous sûr de vouloir supprimer tous les abonnés ?') || event.stopImmediatePropagation()"
+                >
+                    Supprimer tout
+                </button>
+            </div>
+        @endcan
+        
+        @can('export', \App\Models\NewsletterSubscriber::class)
+
+            <div class="col-md-2">
+                <button 
+                    wire:click="exportAsExcel" 
+                    class="btn btn-success w-100"
+                >
+                    Exporter en Excel
+                </button>
+            </div>
+        @endcan
     
     </div>
     
@@ -96,12 +101,14 @@
 
                     <td>{{ $subscriber->ip_address ?? '-' }}</td>
                     <td>
-                        <button 
-                            class="btn btn-sm btn-outline-danger"
-                            wire:click="deleteSubscriber({{ $subscriber->id }})"
-                        >
-                            <i class="bi bi-trash"></i>
-                        </button>
+                       @can('delete', \App\Models\NewsletterSubscriber::class)
+                            <button 
+                                class="btn btn-sm btn-outline-danger"
+                                wire:click="deleteSubscriber({{ $subscriber->id }})"
+                            >
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        @endcan
                     </td>
                 </tr>
             @empty

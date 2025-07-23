@@ -7,10 +7,11 @@ use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Project;
 use App\Models\ProjectCategory;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ProjectManager extends Component
 {
-    use WithFileUploads, WithPagination;
+    use WithFileUploads, WithPagination, AuthorizesRequests;
 
     public $title, $description, $image, $project_id;
     public $image_alt, $image_title, $meta_keywords, $meta_description;
@@ -29,12 +30,15 @@ class ProjectManager extends Component
 
     public function render()
     {
+        $this->authorize('viewAny', Project::class);
+
         $this->categories = ProjectCategory::orderBy('name')->get();
         $projects = Project::with('category')->latest()->paginate(5);
 
         return view('livewire.project-manager', compact('projects'));
     }
-     public function resetForm()
+
+    public function resetForm()
     {
         $this->title = '';
         $this->description = '';
@@ -46,8 +50,11 @@ class ProjectManager extends Component
         $this->editMode = false;
         $this->project_id = null;
     }
-     public function addCategory()
+
+    public function addCategory()
     {
+        $this->authorize('manageCategories', Project::class);
+
         $this->validate([
             'newCategory' => 'required|string|max:255|unique:project_categories,name',
         ]);
@@ -57,8 +64,10 @@ class ProjectManager extends Component
         session()->flash('message', 'Category added successfully.');
     }
 
-     public function store()
+    public function store()
     {
+        $this->authorize('create', Project::class);
+
         $validated = $this->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
@@ -79,6 +88,8 @@ class ProjectManager extends Component
 
     public function edit($id)
     {
+        $this->authorize('update', Project::class);
+
         $project = Project::findOrFail($id);
         $this->project_id = $id;
         $this->title = $project->title;
@@ -93,6 +104,8 @@ class ProjectManager extends Component
 
     public function update()
     {
+        $this->authorize('update', Project::class);
+
         $validated = $this->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
@@ -113,13 +126,19 @@ class ProjectManager extends Component
         $this->resetForm();
         session()->flash('message', 'Project updated successfully.');
     }
-     public function delete($id)
+
+    public function delete($id)
     {
+        $this->authorize('delete', Project::class);
+
         Project::destroy($id);
         session()->flash('message', 'Project deleted successfully.');
     }
+
     public function editCategory($id)
     {
+        $this->authorize('manageCategories', Project::class);
+
         $category = ProjectCategory::findOrFail($id);
         $this->editCategoryId = $category->id;
         $this->editCategoryName = $category->name;
@@ -127,6 +146,8 @@ class ProjectManager extends Component
 
     public function updateCategory()
     {
+        $this->authorize('manageCategories', Project::class);
+
         $this->validate([
             'editCategoryName' => 'required|string|max:255|unique:project_categories,name,' . $this->editCategoryId,
         ]);
@@ -141,6 +162,8 @@ class ProjectManager extends Component
 
     public function deleteCategory($id)
     {
+        $this->authorize('manageCategories', Project::class);
+
         ProjectCategory::destroy($id);
         session()->flash('message', 'Category deleted successfully.');
     }

@@ -3,7 +3,8 @@
         <div class="alert alert-success mt-3">{{ session('message') }}</div>
     @endif
 
-    <!-- Ajouter une nouvelle catégorie -->
+    {{-- Ajouter une nouvelle catégorie --}}
+    @can('manageCategories', \App\Models\Project::class)
     <div class="row mb-3 mt-4">
         <div class="col-12">
             <div class="card shadow-sm">
@@ -22,11 +23,13 @@
             </div>
         </div>
     </div>
+    @endcan
 
-    <!-- Formulaire de création/mise à jour de projet -->
+    {{-- Formulaire de création/mise à jour de projet --}}
+    @canany(['create', 'update'], \App\Models\Project::class)
     <form wire:submit.prevent="{{ $editMode ? 'update' : 'store' }}">
         <div class="row">
-            <!-- Infos du projet -->
+            {{-- Infos du projet --}}
             <div class="col-md-6 mb-3">
                 <div class="card shadow-sm h-100">
                     <div class="card-body">
@@ -58,7 +61,7 @@
                 </div>
             </div>
 
-            <!-- Image & SEO -->
+            {{-- Image & SEO --}}
             <div class="col-md-6 mb-3">
                 <div class="card shadow-sm h-100">
                     <div class="card-body">
@@ -86,7 +89,7 @@
             </div>
         </div>
 
-        <!-- Statut -->
+        {{-- Statut --}}
         <div class="card shadow-sm mb-3">
             <div class="card-body">
                 <h6 class="card-title mb-3">Statut</h6>
@@ -98,7 +101,7 @@
             </div>
         </div>
 
-        <!-- Boutons de soumission -->
+        {{-- Boutons de soumission --}}
         <div class="d-flex flex-column flex-md-row gap-2 mb-4">
             <button type="submit" class="btn btn-primary">
                 {{ $editMode ? 'Mettre à jour' : 'Créer' }}
@@ -110,10 +113,11 @@
             @endif
         </div>
     </form>
+    @endcanany
 
     <hr>
 
-    <!-- Tableau des projets -->
+    {{-- Tableau des projets --}}
     <h4 class="mt-4">Tous les projets</h4>
     <div class="table-responsive">
         <table class="table align-middle table-hover table-bordered shadow-sm mt-3">
@@ -146,12 +150,17 @@
                             </span>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-outline-success me-1" wire:click="edit({{ $project->id }})">
-                                <i class="bi bi-pen-fill"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger" wire:click="delete({{ $project->id }})" onclick="return confirm('Supprimer ?')">
-                                <i class="bi bi-trash3"></i>
-                            </button>
+                            @can('update', \App\Models\Project::class)
+                                <button class="btn btn-sm btn-outline-success me-1" wire:click="edit({{ $project->id }})">
+                                    <i class="bi bi-pen-fill"></i>
+                                </button>
+                            @endcan
+
+                            @can('delete', \App\Models\Project::class)
+                                <button class="btn btn-sm btn-outline-danger" wire:click="delete({{ $project->id }})" onclick="return confirm('Supprimer ?')">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            @endcan
                         </td>
                     </tr>
                 @empty
@@ -163,14 +172,14 @@
         </table>
     </div>
 
-    <!-- Pagination -->
+    {{-- Pagination --}}
     <div class="d-flex justify-content-center my-4">
         {{ $projects->links() }}
     </div>
 
     <hr>
 
-    <!-- Tableau des catégories -->
+    {{-- Tableau des catégories --}}
     <h4 class="mt-4">Toutes les catégories</h4>
     <div class="table-responsive">
         <table class="table align-middle table-hover table-bordered shadow-sm mt-3">
@@ -192,21 +201,23 @@
                             @endif
                         </td>
                         <td>
-                            @if($editCategoryId === $category->id)
-                                <button wire:click="updateCategory" class="btn btn-sm btn-success me-1">
-                                    <i class="bi bi-check-lg"></i>
-                                </button>
-                                <button wire:click="$set('editCategoryId', null)" class="btn btn-sm btn-secondary">
-                                    <i class="bi bi-x-lg"></i>
-                                </button>
-                            @else
-                                <button wire:click="editCategory({{ $category->id }})" class="btn btn-sm btn-outline-primary me-1">
-                                    <i class="bi bi-pen-fill"></i>
-                                </button>
-                                <button wire:click="deleteCategory({{ $category->id }})" class="btn btn-sm btn-outline-danger" onclick="return confirm('Supprimer ?')">
-                                    <i class="bi bi-trash3-fill"></i>
-                                </button>
-                            @endif
+                            @can('manageCategories', \App\Models\Project::class)
+                                @if($editCategoryId === $category->id)
+                                    <button wire:click="updateCategory" class="btn btn-sm btn-success me-1">
+                                        <i class="bi bi-check-lg"></i>
+                                    </button>
+                                    <button wire:click="$set('editCategoryId', null)" class="btn btn-sm btn-secondary">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                @else
+                                    <button wire:click="editCategory({{ $category->id }})" class="btn btn-sm btn-outline-primary me-1">
+                                        <i class="bi bi-pen-fill"></i>
+                                    </button>
+                                    <button wire:click="deleteCategory({{ $category->id }})" class="btn btn-sm btn-outline-danger" onclick="return confirm('Supprimer ?')">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </button>
+                                @endif
+                            @endcan
                         </td>
                     </tr>
                 @empty

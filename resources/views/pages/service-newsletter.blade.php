@@ -54,7 +54,7 @@
             <p class="fs-5 mb-5 mt-5">
               BDN Agency vous accompagne dans la conception, la rédaction et la gestion de campagnes d'emailing qui captivent votre audience et stimulent vos ventes.
             </p>
-            <a href="#demo" class="cta-hero-button mb-5">Demander une démo</a>
+            <a href="/#contact" class="cta-hero-button mb-5">Demander une démo</a>
             <div class="gap-2 mt-5">
                     <i class="fas fa-check me-2"></i>
                     <span>Pas de carte de crédit requise</span>
@@ -257,7 +257,7 @@
             Notre équipe est là pour vous accompagner dans la mise en place et l'optimisation de votre stratégie d'email marketing, garantissant le succès de vos campagnes.
           </p>
           <div data-aos="fade-up" data-aos-delay="50">
-              <a href="#demo" class="cta-button mt-5" >Demander une consultation gratuite</a>
+              <a href="/#contact" class="cta-button mt-5" >Demander une consultation gratuite</a>
           </div>
         </div>
       </div>

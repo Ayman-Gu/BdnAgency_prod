@@ -29,7 +29,7 @@ class ServiceEmailingSectionToggles extends Component
 
     public function toggleSectionSwitch(string $section)
     {
-        $this->authorize('manageDisplaySections', $this->page);
+        $this->authorize('manageDisplaySections',ServiceEmailing::class);
 
 
         $this->sections[$section] = $this->sections[$section] == 1 ? 0 : 1;
@@ -40,7 +40,7 @@ class ServiceEmailingSectionToggles extends Component
 
     public function render()
     {
-        $this->authorize('viewAny', $this->page);
+        $this->authorize('viewAny',ServiceEmailing::class);
 
         return view('livewire.service-emailing-section-toggles');
     }

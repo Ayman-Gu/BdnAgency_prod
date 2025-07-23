@@ -135,9 +135,11 @@
     <div class="d-flex">
         <!-- Sidebar -->
         <nav id="sidebar">
+          <a href="{{route('home')}}">
             <div class="sitename">
                 <img src="assets/img/hero/1.png" class="header-logo" alt="Logo" />
             </div>
+          </a>
             <ul class="nav flex-column mt-5">
                 <li class="nav-item">
                    <a href="{{ route('dashboard') }}" 

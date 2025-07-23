@@ -1,83 +1,88 @@
-<div>
-    <div class="container py-4">
-        <h1>Gestion des Rôles</h1>
+<div class="container mt-5">
 
-        @if(session()->has('success'))
-            <div class="alert alert-success mb-3">{{ session('success') }}</div>
-        @endif
-        @if(session()->has('error'))
-            <div class="alert alert-danger mb-3">{{ session('error') }}</div>
-        @endif
+    @can('create', App\Models\Role::class)
+        <button wire:click="create" class="btn btn-primary mb-3">Ajouter un rôle</button>
+    @endcan
 
-        <div class="mb-3">
-            <button wire:click="create" class="btn btn-primary">Créer un nouveau rôle</button>
-        </div>
+    @if (session()->has('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+    @if (session()->has('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
 
-        {{-- Role Creation/Editing Form --}}
-        @if($showForm)
-            <div class="card mb-4">
-                <div class="card-header">
-                    {{ $isEditing ? 'Modifier le rôle' : 'Créer un nouveau rôle' }}
-                </div>
-                <div class="card-body">
-                    <form wire:submit.prevent="{{ $isEditing ? 'update' : 'store' }}">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nom du rôle (unique)</label>
-                            <input type="text" id="name" wire:model.live="name" class="form-control @error('name') is-invalid @enderror">
-                            @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="display_name" class="form-label">Nom d'affichage (Optionnel)</label>
-                            <input type="text" id="display_name" wire:model.live="display_name" class="form-control @error('display_name') is-invalid @enderror">
-                            @error('display_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-
-                        <button type="submit" class="btn btn-success">
-                            {{ $isEditing ? 'Mettre à jour' : 'Sauvegarder' }}
-                        </button>
-                        <button type="button" wire:click="cancel" class="btn btn-secondary ms-2">Annuler</button>
-                    </form>
-                </div>
-            </div>
-        @endif
-
-        {{-- Roles List Table --}}
-        <div class="card">
+    @if($showForm)
+        <div class="card mb-4 shadow-sm">
             <div class="card-header">
-                Liste des Rôles
+                <h5 class="mb-0">{{ $isEditing ? 'Modifier le rôle' : 'Créer un nouveau rôle' }}</h5>
             </div>
             <div class="card-body">
-                @if($roles->isEmpty())
-                    <p>Aucun rôle n'a été trouvé.</p>
-                @else
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nom</th>
-                                    <th>Nom d'affichage</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($roles as $role)
-                                    <tr wire:key="role-{{ $role->id }}">
-                                        <td>{{ $role->id }}</td>
-                                        <td>{{ $role->name }}</td>
-                                        <td>{{ $role->display_name ?? 'N/A' }}</td>
-                                        <td>
-                                            <button wire:click="edit({{ $role->id }})" class="btn btn-sm btn-info me-2">Modifier</button>
-                                            <button wire:click="delete({{ $role->id }})" wire:confirm="Êtes-vous sûr de vouloir supprimer ce rôle ?" class="btn btn-sm btn-danger">Supprimer</button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                <form wire:submit.prevent="{{ $isEditing ? 'update' : 'store' }}">
+                    <div class="mb-3">
+                        <label class="form-label">Nom du rôle *</label>
+                        <input type="text" class="form-control" wire:model="name">
+                        @error('name') <span class="text-danger small">{{ $message }}</span> @enderror
                     </div>
-                @endif
+
+                    <div class="mb-3">
+                        <label class="form-label">Nom d’affichage</label>
+                        <input type="text" class="form-control" wire:model="display_name">
+                        @error('display_name') <span class="text-danger small">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-success">
+                            {{ $isEditing ? 'Mettre à jour' : 'Enregistrer' }}
+                        </button>
+                        <button type="button" wire:click="cancel" class="btn btn-outline-secondary">Annuler</button>
+                    </div>
+                </form>
             </div>
+        </div>
+    @endif
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">Liste des rôles</h5>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-hover table-bordered mb-0">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Nom d’affichage</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($roles as $index => $role)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $role->name }}</td>
+                            <td>{{ $role->display_name ?? '-' }}</td>
+                            <td class="text-end">
+                                @can('update', App\Models\Role::class)
+                                    <button wire:click="edit({{ $role->id }})" class="btn btn-sm btn-outline-warning me-2">
+                                        Modifier
+                                    </button>
+                                @endcan
+                                @can('delete', App\Models\Role::class)
+                                    <button wire:click="delete({{ $role->id }})"
+                                            class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Supprimer ce rôle ?')">
+                                        Supprimer
+                                    </button>
+                                @endcan
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-3">Aucun rôle trouvé.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

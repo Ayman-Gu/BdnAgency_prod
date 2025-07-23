@@ -1,72 +1,74 @@
 <div class="container py-4">
     <div class="row g-4">
-      <!-- Left Card -->
-      <div class="col-md-6">
-        <div class="card shadow-lg h-100">
-          <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">{{ $editingId ? 'Modifier' : 'Ajouter' }} un membre de l’équipe</h5>
-          </div>
-          <div class="card-body">
-            <form wire:submit.prevent="save" enctype="multipart/form-data" id="leftForm">
-              <div class="mb-3">
-                <label class="form-label">Nom complet</label>
-                <input type="text" class="form-control" wire:model.defer="name" placeholder="Nom complet" required>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Poste</label>
-                <input type="text" class="form-control" wire:model.defer="position" placeholder="Poste" required>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Image</label>
-                <input type="file" class="form-control" wire:model="image">
-                @if ($image)
-                  <div class="mt-2">
-                    <img src="{{ $image->temporaryUrl() }}" alt="Aperçu" class="img-thumbnail" width="100">
-                  </div>
-                @endif
-              </div>
-            </form>
-          </div>
+        {{-- Form Section (Create or Update Team Member) --}}
+        @canany(['create', 'update'], \App\Models\Team::class)
+        <div class="col-md-6">
+            <div class="card shadow-lg h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">{{ $editingId ? 'Modifier' : 'Ajouter' }} un membre de l’équipe</h5>
+                </div>
+                <div class="card-body">
+                    <form wire:submit.prevent="save" enctype="multipart/form-data" id="leftForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nom complet</label>
+                            <input type="text" class="form-control" wire:model.defer="name" placeholder="Nom complet" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Poste</label>
+                            <input type="text" class="form-control" wire:model.defer="position" placeholder="Poste" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Image</label>
+                            <input type="file" class="form-control" wire:model="image">
+                            @if ($image)
+                                <div class="mt-2">
+                                    <img src="{{ $image->temporaryUrl() }}" alt="Aperçu" class="img-thumbnail" width="100">
+                                </div>
+                            @endif
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <!-- Right Card -->
-      <div class="col-md-6">
-        <div class="card shadow-lg h-100">
-          <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Liens des réseaux sociaux</h5>
-          </div>
-          <div class="card-body">
-            <!-- Pas de balise form séparée pour que le bouton de soumission reste dans la carte gauche, ou vous pouvez fusionner les formulaires -->
-            <div class="mb-3">
-              <label class="form-label">Twitter</label>
-              <input type="text" class="form-control" wire:model.defer="twitter" placeholder="Lien Twitter">
+
+        <div class="col-md-6">
+            <div class="card shadow-lg h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Liens des réseaux sociaux</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Twitter</label>
+                        <input type="text" class="form-control" wire:model.defer="twitter" placeholder="Lien Twitter">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Facebook</label>
+                        <input type="text" class="form-control" wire:model.defer="facebook" placeholder="Lien Facebook">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Instagram</label>
+                        <input type="text" class="form-control" wire:model.defer="instagram" placeholder="Lien Instagram">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">LinkedIn</label>
+                        <input type="text" class="form-control" wire:model.defer="linkedin" placeholder="Lien LinkedIn">
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Facebook</label>
-              <input type="text" class="form-control" wire:model.defer="facebook" placeholder="Lien Facebook">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Instagram</label>
-              <input type="text" class="form-control" wire:model.defer="instagram" placeholder="Lien Instagram">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">LinkedIn</label>
-              <input type="text" class="form-control" wire:model.defer="linkedin" placeholder="Lien LinkedIn">
-            </div>
-          </div>
-          
         </div>
-      </div>
-      <div class="card-footer d-flex justify-content-start ms-3">
+
+        <div class="card-footer d-flex justify-content-start ms-3">
             <button type="submit" class="btn btn-success" form="leftForm">
-              {{ $editingId ? 'Mettre à jour le membre' : 'Ajouter un membre' }}
+                {{ $editingId ? 'Mettre à jour le membre' : 'Ajouter un membre' }}
             </button>
-          </div>
+        </div>
+        @endcanany
     </div>
 
     <hr class="my-4">
 
+    {{-- Team Members List --}}
+    @can('viewAny', \App\Models\Team::class)
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach($members as $member)
             <div class="col">
@@ -84,16 +86,23 @@
                             @if($member->linkedin)<a href="{{ $member->linkedin }}" class="btn btn-sm btn-outline-primary" target="_blank"><i class="bi bi-linkedin"></i></a>@endif
                         </div>
                     </div>
+
                     <div class="card-footer d-flex justify-content-between">
+                        @can('update', \App\Models\Team::class)
                         <button wire:click="edit({{ $member->id }})" class="btn btn-warning btn-sm">
                             <i class="bi bi-pencil-square"></i> Modifier
                         </button>
+                        @endcan
+
+                        @can('delete', \App\Models\Team::class)
                         <button wire:click="delete({{ $member->id }})" class="btn btn-danger btn-sm" onclick="confirm('Êtes-vous sûr ?') || event.stopImmediatePropagation()">
                             <i class="bi bi-trash"></i> Supprimer
                         </button>
+                        @endcan
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
+    @endcan
 </div>

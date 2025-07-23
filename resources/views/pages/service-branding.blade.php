@@ -233,7 +233,7 @@
           </ul>
           
           <div data-aos="fade-up" data-aos-delay="50">
-              <a href="#demo" class="cta-button mt-5" >Demander une consultation Branding</a>
+              <a href="/#contact" class="cta-button mt-5" >Demander une consultation Branding</a>
           </div>
         </div>
       </div>

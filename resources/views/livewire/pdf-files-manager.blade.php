@@ -31,13 +31,15 @@
             @error('pdf') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
         </div>
 
-        <button type="submit" class="btn btn-{{ $editMode ? 'warning' : 'primary' }}" wire:loading.attr="disabled">
-            <span wire:loading.remove>{{ $editMode ? 'Mettre à jour le PDF' : 'Téléverser le PDF' }}</span>
-            <span wire:loading>
-                <i class="spinner-border spinner-border-sm me-1"></i>
-                {{ $editMode ? 'Mise à jour...' : 'Téléversement...' }}
-            </span>
-        </button>
+        @canany(['create', 'update'], App\Models\PdfFile::class)
+            <button type="submit" class="btn btn-{{ $editMode ? 'warning' : 'primary' }}" wire:loading.attr="disabled">
+                <span wire:loading.remove>{{ $editMode ? 'Mettre à jour le PDF' : 'Téléverser le PDF' }}</span>
+                <span wire:loading>
+                    <i class="spinner-border spinner-border-sm me-1"></i>
+                    {{ $editMode ? 'Mise à jour...' : 'Téléversement...' }}
+                </span>
+            </button>
+        @endcanany
 
         @if ($editMode)
             <button type="button" wire:click="$set('editMode', false)" class="btn btn-secondary ms-2">Annuler</button>
@@ -79,23 +81,25 @@
                                         title="Télécharger">
                                     <i class="bi bi-download"></i>
                                 </button>
-                            
-                                <button wire:click="edit({{ $pdf->id }})"
-                                        class="btn btn-sm btn-warning d-flex align-items-center justify-content-center"
-                                        data-bs-toggle="tooltip"
-                                        data-bs-placement="top"
-                                        title="Modifier">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                            
-                                <button wire:click="delete({{ $pdf->id }})"
-                                        class="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
-                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce PDF ?')"
-                                        data-bs-toggle="tooltip"
-                                        data-bs-placement="top"
-                                        title="Supprimer">
-                                    <i class="bi bi-trash"></i>
-                                </button>
+                                @can('update', App\Models\PdfFile::class)
+                                    <button wire:click="edit({{ $pdf->id }})"
+                                            class="btn btn-sm btn-warning d-flex align-items-center justify-content-center"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            title="Modifier">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                @endcan
+                                @can('delete', App\Models\PdfFile::class)
+                                    <button wire:click="delete({{ $pdf->id }})"
+                                            class="btn btn-sm btn-danger d-flex align-items-center justify-content-center"
+                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce PDF ?')"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            title="Supprimer">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                @endcan
                             </div>
                         </div>
 

@@ -51,7 +51,7 @@
                 <div class="hero-text">
                     <h1 data-aos="fade-down" data-aos-delay="100">Accédez à des bases de données <span style="color:#ef6603">qualifiées</span> et <span style="color:#ef6603">conformes</span> pour booster vos campagnes</h1>
                     <p data-aos="fade-down" data-aos-delay="200">BDN Agency vous offre un service de location de bases de données B2B et B2C, segmentées et constamment mises à jour, pour cibler précisément vos prospects et maximiser l'impact de vos actions marketing.</p>
-                    <a href="#demo" class="cta-button mt-5" data-aos="fade-up" data-aos-delay="100">Demander une consultation gratuite</a>
+                    <a href="/#contact" class="cta-button mt-5" data-aos="fade-up" data-aos-delay="100">Demander une consultation gratuite</a>
                     <p class="trust text-center mt-4" data-aos="fade-up" data-aos-delay="200">
                        <i class="fas fa-check"></i>
                        <strong>Données 100% conformes CNDP</strong>

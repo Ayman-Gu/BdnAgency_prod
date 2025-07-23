@@ -4,7 +4,6 @@
             <h3 class="mb-0">Gérer l’Affichage des Sections du Service BDD</h3>
         </div>
         <div class="card-body">
-            @can('manageDisplaySections', $page)
 
             <form>
                 <div class="row">
@@ -13,6 +12,8 @@
                             <label for="{{ $section }}" class="me-3 text-capitalize fw-semibold" style="width: 150px;">
                                 {{ str_replace('_', ' ', $section) }}
                             </label>
+
+                            @can('manageDisplaySections', App\Models\ServiceBdd::class)
 
                             <div class="form-check form-switch">
                                 <input 
@@ -24,11 +25,12 @@
                                     @if($enabled == 1) checked @endif
                                 >
                             </div>
+                            @endcan
+
                         </div>
                     @endforeach
                 </div>
             </form>
-            @endcan
         </div>
     </div>
 

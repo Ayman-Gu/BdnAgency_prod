@@ -15,6 +15,8 @@ class HomeSectionToggles extends Component
     {
         $this->page = Home::first();
 
+        $this->authorize('viewAny',Home::class);
+
         
         $this->sections = [
             'hero_section' => $this->page->hero_section,
@@ -34,13 +36,14 @@ class HomeSectionToggles extends Component
 
     public function toggleSectionSwitch(string $section)
     {
+        $this->authorize('manageDisplaySections', Home::class);
 
         $this->sections[$section] = $this->sections[$section] == 1 ? 0 : 1;
 
         $this->page->{$section} = $this->sections[$section];
         $this->page->save();
     }
-
+    
     public function render()
     {
         return view('livewire.home-section-toggles');

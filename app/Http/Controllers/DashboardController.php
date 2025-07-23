@@ -9,6 +9,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        return view('dashboard.home');
+    }
+    public function getPagesManager()
+    {
         return view('dashboard.index');
     }
     public function getBlogsManager(){

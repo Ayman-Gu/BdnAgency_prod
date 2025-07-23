@@ -10,33 +10,26 @@ use Illuminate\Validation\Rule;
 
 class PermissionsManagement extends Component
 {
-    // Properties for assigning permissions to roles
     public $selectedRoleId = null;
     public $selectedPermissions = [];
     public $groupSelectAll = [];
 
-    // Properties for CRUD operations on permissions
     public $newPermissionName = '';
-    public $newPermissionKey = ''; // ADDED: For the new permission's key
+    public $newPermissionKey = '';
     public $newPermissionTableName = '';
     public $editingPermissionId = null;
     public $editingPermissionName = '';
-    public $editingPermissionKey = ''; // ADDED: For editing the permission's key
+    public $editingPermissionKey = '';
     public $editingPermissionTableName = '';
 
-    /**
-     * Validation rules for creating and updating permissions.
-     */
     protected function rules()
     {
-        // Rules for the editing form
         $editingRules = [
             'editingPermissionName' => ['required', 'string', 'max:255'],
             'editingPermissionKey' => ['required', 'string', 'max:255', 'regex:/^[a-z0-9_.-]+$/', Rule::unique('permissions', 'key')->ignore($this->editingPermissionId)],
             'editingPermissionTableName' => 'required|string|max:255|regex:/^[a-z_]+$/',
         ];
 
-        // Rules for the creation form
         $creationRules = [
             'newPermissionName' => 'required|string|max:255',
             'newPermissionKey' => 'required|string|max:255|regex:/^[a-z0-9_.-]+$/|unique:permissions,key',
@@ -55,11 +48,6 @@ class PermissionsManagement extends Component
         'editingPermissionTableName.regex' => 'The group name must be in lowercase snake_case format (e.g., user_management).',
     ];
 
-
-    // =================================================================
-    // Role & Permission Assignment Logic
-    // =================================================================
-
     public function getRolesProperty()
     {
         return Role::all();
@@ -67,6 +55,7 @@ class PermissionsManagement extends Component
 
     public function getPermissionsProperty()
     {
+        $this->authorize('viewAny', Permission::class);
         return Permission::all()->sortBy('name')->groupBy('table_name');
     }
 
@@ -96,7 +85,11 @@ class PermissionsManagement extends Component
 
     public function updatedSelectedPermissions()
     {
-        $this->selectedPermissions = array_map('intval', $this->selectedPermissions);
+        if (!is_array($this->selectedPermissions)) {
+            $this->selectedPermissions = [];
+        } else {
+            $this->selectedPermissions = array_map('intval', $this->selectedPermissions);
+        }
         $this->updateGroupSelectAllState();
     }
 
@@ -116,6 +109,7 @@ class PermissionsManagement extends Component
             session()->flash('error', 'Please select a role before saving.');
             return;
         }
+
         try {
             $role = Role::findOrFail($this->selectedRoleId);
             $role->permissions()->sync($this->selectedPermissions);
@@ -127,12 +121,10 @@ class PermissionsManagement extends Component
         }
     }
 
-    // =================================================================
-    // CRUD Logic for Permissions
-    // =================================================================
-
     public function createPermission()
     {
+        $this->authorize('create', Permission::class);
+
         $validatedData = $this->validate([
             'newPermissionName' => 'required|string|max:255',
             'newPermissionKey' => 'required|string|max:255|regex:/^[a-z0-9_.-]+$/|unique:permissions,key',
@@ -141,27 +133,30 @@ class PermissionsManagement extends Component
 
         Permission::create([
             'name' => $validatedData['newPermissionName'],
-            'key' => $validatedData['newPermissionKey'], // FIXED: Add the key
+            'key' => $validatedData['newPermissionKey'],
             'table_name' => $validatedData['newPermissionTableName'],
         ]);
 
         session()->flash('success', 'Permission created successfully.');
         $this->reset(['newPermissionName', 'newPermissionKey', 'newPermissionTableName']);
-        //dd($this->newPermissionName, $this->newPermissionKey, $this->newPermissionTableName);
     }
 
     public function editPermission($permissionId)
     {
+        $this->authorize('update', Permission::class);
+
         $permission = Permission::findOrFail($permissionId);
         $this->editingPermissionId = $permission->id;
         $this->editingPermissionName = $permission->name;
-        $this->editingPermissionKey = $permission->key; // ADDED: Populate key for editing
+        $this->editingPermissionKey = $permission->key;
         $this->editingPermissionTableName = $permission->table_name;
     }
 
     public function updatePermission()
     {
         if (!$this->editingPermissionId) return;
+
+        $this->authorize('update', Permission::class);
 
         $validatedData = $this->validate([
             'editingPermissionName' => 'required|string|max:255',
@@ -172,14 +167,14 @@ class PermissionsManagement extends Component
         $permission = Permission::findOrFail($this->editingPermissionId);
         $permission->update([
             'name' => $validatedData['editingPermissionName'],
-            'key' => $validatedData['editingPermissionKey'], // FIXED: Update the key
+            'key' => $validatedData['editingPermissionKey'],
             'table_name' => $validatedData['editingPermissionTableName'],
         ]);
 
         session()->flash('success', 'Permission updated successfully.');
         $this->cancelEdit();
     }
-    
+
     public function cancelEdit()
     {
         $this->reset(['editingPermissionId', 'editingPermissionName', 'editingPermissionKey', 'editingPermissionTableName']);
@@ -187,13 +182,17 @@ class PermissionsManagement extends Component
 
     public function deletePermission($permissionId)
     {
+        $this->authorize('delete', Permission::class);
+
         $permission = Permission::findOrFail($permissionId);
         $permission->roles()->detach();
         $permission->delete();
         session()->flash('success', 'Permission deleted successfully.');
     }
+
     public function render()
     {
+        $this->authorize('viewAny', Permission::class);
         return view('livewire.permissions-management');
     }
 }

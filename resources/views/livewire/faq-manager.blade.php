@@ -13,6 +13,8 @@
                 </div>
             @endif
 
+            @canany(['create', 'update'], App\Models\Faq::class)
+
             <form wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}">
                 <div class="row mb-3">
                     <div class="col-md-12">
@@ -47,7 +49,7 @@
                 </div>
 
                 <div class="d-flex gap-2">
-                    <button class="btn btn-success px-4">{{ $updateMode ? 'Mettre à jour' : 'Enregistrer' }}</button>
+                    <button class="btn btn-success px-4">{{ $updateMode ? 'Mettre à jour' : 'Ajouter' }}</button>
                     @if($updateMode)
                         <button type="button" wire:click="resetFields" class="btn btn-outline-secondary px-4">
                             Annuler
@@ -55,6 +57,7 @@
                     @endif
                 </div>
             </form>
+            @endcanany
         </div>
     </div>
 
@@ -86,14 +89,14 @@
                                         {{ $faq->is_active ? 'Actif' : 'Inactif' }}
                                     </span>
                                 </td>
+                                
                                 <td class="text-end">
-                                    <button wire:click="edit({{ $faq->id }})"
-                                        class="btn btn-sm btn-outline-warning me-2">Modifier</button>
-                                    <button wire:click="delete({{ $faq->id }})"
-                                        class="btn btn-sm btn-outline-danger"
-                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette FAQ ?')">
-                                        Supprimer
-                                    </button>
+                                    @can('update', App\Models\Faq::class)
+                                        <button wire:click="edit({{ $faq->id }})" class="btn btn-sm btn-outline-warning me-2">Modifier</button>
+                                    @endcan
+                                    @can('delete', App\Models\Faq::class)
+                                        <button wire:click="delete({{ $faq->id }})" class="btn btn-sm btn-outline-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette FAQ ?')">Supprimer</button>
+                                    @endcan
                                 </td>
                             </tr>
                         @empty

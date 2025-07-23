@@ -48,7 +48,7 @@
                 <div class="col-lg-6 hero-text" data-aos="fade-right" data-aos-delay="100">
                     <h1>Touchez votre audience en temps réel avec les SMS professionnels</h1>
                     <p class="description mt-3 mb-md-5">Envoyez des campagnes SMS personnalisées, suivez les performances et boostez votre engagement client grâce à notre plateforme fiable et rapide.</p>
-                    <a href="#demo" class="cta-button">Demander une démo</a>
+                    <a href="/#contact" class="cta-button">Demander une démo</a>
                     <p class="no-credit-card mb-5">
                         <i class="fas fa-check"></i>
                         <strong>
@@ -220,7 +220,7 @@
             Nos experts peuvent vous aider à mettre en place, à développer et à optimiser votre stratégie SMS.
           </p>
           <div data-aos="fade-up" data-aos-delay="50">
-              <a href="#demo" class="cta-button mt-5" >Demander une démo</a>
+              <a href="/#contact" class="cta-button mt-5" >Demander une démo</a>
           </div>
         </div>
       </div>

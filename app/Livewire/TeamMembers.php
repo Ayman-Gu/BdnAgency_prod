@@ -6,9 +6,11 @@ use Livewire\Component;
 use App\Models\Team;
 use Livewire\WithFileUploads;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class TeamMembers extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, AuthorizesRequests;
 
     public $name, $position, $image, $twitter, $facebook, $instagram, $linkedin;
     public $editingId = null;
@@ -25,6 +27,8 @@ class TeamMembers extends Component
 
     public function save()
     {
+        $this->authorize($this->editingId ? 'update' : 'create',Team::class);
+
         $validatedData = $this->validate();
 
         if ($this->image) {
@@ -51,6 +55,8 @@ class TeamMembers extends Component
 
     public function edit($id)
     {
+        $this->authorize('update',Team::class);
+
         $member = Team::findOrFail($id);
         $this->editingId = $id;
         $this->name = $member->name;
@@ -63,9 +69,10 @@ class TeamMembers extends Component
 
     public function delete($id)
     {
+        $this->authorize('delete',Team::class);
+
         $member = Team::findOrFail($id);
         if ($member->image) {
-            // Delete image from storage
             \Storage::disk('public')->delete($member->image);
         }
         $member->delete();
@@ -78,6 +85,8 @@ class TeamMembers extends Component
 
     public function render()
     {
+        $this->authorize('viewAny',Team::class);
+
         $members = Team::all();
         return view('livewire.team-members', compact('members'));
     }

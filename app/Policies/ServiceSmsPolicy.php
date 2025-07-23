@@ -2,17 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\User;
+use App\Policies\Traits\PagesPolicyTrait;
 
 class ServiceSmsPolicy
 {
-     public function viewAny(User $user)
-    {
-        return $user->hasPermissionTo('pages.read');
-    }
+        use PagesPolicyTrait;
 
-    public function manageDisplaysections(User $user)
-    {
-        return $user->hasPermissionTo('pages.managedisplaysections');
-    }
 }

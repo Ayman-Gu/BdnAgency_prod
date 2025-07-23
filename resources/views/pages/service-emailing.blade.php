@@ -402,7 +402,7 @@
         </div>
          <!-- demo -->
           <div class="text-center demo-button" data-aos="fade-up" data-aos-delay="100">
-            <a href="#" class="px-4 py-3 mb-5 ">Demander un démo <i class="bi bi-arrow-up-right-circle"></i></a>
+            <a href="/#contact" class="px-4 py-3 mb-5 ">Demander un démo <i class="bi bi-arrow-up-right-circle"></i></a>
           </div>
         </div>
         </div>
@@ -426,14 +426,14 @@
                                 <span class="advanced">Personnalisé</span>
                             @endif
                             <h3>{{ $pack->packType->name ?? 'Pack' }}</h3>
-                            <h4><sup>$</sup>{{ number_format($pack->price, 2) }}<span> / month</span></h4>
+                            <h4><sup>$</sup>{{ number_format($pack->price, 2) }}<span> / mois</span></h4>
                             <ul>
                                 @foreach($pack->offers as $offer)
                                     <li class="{{ $offer->active ? '' : 'na' }}">{{ $offer->name }}</li>
                                 @endforeach
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Buy Now</a>
+                                <a href="#" class="btn-buy">Acheter</a>
                             </div>
                         </div>
                     </div>

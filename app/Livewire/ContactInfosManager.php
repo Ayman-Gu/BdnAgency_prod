@@ -4,9 +4,12 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\ContactInfo;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ContactInfosManager extends Component
 {
+    use AuthorizesRequests;
+
     public $address, $phone, $email, $editingId = null;
 
     protected $rules = [
@@ -15,25 +18,43 @@ class ContactInfosManager extends Component
         'email' => 'required|email',
     ];
 
-    public function save()
+    public function create()
     {
+        $this->authorize('create', ContactInfo::class);
+
         $this->validate();
 
-        ContactInfo::updateOrCreate(
-            ['id' => $this->editingId],
-            [
-                'address' => $this->address,
-                'phone' => $this->phone,
-                'email' => $this->email,
-            ]
-        );
+        ContactInfo::create([
+            'address' => $this->address,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'is_active' => false,
+        ]);
 
-        $this->resetFields();
+        $this->resetForm();
+    }
+
+    public function update()
+    {
+        $this->authorize('update', ContactInfo::class);
+
+        $this->validate();
+
+        $info = ContactInfo::findOrFail($this->editingId);
+        $info->update([
+            'address' => $this->address,
+            'phone' => $this->phone,
+            'email' => $this->email,
+        ]);
+
+        $this->resetForm();
     }
 
     public function edit($id)
     {
         $info = ContactInfo::findOrFail($id);
+        $this->authorize('update', $info);
+
         $this->editingId = $info->id;
         $this->address = $info->address;
         $this->phone = $info->phone;
@@ -42,25 +63,34 @@ class ContactInfosManager extends Component
 
     public function delete($id)
     {
-        ContactInfo::findOrFail($id)->delete();
+        $info = ContactInfo::findOrFail($id);
+        $this->authorize('delete', $info);
+
+        $info->delete();
+
+        session()->flash('success', 'Information supprimée avec succès.');
     }
 
-    public function setActive($id)
+    public function setActiveOnlyOne($id)
     {
+        $info = ContactInfo::findOrFail($id);
+        $this->authorize('update', $info);
+
         ContactInfo::query()->update(['is_active' => 0]);
-        ContactInfo::findOrFail($id)->update(['is_active' => 1]);
+        $info->update(['is_active' => 1]);
     }
 
-    public function resetFields()
+    public function resetForm()
     {
-        $this->address = '';
-        $this->phone = '';
-        $this->email = '';
-        $this->editingId = null;
+        $this->reset(['address', 'phone', 'email', 'editingId']);
     }
 
     public function render()
     {
-        return view('livewire.contact-infos-manager',['infos' => ContactInfo::all()]);
+        $this->authorize('viewAny', ContactInfo::class);
+
+        return view('livewire.contact-infos-manager', [
+            'infos' => ContactInfo::all(),
+        ]);
     }
 }

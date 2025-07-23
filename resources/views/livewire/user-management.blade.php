@@ -1,88 +1,93 @@
-<div class="container py-4">
-    <h2 class="mb-4 h4">{{ $editId ? 'Modifier un utilisateur' : 'Ajouter un utilisateur' }}</h2>
+<div class="container my-4">
 
-    @if(session()->has('success'))
-        <div class="alert alert-success mb-3">{{ session('success') }}</div>
+    @if (session()->has('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <form wire:submit.prevent="store" class="card card-body mb-4">
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Nom</label>
-                <input type="text" wire:model.defer="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nom complet">
-                @error('name') <small class="text-danger">{{ $message }}</small> @enderror
-            </div>
+    <!-- Button to show the form -->
+    @can('create', App\Models\User::class)
+        <button wire:click="$set('showForm', true)" class="btn btn-primary mb-3">Ajouter un utilisateur</button>
+    @endcan
 
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" wire:model.defer="email" class="form-control @error('email') is-invalid @enderror" placeholder="ex: utilisateur@email.com">
-                @error('email') <small class="text-danger">{{ $message }}</small> @enderror
+    <!-- Form -->
+    @if($showForm)
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">
+                <h5>{{ $editId ? 'Modifier' : 'Ajouter' }} un utilisateur</h5>
+            </div>
+            <div class="card-body">
+                <form wire:submit.prevent="store">
+                    <div class="mb-3">
+                        <label for="name">Nom</label>
+                        <input wire:model="name" type="text" class="form-control" id="name">
+                        @error('name') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email">Email</label>
+                        <input wire:model="email" type="email" class="form-control" id="email">
+                        @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password">Mot de passe</label>
+                        <input wire:model="password" type="password" class="form-control" id="password">
+                        @error('password') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="role">Rôle</label>
+                        <select wire:model="role_id" class="form-control">
+                            <option value="">-- Choisir un rôle --</option>
+                            @foreach($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('role_id') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-success">{{ $editId ? 'Mettre à jour' : 'Ajouter' }}</button>
+                        <button type="button" wire:click="resetForm" class="btn btn-secondary">Annuler</button>
+                    </div>
+                </form>
             </div>
         </div>
+    @endif
 
-        <div class="row">
-            <!-- START: Role Selection Dropdown -->
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Rôle</label>
-                <select wire:model.defer="role_id" class="form-select @error('role_id') is-invalid @enderror">
-                    <option value="">-- Choisir un rôle --</option>
-                    @foreach($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->display_name ?? $role->name }}</option>
+    <!-- Users table -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Liste des utilisateurs</h5>
+        </div>
+        <div class="card-body p-0">
+            <table class="table mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Rôle</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($users as $user)
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->role->name ?? '-' }}</td>
+                            <td>
+                                @can('update', $user)
+                                    <button wire:click="edit({{ $user->id }})" class="btn btn-sm btn-warning">Modifier</button>
+                                @endcan
+                                @can('delete', $user)
+                                    <button wire:click="delete({{ $user->id }})" class="btn btn-sm btn-danger" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
+                                @endcan
+                            </td>
+                        </tr>
                     @endforeach
-                </select>
-                @error('role_id') <small class="text-danger">{{ $message }}</small> @enderror
-            </div>
-            <!-- END: Role Selection Dropdown -->
-            
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Mot de passe</label>
-                <input type="password" wire:model.defer="password" class="form-control @error('password') is-invalid @enderror" placeholder="Laissez vide pour ne pas changer">
-                @error('password') <small class="text-danger">{{ $message }}</small> @enderror
-            </div>
+                </tbody>
+            </table>
         </div>
-
-        <div>
-            <button type="submit" class="btn btn-primary">
-                {{ $editId ? 'Mettre à jour' : 'Ajouter' }}
-            </button>
-            @if($editId)
-                <button type="button" wire:click="resetForm" class="btn btn-secondary ms-2">Annuler</button>
-            @endif
-        </div>
-    </form>
-
-    <h2 class="mb-3 h4">Liste des utilisateurs</h2>
-
-    <table class="table table-bordered table-striped">
-        <thead class="table-light">
-            <tr>
-                <th>#</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Rôle</th> <!-- Add Role column header -->
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($users as $index => $user)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>
-                    <!-- Display role name, with a fallback -->
-                    <span class="badge bg-primary">{{ $user->role->display_name ?? $user->role->name ?? 'N/A' }}</span>
-                </td>
-                <td>
-                    <button wire:click="edit({{ $user->id }})" class="btn btn-sm btn-warning">Modifier</button>
-                    <button wire:click="delete({{ $user->id }})" class="btn btn-sm btn-danger ms-2" wire:confirm="Êtes-vous sûr de vouloir supprimer cet utilisateur?">Supprimer</button>
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="5" class="text-center">Aucun utilisateur trouvé.</td>
-            </tr>
-            @endforelse
-        </tbody>
-    </table>
+    </div>
 </div>

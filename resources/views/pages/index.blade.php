@@ -847,7 +847,9 @@
                 <div class="col-md-12">
                   <textarea name="message" rows="6" class="form-control" placeholder="Message..." required></textarea>
                 </div>
-              
+                
+                <div class="text-secondary" style="font-weight:300;text-decoration:underline">vous pouvez également utiliser ce formulaire pour nous contacter&nbsp;*</div>
+
                 <div class="col-md-12 text-center">
                   <div class="loading">Chargement...</div>
                   <div class="error-message"></div>

@@ -15,6 +15,7 @@ class AproposPageSectionToggles extends Component
     {
         $this->page = AproposPage::first();
 
+        $this->authorize('viewAny', AproposPage::class);
         
         $this->sections = [
             'hero_section' => $this->page->hero_section,
@@ -28,6 +29,7 @@ class AproposPageSectionToggles extends Component
 
     public function toggleSectionSwitch(string $section)
     {
+        $this->authorize('manageDisplaySections', AproposPage::class);
 
         $this->sections[$section] = $this->sections[$section] == 1 ? 0 : 1;
 
@@ -37,6 +39,7 @@ class AproposPageSectionToggles extends Component
 
     public function render()
     {
+
         return view('livewire.apropos-page-section-toggles', [
             'sections' => $this->sections,
         ]);

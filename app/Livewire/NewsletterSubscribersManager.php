@@ -98,6 +98,8 @@ class NewsletterSubscribersManager extends Component
 
     public function render()
     {
+        $this->authorize('read', NewsletterSubscriber::class);
+
         $query = NewsletterSubscriber::query();
 
         // Search filter
@@ -122,56 +124,62 @@ class NewsletterSubscribersManager extends Component
 
     public function deleteSubscriber($id)
     {
+    $this->authorize('delete', NewsletterSubscriber::class);
+
     NewsletterSubscriber::findOrFail($id)->delete();
     session()->flash('message', 'Subscriber deleted successfully.');
     }
 
     public function deleteAll()
     {
+        $this->authorize('deleteAll', NewsletterSubscriber::class);
+
         DB::table('newsletter_subscribers')->delete();
         session()->flash('message', 'All subscribers have been deleted.');
         $this->resetPage();
     }
 
   public function exportAsExcel()
-{
-    $query = NewsletterSubscriber::query();
+    {
+        $this->authorize('export', NewsletterSubscriber::class);
 
-    // Apply filters
-    if (!empty($this->search)) {
-        $query->where('email', 'like', '%' . $this->search . '%');
-    }
-    if (!empty($this->dateFrom)) {
-        $query->whereDate('created_at', '>=', $this->dateFrom);
-    }
-    if (!empty($this->dateTo)) {
-        $query->whereDate('created_at', '<=', $this->dateTo);
-    }
+        $query = NewsletterSubscriber::query();
 
-    $subscribers = $query->get();
-
-    return response()->streamDownload(function () use ($subscribers) {
-        $writer = SimpleExcelWriter::streamDownload('newsletter_subscribers.xlsx');
-
-        $writer->addHeader([
-            'ID',
-            'Email',
-            'IP Address',
-            'Country',
-            'Subscribed At',
-        ]);
-
-        foreach ($subscribers as $subscriber) {
-            $writer->addRow([
-                $subscriber->id,
-                $subscriber->email,
-                $subscriber->ip_address ?? 'N/A',
-                $subscriber->country ?? 'Unknown',
-                $subscriber->created_at->format('Y-m-d H:i:s'),
-            ]);
+        // Apply filters
+        if (!empty($this->search)) {
+            $query->where('email', 'like', '%' . $this->search . '%');
+        }
+        if (!empty($this->dateFrom)) {
+            $query->whereDate('created_at', '>=', $this->dateFrom);
+        }
+        if (!empty($this->dateTo)) {
+            $query->whereDate('created_at', '<=', $this->dateTo);
         }
 
-        $writer->close();
-    }, 'newsletter_subscribers.xlsx');
-} 
+        $subscribers = $query->get();
+
+        return response()->streamDownload(function () use ($subscribers) {
+            $writer = SimpleExcelWriter::streamDownload('newsletter_subscribers.xlsx');
+
+            $writer->addHeader([
+                'ID',
+                'Email',
+                'IP Address',
+                'Country',
+                'Subscribed At',
+            ]);
+
+            foreach ($subscribers as $subscriber) {
+                $writer->addRow([
+                    $subscriber->id,
+                    $subscriber->email,
+                    $subscriber->ip_address ?? 'N/A',
+                    $subscriber->country ?? 'Unknown',
+                    $subscriber->created_at->format('Y-m-d H:i:s'),
+                ]);
+            }
+
+            $writer->close();
+        }, 'newsletter_subscribers.xlsx');
+    } 
 }

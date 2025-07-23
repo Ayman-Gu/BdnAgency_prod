@@ -4,7 +4,6 @@
             <h3 class="mb-0">Gérer l’Affichage des Sections du Service Visionnaire</h3>
         </div>
         <div class="card-body">
-            @can('manageDisplaySections', $page)
             <form>
                 <div class="row">
                     @foreach($sections as $section => $enabled)
@@ -12,6 +11,7 @@
                             <label for="{{ $section }}" class="me-3 text-capitalize fw-semibold" style="width: 150px;">
                                 {{ str_replace('_', ' ', $section) }}
                             </label>
+                            @can('manageDisplaySections', App\Models\ServiceVisionnaire::class)
 
                             <div class="form-check form-switch">
                                 <input 
@@ -23,11 +23,11 @@
                                     @if($enabled == 1) checked @endif
                                 >
                             </div>
+                            @endcan
                         </div>
                     @endforeach
                 </div>
             </form>
-            @endcan
         </div>
     </div>
 

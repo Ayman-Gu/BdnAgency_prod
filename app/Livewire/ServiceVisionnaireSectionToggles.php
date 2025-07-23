@@ -16,6 +16,7 @@ class ServiceVisionnaireSectionToggles extends Component
         
         $this->page = ServiceVisionnaire::first();
 
+        $this->authorize('viewAny',ServiceVisionnaire::class);
         
         $this->sections = [
             'hero_section' => $this->page->hero_section,
@@ -29,7 +30,7 @@ class ServiceVisionnaireSectionToggles extends Component
 
     public function toggleSectionSwitch(string $section)
     {
-        $this->authorize('manageDisplaySections', $this->page);
+        $this->authorize('manageDisplaySections',ServiceVisionnaire::class);
 
 
         $this->sections[$section] = $this->sections[$section] == 1 ? 0 : 1;
@@ -40,7 +41,6 @@ class ServiceVisionnaireSectionToggles extends Component
 
     public function render()
     {
-        $this->authorize('viewAny', $this->page);
 
         return view('livewire.service-visionnaire-section-toggles');
     }

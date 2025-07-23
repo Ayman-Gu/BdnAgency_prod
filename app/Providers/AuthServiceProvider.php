@@ -16,44 +16,39 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        \App\Models\Blog::class                => \App\Policies\BlogPolicy::class,
-        \App\Models\ServiceBdd::class          => \App\Policies\ServicePagePolicy::class,
-        \App\Models\ServiceBranding::class     => \App\Policies\ServicePagePolicy::class,
-        \App\Models\ServiceEmailing::class     => \App\Policies\ServicePagePolicy::class,
-        \App\Models\ServiceNewsletter::class   => \App\Policies\ServicePagePolicy::class,
-        \App\Models\ServiceSms::class          => \App\Policies\ServicePagePolicy::class,
-        \App\Models\ServiceVisionnaire::class  => \App\Policies\ServicePagePolicy::class,
+        \App\Models\Team::class           => \App\Policies\TeamPolicy::class,
+        \App\Models\Blog::class           => \App\Policies\BlogPolicy::class,
+        \App\Models\ContactInfo::class    => \App\Policies\ContactInfoPolicy::class,
+        \App\Models\Newsletter::class     => \App\Policies\NewsletterSubscriberPolicy::class,
+        \App\Models\Faq::class            => \App\Policies\FaqPolicy::class,
+        \App\Models\Project::class        => \App\Policies\ProjectPolicy::class,
+        \App\Models\Testimonial::class    => \App\Policies\TestimonialPolicy::class,
+        \App\Models\PdfFile::class        => \App\Policies\PdfFilePolicy::class,
+        \App\Models\User::class           => \App\Policies\UserPolicy::class,
+        \App\Models\Role::class           => \App\Policies\RolePolicy::class,
+        \App\Models\Permission::class     => \App\Policies\PermissionPolicy::class,
+
+
+
+
+
+        /*for dashboard/index page*/
+        \App\Models\Home::class              => \App\Policies\HomePolicy::class,
+        \App\Models\ServiceBdd::class        => \App\Policies\ServiceBddPolicy::class,
+        \App\Models\ServiceEmailing::class   => \App\Policies\ServiceEmailingPolicy::class,
+        \App\Models\ServiceSms::class        => \App\Policies\ServiceSmsPolicy::class,
+        \App\Models\ServiceNewsletter::class => \App\Policies\ServiceNewsletterPolicy::class,
+        \App\Models\ServiceBranding::class   => \App\Policies\ServiceBrandingPolicy::class,
+        \App\Models\ServiceVisionnaire::class=> \App\Policies\ServiceVisionnairePolicy::class,
+        \App\Models\AproposPage::class       => \App\Policies\AproposPagePolicy::class,
     ];
 
-    /**
-     * Register any authentication / authorization services.
-     */
-    public function boot(): void
-    {
-        $this->registerPolicies();
+    public function boot()
+{
+    $this->registerPolicies();
 
-        Gate::before(function (User $user, string $ability) {
-            if ($user->hasRole('super-admin')) {
-                return true;
-            }
-        });
-
-        try {
-            $permissions = cache()->rememberForever('permissions', function () {
-                return Permission::all();
-            });
-
-            foreach ($permissions as $permission) {
-                Gate::define($permission->key, function (User $user) use ($permission) {
-                    return $user->hasPermission($permission->key);
-                });
-            }
-        } catch (\Exception $e) {
-            // Log the exception if needed
-        }
-
-        Blade::if('permission', function (string $permissionKey) {
-            return auth()->check() && auth()->user()->hasPermission($permissionKey);
-        });
-    }
+    Gate::define('manage-pages', function ($user, $model) {
+        return $user->hasPermissionTo('pages.manage');
+    });
+}
 }

@@ -22,8 +22,9 @@ Route::middleware('auth')->group(function () {
 */
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('home');
 });
+Route::get('/manage-pages', [DashboardController::class, 'getPagesManager'])->name('dashboard');
 Route::get('/manage-blogs', [DashboardController::class ,'getBlogsManager'])->name('blogs-manager');
 Route::get('/manage-team', [DashboardController::class ,'getTeamManager'])->name('team-manager');
 Route::get('/manage-contact-infos', [DashboardController::class ,'getContactManager'])->name('contact-manager');

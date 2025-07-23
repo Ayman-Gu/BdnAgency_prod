@@ -4,8 +4,8 @@ namespace App\Policies;
 
 use App\Policies\Traits\PagesPolicyTrait;
 
-class ServiceVisionnairePolicy
+class AproposPagePolicy
 {
-    use PagesPolicyTrait;
+        use PagesPolicyTrait;
 
 }
