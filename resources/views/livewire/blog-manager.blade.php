@@ -138,7 +138,7 @@
     <!-- Tableau des blogs -->
     <h4>Tous les blogs</h4>
     <div class="table-responsive">
-        <table class="table align-middle table-hover table-bordered shadow-sm rounded mt-3">
+        <table class="table align-middle table-hover table-borderless shadow-sm mt-3 rounded-full">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">Image</th>
@@ -158,7 +158,7 @@
                         </td>
                         <td class="fw-semibold">{{ $blog->title }}</td>
                         <td>{{ Str::limit($blog->description, 50) }}</td>
-                        <td><span class="badge bg-info text-dark">{{ $blog->category?->name }}</span></td>
+                        <td><span class="badge bg-info">{{ $blog->category?->name }}</span></td>
                         <td>{{ $blog->created_at->format('Y-m-d') }}</td>
                         <td>
                             <span class="badge {{ $blog->status === 'published' ? 'bg-success' : 'bg-warning text-dark' }}">
@@ -201,7 +201,7 @@
    <!-- Tableau des catégories -->
     <h4>Toutes les catégories</h4>
     <div class="table-responsive">
-        <table class="table align-middle table-hover table-bordered shadow-sm rounded mt-3">
+        <table class="table align-middle table-hover table-borderless shadow-sm rounded mt-3">
             <thead class="table-dark">
                 <tr>
                     <th>Nom</th>
@@ -304,4 +304,5 @@
             bindTrixWithLivewire();
         });
     });
+    
 </script>

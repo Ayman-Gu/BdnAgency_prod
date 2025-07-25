@@ -1,8 +1,8 @@
 <div class="container my-5">
 
     <div class="card shadow-lg border-0 mb-5">
-        <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">{{ $updateMode ? 'Modifier la FAQ' : 'Ajouter une nouvelle FAQ' }}</h3>
+        <div class="card-header bg-primary text-white ">
+            <h3 class="mb-0 fs-4 fw-light">{{ $updateMode ? 'Modifier la FAQ' : 'Ajouter une nouvelle FAQ' }}</h3>
         </div>
 
         <div class="card-body">
@@ -67,7 +67,7 @@
         </div>
 
         <div class="card-body p-0">
-            <div class="table-responsive">
+            <div class="table-responsive p-3">
                 <table class="table table-striped table-hover align-middle mb-0">
                     <thead class="table-primary">
                         <tr>

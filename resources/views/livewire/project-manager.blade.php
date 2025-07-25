@@ -120,7 +120,7 @@
     {{-- Tableau des projets --}}
     <h4 class="mt-4">Tous les projets</h4>
     <div class="table-responsive">
-        <table class="table align-middle table-hover table-bordered shadow-sm mt-3">
+        <table class="table align-middle table-hover table-borderless shadow-sm mt-3">
             <thead class="table-dark">
                 <tr>
                     <th>Image</th>
@@ -141,7 +141,7 @@
                         <td class="fw-semibold">{{ $project->title }}</td>
                         <td>{{ Str::limit($project->description, 50) }}</td>
                         <td>
-                            <span class="badge bg-info text-dark">{{ $project->category?->name }}</span>
+                            <span class="badge bg-info ">{{ $project->category?->name }}</span>
                         </td>
                         <td>{{ $project->created_at->format('Y-m-d') }}</td>
                         <td>
@@ -182,7 +182,7 @@
     {{-- Tableau des catégories --}}
     <h4 class="mt-4">Toutes les catégories</h4>
     <div class="table-responsive">
-        <table class="table align-middle table-hover table-bordered shadow-sm mt-3">
+        <table class="table align-middle table-hover table-borderless shadow-sm mt-3">
             <thead class="table-dark">
                 <tr>
                     <th>Nom</th>

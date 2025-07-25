@@ -57,11 +57,11 @@
 
     <!-- Users table -->
     <div class="card">
-        <div class="card-header bg-dark text-white">
+        <div class="card-header bg-light">
             <h5 class="mb-0">Liste des utilisateurs</h5>
         </div>
-        <div class="card-body p-0">
-            <table class="table mb-0">
+        <div class="card-body p-3">
+            <table class="table table-hover table-borderless mb-0">
                 <thead class="table-light">
                     <tr>
                         <th>Nom</th>

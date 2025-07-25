@@ -1,69 +1,67 @@
 <div>
-    <div class="row mb-3 align-items-end g-2">
+    <div class="row align-items-end g-2 mb-3 flex-wrap">
+    <div class="col-auto">
+        <input
+            type="text"
+            wire:model.live.debounce.500ms="search"
+            placeholder="Rechercher par email..."
+            class="form-control form-control rounded-pill shadow-sm"
+            value="{{ $search }}"
+        />
+    </div>
 
-        <div class="col-md-3">
-            <input
-                type="text"
-                wire:model.live.debounce.500ms="search"
-                placeholder="Rechercher par email..."
-                class="form-control"
-                value="{{ $search }}"
-            />
-        </div>
-    
-        <div class="col-md-2">
-            <input
-                type="date"
-                wire:model.live="dateFrom"
-                class="form-control"
-                value="{{ $dateFrom }}"
-            />
-        </div>
-    
-        <div class="col-md-2">
-            <input
-                type="date"
-                wire:model.live="dateTo"
-                class="form-control"
-                value="{{ $dateTo }}"
-            />
-        </div>
-    
-        <div class="col-md-2">
+    <div class="col-auto">
+        <input
+            type="date"
+            wire:model.live="dateFrom"
+            class="form-control form-control rounded-pill shadow-sm"
+            value="{{ $dateFrom }}"
+        />
+    </div>
+
+    <div class="col-auto">
+        <input
+            type="date"
+            wire:model.live="dateTo"
+            class="form-control form-control rounded-pill shadow-sm"
+            value="{{ $dateTo }}"
+        />
+    </div>
+
+    <div class="col-auto">
+        <button 
+            wire:click="clearFilters" 
+            class="btn btn-secondary rounded-pill shadow-sm fw-semibold"
+            type="button"
+        >
+            <i class="bi bi-x-circle me-1"></i> Réinitialiser
+        </button>
+    </div>
+
+    @can('deleteAll', \App\Models\NewsletterSubscriber::class)
+        <div class="col-auto">
             <button 
-                wire:click="clearFilters" 
-                class="btn btn-secondary w-100"
-                type="button"
+                wire:click="deleteAll" 
+                class="btn btn-danger rounded-pill shadow-sm fw-semibold"
+                onclick="confirm('Êtes-vous sûr de vouloir supprimer tous les abonnés ?') || event.stopImmediatePropagation()"
             >
-                Réinitialiser
+                <i class="bi bi-trash me-1"></i> Supprimer tout
             </button>
         </div>
-    
-        @can('deleteAll', \App\Models\NewsletterSubscriber::class)
-            <div class="col-md-2">
-                <button 
-                    wire:click="deleteAll" 
-                    class="btn btn-danger w-100"
-                    onclick="confirm('Êtes-vous sûr de vouloir supprimer tous les abonnés ?') || event.stopImmediatePropagation()"
-                >
-                    Supprimer tout
-                </button>
-            </div>
-        @endcan
-        
-        @can('export', \App\Models\NewsletterSubscriber::class)
+    @endcan
 
-            <div class="col-md-2">
-                <button 
-                    wire:click="exportAsExcel" 
-                    class="btn btn-success w-100"
-                >
-                    Exporter en Excel
-                </button>
-            </div>
-        @endcan
-    
-    </div>
+    @can('export', \App\Models\NewsletterSubscriber::class)
+        <div class="col-auto">
+            <button 
+                wire:click="exportAsExcel" 
+                class="btn btn-success rounded-pill shadow-sm fw-semibold"
+            >
+                <i class="bi bi-file-earmark-excel me-1"></i> Exporter en Excel
+            </button>
+        </div>
+    @endcan
+</div>
+
     
 
     <div class="row mb-3">
@@ -77,7 +75,7 @@
         </div>
     </div>
 
-    <table class="table table-striped table-bordered">
+    <table class="table table-borderless">
         <thead>
             <tr>
                 <th>#</th>

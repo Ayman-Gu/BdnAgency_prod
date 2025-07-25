@@ -45,8 +45,8 @@
         <div class="card-header bg-light">
             <h5 class="mb-0">Liste des rôles</h5>
         </div>
-        <div class="card-body p-0">
-            <table class="table table-hover table-bordered mb-0">
+        <div class="card-body p-3">
+            <table class="table table-hover table-borderless mb-0">
                 <thead class="table-secondary">
                     <tr>
                         <th>#</th>

@@ -5,7 +5,7 @@
         <div class="col-md-6">
             <div class="card shadow-lg h-100">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">{{ $editingId ? 'Modifier' : 'Ajouter' }} un membre de l’équipe</h5>
+                    <h5 class="mb-0 fw-light">{{ $editingId ? 'Modifier' : 'Ajouter' }} un membre de l’équipe</h5>
                 </div>
                 <div class="card-body">
                     <form wire:submit.prevent="save" enctype="multipart/form-data" id="leftForm">
@@ -34,7 +34,7 @@
         <div class="col-md-6">
             <div class="card shadow-lg h-100">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">Liens des réseaux sociaux</h5>
+                    <h5 class="mb-0 fw-light">Liens des réseaux sociaux</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -74,7 +74,9 @@
             <div class="col">
                 <div class="card h-100 shadow-sm">
                     @if($member->image)
-                        <img src="{{ asset('storage/' . $member->image) }}" class="card-img-top" alt="{{ $member->name }}">
+                        <div class="ratio ratio-4x3">
+                            <img src="{{ asset('storage/' . $member->image) }}" class="card-img-top object-fit-cover" alt="{{ $member->name }}">
+                        </div>
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $member->name }}</h5>
@@ -87,7 +89,7 @@
                         </div>
                     </div>
 
-                    <div class="card-footer d-flex justify-content-between">
+                    <div class="d-flex justify-content-between p-3 border-top">
                         @can('update', \App\Models\Team::class)
                         <button wire:click="edit({{ $member->id }})" class="btn btn-warning btn-sm">
                             <i class="bi bi-pencil-square"></i> Modifier
