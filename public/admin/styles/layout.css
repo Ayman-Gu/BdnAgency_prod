@@ -30,6 +30,9 @@
 /* Hover state */
 .sidebar .nav-link:hover {
     background-color: #e9985e29;
+    margin-right:25px;
+    border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
     color: #ee7e2df0;
 }
 
@@ -43,6 +46,11 @@
     font-weight: 500;
 }
 .sidebar.collapsed .nav-link.active {
+    margin-right:0px;
+    border-top-right-radius:0px;
+    border-bottom-right-radius:0px;
+}
+.sidebar.collapsed .nav-link:hover {
     margin-right:0px;
     border-top-right-radius:0px;
     border-bottom-right-radius:0px;

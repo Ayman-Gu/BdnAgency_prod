@@ -208,6 +208,8 @@ class ServicesManager extends Component
 
     public function render()
     {
+        $this->authorize('viewAny',Service::class);
+
         $usedPackTypes = [];
         if ($this->selectedService) {
             $usedPackTypes = Pack::where('service_id', $this->selectedService)

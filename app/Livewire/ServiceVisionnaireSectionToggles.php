@@ -20,11 +20,11 @@ class ServiceVisionnaireSectionToggles extends Component
         
         $this->sections = [
             'hero_section' => $this->page->hero_section,
-            'features_section' => $this->page->features_section,
-            'benefits_section' => $this->page->benefits_section,
-            'examples_section' => $this->page->examples_section,
-            'cta_section' => $this->page->cta_section,
-            'pricing_section' => $this->page->pricing_section,
+            'Des_formats_adaptés_à_vos_objectifs' => $this->page->Des_formats_adaptés_à_vos_objectifs,
+            'Pourquoi_choisir_Le_Visionnaire' => $this->page->Pourquoi_choisir_Le_Visionnaire,
+            'Devenir_un_partenaire' => $this->page->Devenir_un_partenaire,
+            'Prêt_à_transformer_votre_visibilité' => $this->page->Prêt_à_transformer_votre_visibilité,
+            'section_des_offres' => $this->page->section_des_offres,
         ];
     }
 

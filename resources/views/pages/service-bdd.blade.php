@@ -21,12 +21,12 @@
 
     $sectionOrder = [
         'hero_section',
-        'features_section',
-        'benefits_section',
-        'use_cases_section',
-        'testimonials_section',
-        'cta_section',
-        'pricing_section',
+        'Les_atouts_de_nos_BDD',
+        'Pourquoi_choisir_BDN_Agency',
+        'Location_de_BDD_adaptée_à_vos_besoins',
+        'section_temoignages',
+        'Démarrez_votre_prochaine_campagne',
+        'section_des_offres',
     ];
 
     // Find first visible section after hero (or first visible if no hero)
@@ -51,7 +51,7 @@
                 <div class="hero-text">
                     <h1 data-aos="fade-down" data-aos-delay="100">Accédez à des bases de données <span style="color:#ef6603">qualifiées</span> et <span style="color:#ef6603">conformes</span> pour booster vos campagnes</h1>
                     <p data-aos="fade-down" data-aos-delay="200">BDN Agency vous offre un service de location de bases de données B2B et B2C, segmentées et constamment mises à jour, pour cibler précisément vos prospects et maximiser l'impact de vos actions marketing.</p>
-                    <a href="/#contact" class="cta-button mt-5" data-aos="fade-up" data-aos-delay="100">Demander une consultation gratuite</a>
+                    <a href="/#contact" class="cta-button mt-5" data-aos="fade-up" data-aos-delay="100">Demander plus d'informations</a>
                     <p class="trust text-center mt-4" data-aos="fade-up" data-aos-delay="200">
                        <i class="fas fa-check"></i>
                        <strong>Données 100% conformes CNDP</strong>
@@ -63,8 +63,8 @@
 @endif
 
 <!-- Features Section -->
-@if(!empty($sections['features_section']) && $sections['features_section'] == 1)
-    <section class="features position-relative overflow-hidden py- min-vh-50 min-vh-md-75 {{ (!$showHero && $firstSection === 'features_section') ? 'first-section-margin' : '' }}">
+@if(!empty($sections['Les_atouts_de_nos_BDD']) && $sections['Les_atouts_de_nos_BDD'] == 1)
+    <section class="features position-relative overflow-hidden py- min-vh-50 min-vh-md-75 {{ (!$showHero && $firstSection === 'Les_atouts_de_nos_BDD') ? 'first-section-margin' : '' }}">
         <div class="circle-left"></div>
         <div class="circle-small-left"></div>
         <div class="circle-right"></div>
@@ -115,8 +115,8 @@
 @endif
 
 <!-- Benefits Section -->
-@if(!empty($sections['benefits_section']) && $sections['benefits_section'] == 1)
-    <section class="benefits-section {{ $firstSection === 'benefits_section' ? 'first-section-margin' : '' }}">
+@if(!empty($sections['Pourquoi_choisir_BDN_Agency']) && $sections['Pourquoi_choisir_BDN_Agency'] == 1)
+    <section class="benefits-section {{ $firstSection === 'Pourquoi_choisir_BDN_Agency' ? 'first-section-margin' : '' }}">
         <div class="stars"></div>
         <div class="container">
             <h2 class="section-benefits-title text-center p-5" data-aos="fade-up" data-aos-delay="100">
@@ -148,8 +148,8 @@
 @endif
 
 <!-- Use Cases Section -->
-@if(!empty($sections['use_cases_section']) && $sections['use_cases_section'] == 1)
-    <section class="examples-section mt-5 mb-5 {{ $firstSection === 'use_cases_section' ? 'first-section-margin' : '' }}">
+@if(!empty($sections['Location_de_BDD_adaptée_à_vos_besoins']) && $sections['Location_de_BDD_adaptée_à_vos_besoins'] == 1)
+    <section class="examples-section mt-5 mb-5 {{ $firstSection === 'Location_de_BDD_adaptée_à_vos_besoins' ? 'first-section-margin' : '' }}">
         <div class="container">
             <h2 class="examples-section-title" data-aos="fade-up" data-aos-delay="100">Nos bases de données au service de votre croissance</h2>
             <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
@@ -198,8 +198,8 @@
 @endif
 
 <!-- Testimonials Section -->
-@if(!empty($sections['testimonials_section']) && $sections['testimonials_section'] == 1)
-    <section class="testimonials-section mt-5 {{ $firstSection === 'testimonials_section' ? 'first-section-margin' : '' }}">
+@if(!empty($sections['section_temoignages']) && $sections['section_temoignages'] == 1)
+    <section class="testimonials-section mt-5 {{ $firstSection === 'section_temoignages' ? 'first-section-margin' : '' }}">
         <div class="container">
             <h2 class="section-testimonials-title" data-aos="fade-up" data-aos-delay="100">Ce que nos clients disent de nous</h2>
             <div class="testimonials-grid mb-5">
@@ -224,8 +224,8 @@
 @endif
 
 <!-- Final CTA Section -->
-@if(!empty($sections['cta_section']) && $sections['cta_section'] == 1)
-    <section class="final-cta {{ $firstSection === 'cta_section' ? 'first-section-margin' : '' }}">
+@if(!empty($sections['Démarrez_votre_prochaine_campagne']) && $sections['Démarrez_votre_prochaine_campagne'] == 1)
+    <section class="final-cta {{ $firstSection === 'Démarrez_votre_prochaine_campagne' ? 'first-section-margin' : '' }}">
         <div class="container">
             <div class="cta-content">
                 <h2 class="cta-title" data-aos="fade-up" data-aos-delay="100">
@@ -256,8 +256,8 @@
 @endif
 
  <!-- Pricing Section -->
-@if(!empty($sections['pricing_section']) && $sections['pricing_section'] == 1)
-    <section class="pricing section mb-5 {{ $firstSection === 'pricing_section' ? 'first-section-margin' : '' }} mt-5">
+@if(!empty($sections['section_des_offres']) && $sections['section_des_offres'] == 1)
+    <section class="pricing section mb-5 {{ $firstSection === 'section_des_offres' ? 'first-section-margin' : '' }} mt-5">
         <div class="container section-title" data-aos="fade-up">
             <h2>Offres</h2>
             <p class="mt-4 mb-4">Nos Tarifs</p>

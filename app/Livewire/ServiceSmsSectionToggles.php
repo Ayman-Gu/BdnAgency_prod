@@ -19,11 +19,11 @@ class ServiceSmsSectionToggles extends Component
         
         $this->sections = [
             'hero_section' => $this->page->hero_section,
-            'features_section' => $this->page->features_section,
-            'commerce_section' => $this->page->commerce_section,
-            'technology_section' => $this->page->technology_section,
-            'cta_section' => $this->page->cta_section,
-            'pricing_section' => $this->page->pricing_section,
+            'Les_Fonctionnalités_de_bdn_agency' => $this->page->Les_Fonctionnalités_de_bdn_agency,
+            'creation_des_cas_dutilisation' => $this->page->creation_des_cas_dutilisation,
+            'Une_technologie_de_pointe' => $this->page->Une_technologie_de_pointe,
+            'Commencer_avec_BDN_Agency' => $this->page->Commencer_avec_BDN_Agency,
+            'section_des_offres' => $this->page->section_des_offres,
         ];
     }
 

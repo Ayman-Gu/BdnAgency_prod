@@ -18,11 +18,11 @@
 
     $sectionOrder = [
         'hero_section',
-        'features_section',
-        'commerce_section',
-        'technology_section',
-        'cta_section',
-        'pricing_section',
+        'Les_Fonctionnalités_de_bdn_agency',
+        'creation_des_cas_dutilisation',
+        'Une_technologie_de_pointe',
+        'Commencer_avec_BDN_Agency',
+        'section_des_offres',
     ];
 
     // Find first visible section after hero (or first visible if no hero)
@@ -66,7 +66,7 @@
         </div>
     </section>
 @endif
-@if(!empty($sections['features_section']) && $sections['features_section'] == 1)
+@if(!empty($sections['Les_Fonctionnalités_de_bdn_agency']) && $sections['Les_Fonctionnalités_de_bdn_agency'] == 1)
 
     <!-- Features Section -->
     <section class="features position-relative overflow-hidden py- min-vh-50 min-vh-md-75 {{ (!$showHero && $firstSection === 'features_section') ? 'first-section-margin' : '' }}">
@@ -112,9 +112,9 @@
     </section>
 @endif
     <!-- Commerce Section -->
-@if(!empty($sections['commerce_section']) && $sections['commerce_section'] == 1)
+@if(!empty($sections['creation_des_cas_dutilisation']) && $sections['creation_des_cas_dutilisation'] == 1)
 
-    <section class="commerce-section position-relative overflow-hidden  {{ $firstSection === 'commerce_section' ? 'first-section-margin' : '' }}">
+    <section class="commerce-section position-relative overflow-hidden  {{ $firstSection === 'creation_des_cas_dutilisation' ? 'first-section-margin' : '' }}">
       <div class="container commerce-section-wrapper p-5 position-relative" data-aos="fade-up" data-aos-delay="200">
         <h2 class="section-title mt-4 mb-5">Créez n'importe quel cas d'utilisation ou scénario conversationnel</h2>
       
@@ -144,9 +144,9 @@
     </section>
 @endif
     <!-- Technology Section -->
-    @if(!empty($sections['technology_section']) && $sections['commerce_section'] == 1)
+    @if(!empty($sections['Une_technologie_de_pointe']) && $sections['Une_technologie_de_pointe'] == 1)
 
-    <section class="technology-section {{ $firstSection === 'technology_section' ? 'first-section-margin' : '' }}">
+    <section class="technology-section {{ $firstSection === 'Une_technologie_de_pointe' ? 'first-section-margin' : '' }}">
       <div class="container">
         <div class="row align-items-center">
           <!-- Text Content -->
@@ -194,9 +194,9 @@
 @endif
 
     <!-- Final CTA Section -->
-    @if(!empty($sections['cta_section']) && $sections['cta_section'] == 1)
+    @if(!empty($sections['Commencer_avec_BDN_Agency']) && $sections['Commencer_avec_BDN_Agency'] == 1)
 
-    <section class="final-cta  {{ $firstSection === 'cta_section' ? 'first-section-margin' : '' }}">
+    <section class="final-cta  {{ $firstSection === 'Commencer_avec_BDN_Agency' ? 'first-section-margin' : '' }}">
       <div class="container">
         <div class="cta-content">
           <h2 class="cta-title" data-aos="fade-up" data-aos-delay="100">
@@ -227,8 +227,8 @@
     </section>
 @endif
    <!-- Pricing Section -->
-@if(!empty($sections['pricing_section']) && $sections['pricing_section'] == 1)
-    <section class="pricing section mb-5 {{ $firstSection === 'pricing_section' ? 'first-section-margin' : '' }} mt-5">
+@if(!empty($sections['section_des_offres']) && $sections['section_des_offres'] == 1)
+    <section class="pricing section mb-5 {{ $firstSection === 'section_des_offres' ? 'first-section-margin' : '' }} mt-5">
         <div class="container section-title" data-aos="fade-up">
             <h2>Offres</h2>
             <p class="mt-4 mb-4">Nos Tarifs</p>

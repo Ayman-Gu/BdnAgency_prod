@@ -21,12 +21,12 @@ class ServiceBddSectionToggles extends Component
 
         $this->sections = [
             'hero_section' => $this->page->hero_section,
-            'features_section' => $this->page->features_section,
-            'benefits_section' => $this->page->benefits_section,
-            'use_cases_section' => $this->page->use_cases_section,
-            'testimonials_section' => $this->page->testimonials_section,
-            'cta_section' => $this->page->cta_section,
-            'pricing_section' => $this->page->pricing_section,
+            'Les_atouts_de_nos_BDD' => $this->page->Les_atouts_de_nos_BDD,
+            'Pourquoi_choisir_BDN_Agency' => $this->page->Pourquoi_choisir_BDN_Agency,
+            'Location_de_BDD_adaptée_à_vos_besoins' => $this->page->Location_de_BDD_adaptée_à_vos_besoins,
+            'section_temoignages' => $this->page->section_temoignages,
+            'Démarrez_votre_prochaine_campagne' => $this->page->Démarrez_votre_prochaine_campagne,
+            'section_des_offres' => $this->page->section_des_offres,
         ];
     }
 

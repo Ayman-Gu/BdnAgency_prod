@@ -153,7 +153,7 @@
         
             <div class="equipe-grid">
                 @foreach($teamMembers as $member)
-                <div class="equipe-card" style="background-image: url('{{ asset('storage/' . $member->image) }}');">
+                <div class="equipe-card" style="background-image: url('{{ asset('storage/' . $member->image) }}');" alt="{{ $member->name }}">
                     <div class="equipe-card-overlay">
                         <div class="equipe-card-body">
                             <h3 class="equipe-card-title">{{ $member->name }}</h3>

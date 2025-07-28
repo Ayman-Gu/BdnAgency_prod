@@ -20,16 +20,16 @@ class HomeSectionToggles extends Component
         
         $this->sections = [
             'hero_section' => $this->page->hero_section,
-            'about_section' => $this->page->about_section,
-            'features_section' => $this->page->features_section,
-            'cta_section' => $this->page->cta_section,
-            'services_section' => $this->page->services_section,
-            'portfolio_section' => $this->page->portfolio_section,
-            'testimonials_section' => $this->page->testimonials_section,
-            'pricing_section' => $this->page->pricing_section,
-            'faq_section' => $this->page->faq_section,
-            'team_section' => $this->page->team_section,
-            'recentposts_section' => $this->page->recentposts_section,
+            'section_apropos' => $this->page->section_apropos,
+            'Ce_que_nous_offrons' => $this->page->Ce_que_nous_offrons,
+            'Demander_un_devis' => $this->page->Demander_un_devis,
+            'section_services' => $this->page->section_services,
+            'section_Projets' => $this->page->section_Projets,
+            'section_témoignages' => $this->page->section_témoignages,
+            'section_des_offres' => $this->page->section_des_offres,
+            'section_faq' => $this->page->section_faq,
+            'section_équipe' => $this->page->section_équipe,
+            'section_les_posts_recents' => $this->page->section_les_posts_recents,
             'contact_section' => $this->page->contact_section,
         ];
     }

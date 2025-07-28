@@ -6,8 +6,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NavigationController;
 use App\Livewire\Frontend\ServiceBddPage;
 use App\Http\Controllers\DevisController;
-use App\Http\Middleware\ComingSoon;
-
 
 
 Route::middleware('auth')->group(function () {
@@ -72,17 +70,3 @@ devis
 */
 
 Route::post('/devis', [DevisController::class, 'send'])->name('devis.send');
-
-/*
---------------------------------------------------------------------------
-soon
---------------------------------------------------------------------------
-*/
-Route::get('/coming-soon', function () {
-    return view('coming-soon');
-});
-
-
-Route::middleware([ComingSoon::class])->group(function () {
-    
-});

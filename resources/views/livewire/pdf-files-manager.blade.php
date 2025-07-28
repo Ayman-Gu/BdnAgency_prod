@@ -1,5 +1,4 @@
 <div class="container mt-4">
-    <h2 class="h4 mb-3">Téléverser un PDF</h2>
 
     @if (session()->has('message'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

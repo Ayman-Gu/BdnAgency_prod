@@ -3,7 +3,7 @@
     
     <div class="sidebar-header p-3 text-center border-bottom sidebar-text">
         <a href="{{ route('home') }}">
-            <img src="{{ asset('assets/img/footer/2.png') }}" class="img-fluid class="sidebar-text"" alt="Logo" style="height: 50px;">
+            <img src="{{ asset('assets/img/footer/2.png') }}" class="img-fluid class="sidebar-text" alt="Logo" style="height: 45px;">
         </a>
     </div>
     <ul class="nav flex-column mt-4">

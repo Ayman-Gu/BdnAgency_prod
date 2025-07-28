@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    <table class="table table-borderless">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>#</th>
@@ -84,7 +84,6 @@
                 <th>Pays</th>
                 <th>Adresse IP</th>
                 <th>Actions</th>
-
             </tr>
         </thead>
         <tbody>

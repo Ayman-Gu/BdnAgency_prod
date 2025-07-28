@@ -19,16 +19,16 @@ class NavigationController extends Controller
 
         $sections = [
             'hero_section' => $page->hero_section,
-            'about_section' => $page->about_section,
-            'features_section' => $page->features_section,
-            'cta_section' => $page->cta_section,
-            'services_section' => $page->services_section,
-            'portfolio_section' => $page->portfolio_section,
-            'testimonials_section' => $page->testimonials_section,
-            'pricing_section' => $page->pricing_section,
-            'faq_section' => $page->faq_section,
-            'team_section' => $page->team_section,
-            'recentposts_section' => $page->recentposts_section,
+            'section_apropos' => $page->section_apropos,
+            'Ce_que_nous_offrons' => $page->Ce_que_nous_offrons,
+            'Demander_un_devis' => $page->Demander_un_devis,
+            'section_services' => $page->section_services,
+            'section_Projets' => $page->section_Projets,
+            'section_témoignages' => $page->section_témoignages,
+            'section_des_offres' => $page->section_des_offres,
+            'section_faq' => $page->section_faq,
+            'section_équipe' => $page->section_équipe,
+            'section_les_posts_recents' => $page->section_les_posts_recents,
             'contact_section' => $page->contact_section,       
         ];
 
@@ -113,12 +113,12 @@ class NavigationController extends Controller
 
         $sections = [
             'hero_section' => $page->hero_section,
-            'features_section' => $page->features_section,
-            'emailMarketing_section' => $page->emailMarketing_section,
-            'automation_section' => $page->automation_section,
-            'services_section' => $page->services_section,
-            'cta_section' => $page->cta_section,
-            'pricing_section' => $page->pricing_section,
+            'Les_caractéristiques_de_BDN_Agency' => $page->Les_caractéristiques_de_BDN_Agency,
+            'email_Marketing' => $page->email_Marketing,
+            'automatisation_du_marketing' => $page->automatisation_du_marketing,
+            'section_des_services' => $page->section_des_services,
+            'Commencer_avec_BDN_Agency' => $page->Commencer_avec_BDN_Agency,
+            'section_des_offres' => $page->section_des_offres,
         ];
          // Fetch the service named 'Location de Plateforme Emailing'
         $service = \App\Models\Service::where('name', 'Location de Plateforme Emailing')
@@ -142,11 +142,11 @@ class NavigationController extends Controller
 
         $sections = [
             'hero_section' => $page->hero_section,
-            'features_section' => $page->features_section,
-            'commerce_section' => $page->commerce_section,
-            'technology_section' => $page->technology_section,
-            'cta_section' => $page->cta_section,
-            'pricing_section' => $page->pricing_section,
+            'Les_Fonctionnalités_de_bdn_agency' => $page->Les_Fonctionnalités_de_bdn_agency,
+            'creation_des_cas_dutilisation' => $page->creation_des_cas_dutilisation,
+            'Une_technologie_de_pointe' => $page->Une_technologie_de_pointe,
+            'Commencer_avec_BDN_Agency' => $page->Commencer_avec_BDN_Agency,
+            'section_des_offres' => $page->section_des_offres,
         ];
         $service = \App\Models\Service::where('name', 'Location de Plateforme SMS')
             ->with(['packs.packType', 'packs.offers'])
@@ -170,12 +170,12 @@ class NavigationController extends Controller
 
     $sections = [
         'hero_section' => $page->hero_section,
-        'features_section' => $page->features_section,
-        'benefits_section' => $page->benefits_section,
-        'use_cases_section' => $page->use_cases_section,
-        'testimonials_section' => $page->testimonials_section,
-        'cta_section' => $page->cta_section,
-        'pricing_section' => $page->pricing_section,
+        'Les_atouts_de_nos_BDD' => $page->Les_atouts_de_nos_BDD,
+        'Pourquoi_choisir_BDN_Agency' => $page->Pourquoi_choisir_BDN_Agency,
+        'Location_de_BDD_adaptée_à_vos_besoins' => $page->Location_de_BDD_adaptée_à_vos_besoins,
+        'section_temoignages' => $page->section_temoignages,
+        'Démarrez_votre_prochaine_campagne' => $page->Démarrez_votre_prochaine_campagne,
+        'section_des_offres' => $page->section_des_offres,
     ];
 
      $service = \App\Models\Service::where('name', 'Location de Bases de Données')
@@ -201,11 +201,11 @@ class NavigationController extends Controller
 
         $sections = [
             'hero_section' => $page->hero_section,
-            'features_section' => $page->features_section,
-            'benefits_section' => $page->benefits_section,
-            'examples_section' => $page->examples_section,
-            'cta_section' => $page->cta_section,
-            'pricing_section' => $page->pricing_section,
+            'Nos_services' => $page->Nos_services,
+            'Pourquoi_choisir_BDN_Agency' => $page->Pourquoi_choisir_BDN_Agency,
+            'Newsletters_pour_booster_votre_communication' => $page->Newsletters_pour_booster_votre_communication,
+            'Propulsez_votre_communication_par_email' => $page->Propulsez_votre_communication_par_email,
+            'section_des_offres' => $page->section_des_offres,
         ];
         $service = \App\Models\Service::where('name', 'Newsletter')
             ->with(['packs.packType', 'packs.offers'])
@@ -227,11 +227,11 @@ class NavigationController extends Controller
 
         $sections = [
             'hero_section' => $page->hero_section,
-            'features_section' => $page->features_section,
-            'benefits_section' => $page->benefits_section,
-            'examples_section' => $page->examples_section,
-            'cta_section' => $page->cta_section,
-            'pricing_section' => $page->pricing_section,
+            'Des_formats_adaptés_à_vos_objectifs' => $page->Des_formats_adaptés_à_vos_objectifs,
+            'Pourquoi_choisir_Le_Visionnaire' => $page->Pourquoi_choisir_Le_Visionnaire,
+            'Devenir_un_partenaire' => $page->Devenir_un_partenaire,
+            'Prêt_à_transformer_votre_visibilité' => $page->Prêt_à_transformer_votre_visibilité,
+            'section_des_offres' => $page->section_des_offres,
         ];
         $service = \App\Models\Service::where('name', 'Le Visionnaire')
             ->with(['packs.packType', 'packs.offers'])
@@ -254,11 +254,11 @@ class NavigationController extends Controller
 
         $sections = [
             'hero_section' => $page->hero_section,
-            'features_section' => $page->features_section,
-            'benefits_section' => $page->benefits_section,
-            'examples_section' => $page->examples_section,
-            'cta_section' => $page->cta_section,
-            'pricing_section' => $page->pricing_section,
+            'Nos_piliers_pour_une_identité_visuelle' => $page->Nos_piliers_pour_une_identité_visuelle,
+            'avantage_bdn_agency' => $page->avantage_bdn_agency,
+            'Des_marques_qui_rayonnent' => $page->Des_marques_qui_rayonnent,
+            'Demander_une_consultation_Branding' => $page->Demander_une_consultation_Branding,
+            'section_des_offres' => $page->pricing_section,
         ];
         $service = \App\Models\Service::where('name', 'Branding & Identité Visuelle')
             ->with(['packs.packType', 'packs.offers'])

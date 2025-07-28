@@ -3,27 +3,31 @@
 @section('content')
     <h2 class="fw-semibold fs-4 mb-4">Gérer les pages du tableau de bord</h2>
 
-    <p class="text-muted mb-3">Activez ou désactivez les sections affichées sur la page d’accueil :</p>
+    <p class="text-muted mb-3">Activez ou désactivez les sections affichées sur les pages de notre site web</p>
+    <p class="text-muted mt-3 border-bottom fw-bold">/ Acceuil</p>
 
     <livewire:home-section-toggles />
 
-    <hr class="my-4">
+    <p class="text-muted mt-3 border-bottom fw-bold">/ À propos</p>
+    <livewire:apropos-page-section-toggles />
+    <h5 class="fw-bold mb-2 mt-5">Services proposés</h5>
 
-    <h5 class="fw-semibold mb-2">Services proposés</h5>
-
-    <ul class="list-unstyled">
+    <ul class="list-unstyled mt-4">
+        <p class="text-muted mt-3 border-bottom fw-bold">/ Services / Plateforme Emailing</p>
         <li class="mb-2"><livewire:service-emailing-section-toggles /></li>
+        <p class="text-muted mt-3 border-bottom fw-bold mt-5">/ Services / Plateforme Sms</p>
         <li class="mb-2"><livewire:service-sms-section-toggles /></li>
+        <p class="text-muted mt-3 border-bottom fw-bold mt-5">/ Services / Base de Données</p>
         <li class="mb-2"><livewire:service-bdd-section-toggles /></li>
+        <p class="text-muted mt-3 border-bottom fw-bold mt-5">/ Services / Gestion des newsletters</p>
         <li class="mb-2"><livewire:service-newsletter-section-toggles /></li>
+        <p class="text-muted mt-3 border-bottom fw-bold mt-5">/ Services / Le visionnaire</p>
         <li class="mb-2"><livewire:service-visionnaire-section-toggles /></li>
+        <p class="text-muted mt-3 border-bottom fw-bold mt-5">/ Services / Branding & Indentité visuelle</p>
         <li class="mb-2"><livewire:service-branding-section-toggles /></li>
     </ul>
 
-    <hr class="my-4">
 
-    <h5 class="fw-semibold mb-3">Page À propos</h5>
-    <livewire:apropos-page-section-toggles />
 
     <style>
         .card-header{

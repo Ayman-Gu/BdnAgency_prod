@@ -20,11 +20,11 @@ class ServiceBrandingSectionToggles extends Component
         
         $this->sections = [
             'hero_section' => $this->page->hero_section,
-            'features_section' => $this->page->features_section,
-            'benefits_section' => $this->page->benefits_section,
-            'examples_section' => $this->page->examples_section,
-            'cta_section' => $this->page->cta_section,
-            'pricing_section' => $this->page->pricing_section,
+            'Nos_piliers_pour_une_identité_visuelle' => $this->page->Nos_piliers_pour_une_identité_visuelle,
+            'avantage_bdn_agency' => $this->page->avantage_bdn_agency,
+            'Des_marques_qui_rayonnent' => $this->page->Des_marques_qui_rayonnent,
+            'Demander_une_consultation_Branding' => $this->page->Demander_une_consultation_Branding,
+            'section_des_offres' => $this->page->section_des_offres,
         ];
     }
 

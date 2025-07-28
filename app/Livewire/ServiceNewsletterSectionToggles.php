@@ -19,11 +19,11 @@ class ServiceNewsletterSectionToggles extends Component
         
         $this->sections = [
             'hero_section' => $this->page->hero_section,
-            'features_section' => $this->page->features_section,
-            'benefits_section' => $this->page->benefits_section,
-            'examples_section' => $this->page->examples_section,
-            'cta_section' => $this->page->cta_section,
-            'pricing_section' => $this->page->pricing_section,
+            'Nos_services' => $this->page->Nos_services,
+            'Pourquoi_choisir_BDN_Agency' => $this->page->Pourquoi_choisir_BDN_Agency,
+            'Newsletters_pour_booster_votre_communication' => $this->page->Newsletters_pour_booster_votre_communication,
+            'Propulsez_votre_communication_par_email' => $this->page->Propulsez_votre_communication_par_email,
+            'section_des_offres' => $this->page->section_des_offres,
         ];
     }
 
@@ -40,7 +40,6 @@ class ServiceNewsletterSectionToggles extends Component
 
     public function render()
     {
-
         return view('livewire.service-newsletter-section-toggles');
     }
 }

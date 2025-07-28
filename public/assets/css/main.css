@@ -1613,38 +1613,58 @@ section,
 --------------------------------------------------------------*/
 .team .team-member {
   background-color: var(--surface-color);
-  overflow: hidden;
   border-radius: 5px;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
 
+/* Image Container */
 .team .team-member .member-img {
   position: relative;
+  height: 250px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.team .team-member .member-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Social Icons Overlay */
 .team .team-member .social {
   position: absolute;
   left: 0;
-  bottom: 30px;
   right: 0;
+  bottom: 30px;
   opacity: 0;
-  transition: ease-in-out 0.3s;
   text-align: center;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+}
+
+.team .team-member:hover .social {
+  opacity: 1;
+  bottom: 15px;
 }
 
 .team .team-member .social a {
-  background: color-mix(in srgb, var(--contrast-color), transparent 25%);
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-  margin: 0 3px;
-  border-radius: 4px;
   width: 36px;
   height: 36px;
-  transition: ease-in-out 0.3s;
+  margin: 0 3px;
+  border-radius: 4px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  background: color-mix(in srgb, var(--contrast-color), transparent 25%);
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .team .team-member .social a:hover {
@@ -1657,26 +1677,26 @@ section,
   line-height: 0;
 }
 
+/* Member Info */
 .team .team-member .member-info {
-  padding: 25px 15px;
+  padding: 20px 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .team .team-member .member-info h4 {
+  font-size: 18px;
   font-weight: 700;
   margin-bottom: 5px;
-  font-size: 18px;
 }
 
 .team .team-member .member-info span {
-  display: block;
   font-size: 13px;
   font-weight: 400;
   color: color-mix(in srgb, var(--default-color), transparent 40%);
-}
-
-.team .team-member:hover .social {
-  opacity: 1;
-  bottom: 15px;
 }
 
 /*--------------------------------------------------------------
@@ -2899,7 +2919,7 @@ section,
   display: flex;
   align-items: center;
   width: 100%;
-  margin-top:20px;
+  margin-top:-20px;
 }
 
 .service-col-left {

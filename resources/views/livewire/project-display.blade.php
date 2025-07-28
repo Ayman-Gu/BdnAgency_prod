@@ -1,4 +1,4 @@
-<section id="portfolio" class="portfolio section">
+<section id="portfolio" class="portfolio section" style="margin-top:-35px">
     <!-- Section Title -->
     <div class="container section-title">
         <h2>Projets</h2>
@@ -20,7 +20,6 @@
                     {{ $category->name }}
                 </li>
             @endforeach
-            
         </ul>
 
         <!-- Projects -->
@@ -48,5 +47,14 @@
                 @endforeach
             @endif
         </div>
+
+        {{-- Show "Voir plus" only if more projects are available --}}
+        @if($totalProjects > $this->perPage)
+            <div class="text-center mb-5 hero">
+                <button wire:click="loadMore" class="btn-get-started">
+                    Voir plus <i class="bi bi-chevron-down ms-2"></i>
+                </button>
+            </div>
+        @endif
     </div>
 </section>

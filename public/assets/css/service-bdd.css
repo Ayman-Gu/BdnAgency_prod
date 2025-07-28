@@ -654,7 +654,7 @@
 }
 
 .features-list li:hover {
-  border:1px solid  #ef6603;
+    border:1px solid  #ef6603;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.17);
 
 }
@@ -747,15 +747,16 @@
     color: #2a2c39;
     padding: 30px;
     position: relative;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    border-radius:25px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+    border-radius: 25px;
+    transition: all 0.5s ease !important;
 }
 
 .testimonial-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
+
 
 .testimonial-card::before {
     content: "“";

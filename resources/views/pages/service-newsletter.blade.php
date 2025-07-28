@@ -19,11 +19,11 @@
 
     $sectionOrder = [
         'hero_section',
-        'features_section',
-        'benefits_section',
-        'examples_section',
-        'cta_section',
-        'pricing_section',
+        'Nos_services',
+        'Pourquoi_choisir_BDN_Agency',
+        'Newsletters_pour_booster_votre_communication',
+        'Propulsez_votre_communication_par_email',
+        'section_des_offres',
     ];
 
     // Find first visible section after hero (or first visible if no hero)
@@ -85,9 +85,9 @@
     </section>
 @endif
     <!-- Features Section -->
-@if(!empty($sections['features_section']) && $sections['features_section'] == 1)
+@if(!empty($sections['Nos_services']) && $sections['Nos_services'] == 1)
 
-    <section class="features position-relative overflow-hidden py- min-vh-50 min-vh-md-75 {{ (!$showHero && $firstSection === 'features_section') ? 'first-section-margin' : '' }}">
+    <section class="features position-relative overflow-hidden py- min-vh-50 min-vh-md-75 {{ (!$showHero && $firstSection === 'Nos_services') ? 'first-section-margin' : '' }}">
     
         <div class="circle-left"></div>
         <div class="circle-small-left"></div>
@@ -145,9 +145,9 @@
     </section>
 @endif  
     <!-- Benefits Section -->
-@if(!empty($sections['benefits_section']) && $sections['benefits_section'] == 1)
+@if(!empty($sections['Pourquoi_choisir_BDN_Agency']) && $sections['Pourquoi_choisir_BDN_Agency'] == 1)
 
-    <section class="benefits-section {{ $firstSection === 'benefits_section' ? 'first-section-margin' : '' }}">
+    <section class="benefits-section {{ $firstSection === 'Pourquoi_choisir_BDN_Agency' ? 'first-section-margin' : '' }}">
           <div class="stars"></div>
 
         <div class="container">
@@ -179,9 +179,9 @@
     </section>
 @endif
     <!-- Examples Section -->
-@if(!empty($sections['examples_section']) && $sections['examples_section'] == 1)
+@if(!empty($sections['Newsletters_pour_booster_votre_communication']) && $sections['Newsletters_pour_booster_votre_communication'] == 1)
 
-    <section class="examples-section mt-5 mb-5 {{ $firstSection === 'examples_section' ? 'first-section-margin' : '' }}" >
+    <section class="examples-section mt-5 mb-5 {{ $firstSection === 'Newsletters_pour_booster_votre_communication' ? 'first-section-margin' : '' }}" >
       <div class="container">
         <h2 class="examples-section-title" data-aos="fade-up" data-aos-delay="100">Nos newsletters, vos succès</h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100"> 
@@ -229,9 +229,9 @@
     </section>
 @endif
     <!-- Final CTA Section -->
-@if(!empty($sections['cta_section']) && $sections['cta_section'] == 1)
+@if(!empty($sections['Propulsez_votre_communication_par_email']) && $sections['Propulsez_votre_communication_par_email'] == 1)
 
-    <section class="final-cta {{ $firstSection === 'cta_section' ? 'first-section-margin' : '' }}">
+    <section class="final-cta {{ $firstSection === 'Propulsez_votre_communication_par_email' ? 'first-section-margin' : '' }}">
       <div class="container">
         <div class="cta-content">
           <h2 class="cta-title" data-aos="fade-up" data-aos-delay="100">
@@ -265,8 +265,8 @@
 @endif
 
      <!-- Pricing Section -->
-@if(!empty($sections['pricing_section']) && $sections['pricing_section'] == 1)
-    <section class="pricing section mb-5 {{ $firstSection === 'pricing_section' ? 'first-section-margin' : '' }} mt-5">
+@if(!empty($sections['section_des_offres']) && $sections['section_des_offres'] == 1)
+    <section class="pricing section mb-5 {{ $firstSection === 'section_des_offres' ? 'first-section-margin' : '' }} mt-5">
         <div class="container section-title" data-aos="fade-up">
             <h2>Offres</h2>
             <p class="mt-4 mb-4">Nos Tarifs</p>

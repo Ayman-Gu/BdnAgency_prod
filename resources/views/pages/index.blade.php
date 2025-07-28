@@ -18,16 +18,16 @@
 
     $sectionOrder = [
         'hero_section',
-        'about_section',
-        'features_section',
-        'cta_section',
-        'services_section',
-        'portfolio_section',
-        'testimonials_section',
-        'pricing_section',
-        'faq_section',
-        'team_section',
-        'recentposts_section',
+        'section_apropos',
+        'Ce_que_nous_offrons',
+        'Demander_un_devis',
+        'section_services',
+        'section_Projets',
+        'section_témoignages',
+        'section_des_offres',
+        'section_faq',
+        'section_équipe',
+        'section_les_posts_recents  ',
         'contact_section',
     ];
 
@@ -157,39 +157,39 @@
 @endif
 
     <!-- About Section -->
-@if(!empty($sections['about_section']) && $sections['about_section'] == 1)
+@if(!empty($sections['section_apropos']) && $sections['section_apropos'] == 1)
 
-    <section id="about" class="about section {{ (!$showHero && $firstSection === 'about_section') ? 'first-section-margin' : '' }}">
+    <section id="about" class="about section {{ (!$showHero && $firstSection === 'section_apropos') ? 'first-section-margin' : '' }}">
 
       <!-- Section Title -->
       <div class="container section-title mt-5" data-aos="fade-up" style="margin-top: 70px !important;">
-        <h2>À PROPOS</h2>
-        <p class="mt-4 mb-3">Qui sommes-nous</p>
+        <h2 class="mb-4">À PROPOS</h2>
+        <p class="mt-4 mb-4">Qui sommes-nous</p>
       </div><!-- End Section Title -->
 
       <div class="container">
 
         <div class="row mt-4 gx-5">
 
-          <div class="col-lg-7 content" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
             <p style="text-align:justify">
              <strong>BDN Agency</strong>, votre booster de communication directe, est une agence spécialisée dans la création de stratégies d’emailing sur-mesure. Nous gérons vos campagnes de newsletters pour vous aider à communiquer efficacement avec vos clients et transformer l’attention en action. On ne vend pas du rêve. On crée des campagnes qui parlent à vos clients et génèrent des résultats concrets.
             </p>
             <ul class="custom-list">
               <li>
-                <div class="icon-block"><i class="bi bi-check2-circle"></i></div>
+                <div class="icon-block mb-3"><i class="bi bi-check2-circle"></i></div>
                 <div class="text-block">
                   Emailings qui cliquent, SMS qui convertissent, newsletters qui fidélisent.
                 </div>
               </li>
               <li>
-                <div class="icon-block"><i class="bi bi-check2-circle"></i></div>
+                <div class="icon-block mb-3"><i class="bi bi-check2-circle"></i></div>
                 <div class="text-block">
                   Des messages clairs, des visuels stylés et une stratégie alignée à vos objectifs.
                 </div>
               </li>
               <li>
-                <div class="icon-block"><i class="bi bi-check2-circle"></i></div>
+                <div class="icon-block mb-3"><i class="bi bi-check2-circle"></i></div>
                 <div class="text-block">
                   Une base de données clean, des envois conformes CNDP, et une délivrabilité au top.
                 </div>
@@ -197,7 +197,7 @@
             </ul>
           </div>
 
-          <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <p>Notre mission ? Vous connecter à vos clients de façon simple, directe, efficace.</p>
             <a href="{{ route('a-propos') }}" class="read-more"><span>En savoir plus</span><i class="bi bi-arrow-right"></i></a>
           </div>
@@ -210,9 +210,9 @@
 @endif
 
     <!-- Features Section -->
-@if(!empty($sections['features_section']) && $sections['features_section'] == 1)
+@if(!empty($sections['Ce_que_nous_offrons']) && $sections['Ce_que_nous_offrons'] == 1)
 
-    <section id="features" class="features section {{(!$showHero && $firstSection === 'features_section') ? 'first-section-margin' : '' }}">
+    <section id="features" class="features section {{(!$showHero && $firstSection === 'Ce_que_nous_offrons') ? 'first-section-margin' : '' }}">
 
       <div class="container mt-5">
 
@@ -265,7 +265,7 @@
                 </p>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/working-1.jpg" alt="" class="img-fluid">
+                <img src="assets/img/working-1.jpg" alt="Le début d'une vision ambitieuse" class="img-fluid">
               </div>
             </div>
           </div><!-- End Tab Content Item -->
@@ -344,9 +344,9 @@
     </section><!-- /Features Section -->
 @endif
     <!-- Call To Action Section -->
-@if(!empty($sections['cta_section']) && $sections['cta_section'] == 1)
+@if(!empty($sections['Demander_un_devis']) && $sections['Demander_un_devis'] == 1)
 
-    <section id="call-to-action" class="call-to-action section dark-background mt-3 {{(!$showHero && $firstSection === 'cta_section') ? 'first-section-margin' : '' }}">
+    <section id="call-to-action" class="call-to-action section dark-background mt-3 {{(!$showHero && $firstSection === 'Demander_un_devis') ? 'first-section-margin' : '' }}">
 
       <div class="container ">
 
@@ -365,14 +365,14 @@
     </section><!-- /Call To Action Section -->
 @endif
     <!-- Services Section -->
-@if(!empty($sections['services_section']) && $sections['services_section'] == 1)
+@if(!empty($sections['section_services']) && $sections['section_services'] == 1)
 
-    <section id="services" class="services section mt-5 {{ (!$showHero && $firstSection === 'services_section') ? 'first-section-margin' : '' }}">
+    <section id="services" class="services section mt-5 {{ (!$showHero && $firstSection === 'section_services') ? 'first-section-margin' : '' }}">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Services</h2>
-        <p class="mt-5 mb-4">Ce que nous vous offrons</p>
+        <p class="mt-5 mb-3">Ce que nous vous offrons</p>
       </div><!-- End Section Title -->
 
     <div class="container">
@@ -469,9 +469,9 @@
     </section><!-- /Services Section -->
 @endif
     <!-- Portfolio Section -->
-@if(!empty($sections['portfolio_section']) && $sections['portfolio_section'] == 1)
+@if(!empty($sections['section_Projets']) && $sections['section_Projets'] == 1)
 
-    <section id="portfolio" class=" {{ (!$showHero && $firstSection === 'portfolio_section') ? 'first-section-margin' : '' }}" data-aos="fade-up" data-aos-delay="100">
+    <section id="portfolio" class=" {{ (!$showHero && $firstSection === 'section_Projets') ? 'first-section-margin' : '' }}" data-aos="fade-up" data-aos-delay="100">
 
       @livewire('project-display')
 
@@ -479,9 +479,9 @@
     </section><!-- /Portfolio Section -->
 @endif
     <!-- Testimonials Section -->
-@if(!empty($sections['testimonials_section']) && $sections['testimonials_section'] == 1)
-<section id="testimonials" class="testimonials section {{ (!$showHero && $firstSection === 'testimonials_section') ? 'first-section-margin' : '' }}">
-  <div class="container section-title pb-0 mt-4" data-aos="fade-up">
+@if(!empty($sections['section_témoignages']) && $sections['section_témoignages'] == 1)
+<section id="testimonials" class="testimonials section {{ (!$showHero && $firstSection === 'section_témoignages') ? 'first-section-margin' : '' }}">
+  <div class="container section-title pb-0" data-aos="fade-up">
     <h2>Témoignages</h2>
     <p class="mt-5 mb-4">Votre retour, notre fierté</p>
   </div>
@@ -545,8 +545,8 @@
 </section>
 @endif
 
-@if(!empty($sections['pricing_section']) && $sections['pricing_section'] == 1)
-    <section id="nosTarifs" class="pricing section {{ (!$showHero && $firstSection === 'pricing_section') ? 'first-section-margin' : '' }}">
+@if(!empty($sections['section_des_offres']) && $sections['section_des_offres'] == 1)
+    <section id="nosTarifs" class="pricing section {{ (!$showHero && $firstSection === 'section_des_offres') ? 'first-section-margin' : '' }}">
         <div class="container section-title" data-aos="fade-up">
             <h2>Offres</h2>
             <p class="mt-5 mb-4">Nos Tarifs</p>
@@ -599,9 +599,9 @@
 @endif
 
     <!-- Faq Section -->
-@if(!empty($sections['faq_section']) && $sections['faq_section'] == 1)
+@if(!empty($sections['section_faq']) && $sections['section_faq'] == 1)
 
-    <section id="faq" class="faq section mt-5 {{ (!$showHero && $firstSection === 'faq_section') ? 'first-section-margin' : '' }}">
+    <section id="faq" class="faq section mt-5 {{ (!$showHero && $firstSection === 'section_faq') ? 'first-section-margin' : '' }}">
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>FAQ</h2>
@@ -636,8 +636,8 @@
 @endif
 
     <!-- Team Section -->
-@if(!empty($sections['team_section']) && $sections['team_section'] == 1)
-<section id="team" class="team section mt-5 {{(!$showHero && $firstSection === 'team_section') ? 'first-section-margin' : '' }}">
+@if(!empty($sections['section_équipe']) && $sections['section_équipe'] == 1)
+<section id="team" class="team section mt-5 {{(!$showHero && $firstSection === 'section_équipe') ? 'first-section-margin' : '' }}">
     <div class="container section-title" data-aos="fade-up">
         <h2>Équipe</h2>
         <p class="mt-5 mb-4">Une équipe engagée à vos côtés</p>
@@ -658,10 +658,10 @@
                 <div class="carousel-inner" style="min-height: 400px;">
                     @foreach($teamMembers->chunk(4) as $chunkIndex => $chunk)
                         <div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
-                            <div class="row gy-4">
+                            <div class="row gy-4 gx-4">
                                 @foreach($chunk as $member)
-                                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                                    <div class="team-member">
+                                <div class="col-lg-3 col-md-6 d-flex">
+                                    <div class="team-member w-100">
                                         <div class="member-img">
                                             <img src="{{ asset('storage/' . $member->image) }}" class="img-fluid" alt="">
                                             <div class="social">
@@ -685,12 +685,13 @@
             </div>
         @else
             <!-- Static Grid if 4 or fewer members -->
-            <div class="row gy-4">
+            <div class="row gy-4 gx-4">
                 @foreach($teamMembers as $member)
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="team-member">
+                <div class="col-lg-3 col-md-6 d-flex">
+                    <div class="team-member w-100">
                         <div class="member-img">
-                            <img src="{{ asset('storage/' . $member->image) }}" class="img-fluid" alt="">
+                            <img src="{{ asset('storage/' . $member->image) }}" class="img-fluid" alt="{{ $member->name }}">
+                            
                             <div class="social">
                                 @if($member->twitter)<a href="{{ $member->twitter }}"><i class="bi bi-twitter-x"></i></a>@endif
                                 @if($member->facebook)<a href="{{ $member->facebook }}"><i class="bi bi-facebook"></i></a>@endif
@@ -714,12 +715,12 @@
 
 
     <!-- Recent Posts Section -->
-@if(!empty($sections['recentposts_section']) && $sections['recentposts_section'] == 1)
-<section id="recent-posts" class="recent-posts section {{ (!$showHero && $firstSection === 'recentposts_section') ? 'first-section-margin' : '' }}">
+@if(!empty($sections['section_les_posts_recents ']) && $sections['section_les_posts_recents  '] == 1)
+<section id="recent-posts" class="recent-posts section {{ (!$showHero && $firstSection === 'section_les_posts_recents ') ? 'first-section-margin' : '' }}">
 
   <div class="container section-title mt-5" data-aos="fade-up">
     <h2>À la une</h2>
-    <p class="mt-5 mb-4">À lire en ce moment<br></p>
+    <p class="mt-5 mb-4">Articles à la une<br></p>
   </div>
 
   <div class="container">
@@ -848,14 +849,12 @@
                   <textarea name="message" rows="6" class="form-control" placeholder="Message..." required></textarea>
                 </div>
                 
-                <div class="text-secondary" style="font-weight:300;text-decoration:underline">vous pouvez également utiliser ce formulaire pour nous contacter&nbsp;*</div>
-
                 <div class="col-md-12 text-center">
                   <div class="loading">Chargement...</div>
                   <div class="error-message"></div>
                   <div class="sent-message">Votre message a été envoyé. Merci !</div>
                 
-                  <button type="submit">Demander Un devis</button>
+                  <button type="submit">Envoyer</button>
                 </div>
               
               </div>

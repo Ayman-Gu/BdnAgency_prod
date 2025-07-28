@@ -18,12 +18,12 @@ class ServiceEmailingSectionToggles extends Component
         
         $this->sections = [
             'hero_section' => $this->page->hero_section,
-            'features_section' => $this->page->features_section,
-            'emailMarketing_section' => $this->page->emailMarketing_section,
-            'automation_section' => $this->page->automation_section,
-            'cta_section' => $this->page->cta_section,
-            'services_section' => $this->page->services_section,
-            'pricing_section' => $this->page->pricing_section,
+            'Les_caractéristiques_de_BDN_Agency' => $this->page->Les_caractéristiques_de_BDN_Agency,
+            'email_Marketing' => $this->page->email_Marketing,
+            'automatisation_du_marketing' => $this->page->automatisation_du_marketing,
+            'Commencer_avec_BDN_Agency' => $this->page->Commencer_avec_BDN_Agency,
+            'section_des_services' => $this->page->section_des_services,
+            'section_des_offres' => $this->page->section_des_offres,
         ];
     }
 

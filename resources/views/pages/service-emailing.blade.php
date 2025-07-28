@@ -23,12 +23,12 @@
 
     $sectionOrder = [
         'hero_section',
-        'features_section',
-        'emailMarketing_section',
-        'automation_section',
-        'cta_section',
-        'services_section',
-        'pricing_section',
+        'Les_caractéristiques_de_BDN_Agency',
+        'email_Marketing',
+        'automatisation_du_marketing',
+        'Commencer_avec_BDN_Agency',
+        'section_des_services',
+        'section_des_offres',
     ];
 
     // Find first visible section after hero (or first visible if no hero)
@@ -93,9 +93,9 @@
     </section>
 @endif
     <!-- Features Section -->
-@if(!empty($sections['features_section']) && $sections['features_section'] == 1)
+@if(!empty($sections['Les_caractéristiques_de_BDN_Agency']) && $sections['Les_caractéristiques_de_BDN_Agency'] == 1)
 
-    <section class="features position-relative overflow-hidden py- min-vh-50 min-vh-md-75 {{ (!$showHero && $firstSection === 'features_section') ? 'first-section-margin' : '' }}">
+    <section class="features position-relative overflow-hidden py- min-vh-50 min-vh-md-75 {{ (!$showHero && $firstSection === 'Les_caractéristiques_de_BDN_Agency') ? 'first-section-margin' : '' }}">
     
         <div class="circle-left"></div>
         <div class="circle-right"></div>
@@ -139,9 +139,9 @@
 @endif
 
     <!-- Email Marketing Section -->
-@if(!empty($sections['emailMarketing_section']) && $sections['emailMarketing_section'] == 1)
+@if(!empty($sections['email_Marketing']) && $sections['email_Marketing'] == 1)
 
-    <section class="email-marketing  {{ $firstSection === 'emailMarketing_section' ? 'first-section-margin' : '' }}">
+    <section class="email-marketing  {{ $firstSection === 'email_Marketing' ? 'first-section-margin' : '' }}">
         <div class="container">
             <div class="section-header">
                 <span class="section-label p-3 rounded-full" data-aos="fade-up" data-aos-delay="100">E-MAIL MARKETING</span>
@@ -222,9 +222,9 @@
 @endif
 
     <!-- Automation Section -->
-@if(!empty($sections['automation_section']) && $sections['automation_section'] == 1)
+@if(!empty($sections['automatisation_du_marketing']) && $sections['automatisation_du_marketing'] == 1)
 
-    <section class="automation  {{ $firstSection === 'automation_section' ? 'first-section-margin' : '' }}">
+    <section class="automation  {{ $firstSection === 'automatisation_du_marketing' ? 'first-section-margin' : '' }}">
         <div class="container">
             <div class="section-header">
                 <span class="section-label" data-aos="fade-up" data-aos-delay="100">AUTOMATISATION DU MARKETING</span>
@@ -276,9 +276,9 @@
     </section>
 @endif
     <!-- CTA Section -->
-@if(!empty($sections['cta_section']) && $sections['cta_section'] == 1)
+@if(!empty($sections['Commencer_avec_BDN_Agency']) && $sections['Commencer_avec_BDN_Agency'] == 1)
 
-    <section class="cta-section py-5  {{ $firstSection === 'cta_section' ? 'first-section-margin' : '' }}">
+    <section class="cta-section py-5  {{ $firstSection === 'Commencer_avec_BDN_Agency' ? 'first-section-margin' : '' }}">
       <div class="container">
         <div class="row align-items-center">
           <!-- Left column -->
@@ -314,9 +314,9 @@
     </section>
 @endif
     <!-- Services Section -->
-@if(!empty($sections['services_section']) && $sections['services_section'] == 1)
+@if(!empty($sections['section_des_services']) && $sections['section_des_services'] == 1)
    
-    <section class="services  {{ $firstSection === 'services_section' ? 'first-section-margin' : '' }}">
+    <section class="services  {{ $firstSection === 'section_des_services' ? 'first-section-margin' : '' }}">
 
           <div class="services-circle-left"></div>
           <div class="services-circle-left2"></div>
@@ -410,8 +410,8 @@
     </section>
 @endif
      <!-- Pricing Section -->
-@if(!empty($sections['pricing_section']) && $sections['pricing_section'] == 1)
-    <section class="pricing section mb-5 {{ $firstSection === 'pricing_section' ? 'first-section-margin' : '' }}">
+@if(!empty($sections['section_des_offres']) && $sections['section_des_offres'] == 1)
+    <section class="pricing section mb-5 {{ $firstSection === 'section_des_offres' ? 'first-section-margin' : '' }}">
         <div class="container section-title" data-aos="fade-up">
             <h2>Offres</h2>
             <p class="mt-4 mb-4">Nos Tarifs</p>
