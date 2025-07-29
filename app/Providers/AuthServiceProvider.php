@@ -16,18 +16,18 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        \App\Models\Team::class           => \App\Policies\TeamPolicy::class,
-        \App\Models\Blog::class           => \App\Policies\BlogPolicy::class,
-        \App\Models\ContactInfo::class    => \App\Policies\ContactInfoPolicy::class,
-        \App\Models\Newsletter::class     => \App\Policies\NewsletterSubscriberPolicy::class,
-        \App\Models\Faq::class            => \App\Policies\FaqPolicy::class,
-        \App\Models\Project::class        => \App\Policies\ProjectPolicy::class,
-        \App\Models\Testimonial::class    => \App\Policies\TestimonialPolicy::class,
-        \App\Models\PdfFile::class        => \App\Policies\PdfFilePolicy::class,
-        \App\Models\User::class           => \App\Policies\UserPolicy::class,
-        \App\Models\Role::class           => \App\Policies\RolePolicy::class,
-        \App\Models\Permission::class     => \App\Policies\PermissionPolicy::class,    
-        \App\Models\Service::class     =>    \App\Policies\ServicesPolicy::class,
+        \App\Models\Team::class              => \App\Policies\TeamPolicy::class,
+        \App\Models\Blog::class              => \App\Policies\BlogPolicy::class,
+        \App\Models\ContactInfo::class       => \App\Policies\ContactInfoPolicy::class,
+        \App\Models\Newsletter::class        => \App\Policies\NewsletterSubscriberPolicy::class,
+        \App\Models\Faq::class               => \App\Policies\FaqPolicy::class,
+        \App\Models\Project::class           => \App\Policies\ProjectPolicy::class,
+        \App\Models\Testimonial::class       => \App\Policies\TestimonialPolicy::class,
+        \App\Models\PdfFile::class           => \App\Policies\PdfFilePolicy::class,
+        \App\Models\User::class              => \App\Policies\UserPolicy::class,
+        \App\Models\Role::class              => \App\Policies\RolePolicy::class,
+        \App\Models\Permission::class        => \App\Policies\PermissionPolicy::class,    
+        \App\Models\Service::class           => \App\Policies\ServicePolicy::class,
 
 
         /*for dashboard/index page*/

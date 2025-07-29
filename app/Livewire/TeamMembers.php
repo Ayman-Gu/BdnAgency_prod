@@ -12,7 +12,7 @@ class TeamMembers extends Component
 {
     use WithFileUploads, AuthorizesRequests;
 
-    public $name, $position, $image, $twitter, $facebook, $instagram, $linkedin;
+    public $name, $position, $image,$existingImagePath, $twitter, $facebook, $instagram, $linkedin;
     public $editingId = null;
 
     protected $rules = [
@@ -32,14 +32,10 @@ class TeamMembers extends Component
         $validatedData = $this->validate();
 
         if ($this->image) {
-            // Save the uploaded image to 'storage/app/public/team'
             $validatedData['image'] = $this->image->store('team', 'public');
         } elseif ($this->editingId) {
-            // Keep existing image if editing and no new image uploaded
-            $member = Team::findOrFail($this->editingId);
-            $validatedData['image'] = $member->image;
+            $validatedData['image'] = $this->existingImagePath;
         } else {
-            // No image at all for new record
             $validatedData['image'] = null;
         }
 
@@ -65,6 +61,8 @@ class TeamMembers extends Component
         $this->facebook = $member->facebook;
         $this->instagram = $member->instagram;
         $this->linkedin = $member->linkedin;
+        $this->existingImagePath = $member->image; // Don't set $image directly
+        $this->image = null; // reset file input
     }
 
     public function delete($id)
@@ -80,7 +78,7 @@ class TeamMembers extends Component
 
     public function resetFields()
     {
-        $this->reset(['name', 'position', 'image', 'twitter', 'facebook', 'instagram', 'linkedin', 'editingId']);
+        $this->reset(['name', 'position','existingImagePath', 'image', 'twitter', 'facebook', 'instagram', 'linkedin', 'editingId']);
     }
 
     public function render()

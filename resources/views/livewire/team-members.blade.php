@@ -20,11 +20,15 @@
                         <div class="mb-3">
                             <label class="form-label">Image</label>
                             <input type="file" class="form-control" wire:model="image">
-                            @if ($image)
-                                <div class="mt-2">
-                                    <img src="{{ $image->temporaryUrl() }}" alt="Aperçu" class="img-thumbnail" width="100">
-                                </div>
-                            @endif
+                            @if ($image instanceof \Livewire\TemporaryUploadedFile)
+        <div class="mt-2">
+            <img src="{{ $image->temporaryUrl() }}" alt="Aperçu" class="img-thumbnail" width="100">
+        </div>
+    @elseif ($existingImagePath)
+        <div class="mt-2">
+            <img src="{{ asset('storage/' . $existingImagePath) }}" alt="Aperçu" class="img-thumbnail" width="100">
+        </div>
+    @endif
                         </div>
                     </form>
                 </div>

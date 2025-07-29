@@ -1,12 +1,12 @@
 <div class="container py-4">
 
     @if(session()->has('success'))
-        <div class="alert alert-success mb-3" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)">
+        <div class="alert alert-success mb-3" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)">
             {{ session('success') }}
         </div>
     @endif
     @if(session()->has('error'))
-        <div class="alert alert-danger mb-3" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)">
+        <div class="alert alert-danger mb-3" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)">
             {{ session('error') }}
         </div>
     @endif

@@ -163,27 +163,21 @@ button[aria-expanded="true"] .transition-icon {
     transform: rotate(180deg);
 }
 
-
-
-/* 🔵 Enhanced form control */
 input.form-control, select.form-select, textarea.form-control {
     border-radius: 0.5rem;
     transition: all 0.2s ease-in-out;
 }
 
-/* Better hover on table rows */
 .table tbody tr:hover {
     background-color: #f8f9fa;
 }
 
-/* Better spacing for badges */
 .badge {
     font-size: 0.85rem;
     padding: 0.5em 0.75em;
     border-radius: 0.5rem;
 }
 
-/* Enhanced buttons */
 .btn {
     border-radius: 0.4rem;
     padding: 0.45rem 1rem;
@@ -197,16 +191,14 @@ input.form-control, select.form-select, textarea.form-control {
     color: #fff;
 }
 
-/* Card spacing */
 .card {
     border-radius: 0.75rem;
 }
 
-
 .btn-secondary {
     background: #f3f3f3;
     border: 1px solid #ccc;
-    color: #555;
+    color: #868686ff;
     font-weight: 500;
     border-radius: 0.5rem;
 }
@@ -220,7 +212,39 @@ input.form-control, select.form-select, textarea.form-control {
 .btn-primary:hover {
     background: #0b117d85;
 }
+.btn-danger {
+    background: #dc3545ff;
+    border: 1px solid #ccc;
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+}
+.btn-danger:hover {
+    background: #dc354585;
+}
+.btn-warning {
+    background: #ffc107ff;
+    border: 1px solid #ccc;
+    color: black;
+    font-weight: 500;
+    border-radius: 0.5rem;
+}
+.btn-warning:hover {
+    background: #ffc10785; 
+}
+.btn-success {
+    background: #28a745ff; 
+    border: 1px solid #ccc;
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+}
+.btn-success:hover {
+    background: #28a74585; 
+}
+
 .btn-secondary:hover {
+    color: #b7b7b7ff;
     background: #e2e2e2;
 }
 .btn-outline-primary {

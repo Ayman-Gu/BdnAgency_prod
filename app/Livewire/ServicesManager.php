@@ -7,8 +7,12 @@ use App\Models\Pack;
 use App\Models\Offer;
 use App\Models\PackType;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class ServicesManager extends Component
 {
+    use AuthorizesRequests;
+
     public $services;
     public $packTypes;
 
@@ -19,7 +23,6 @@ class ServicesManager extends Component
 
     public $packs;
 
-    // To track editing
     public $editingPackId = null;
     public $editingPackTypeId = null;
 
@@ -66,19 +69,19 @@ class ServicesManager extends Component
 
     public function removeOffer($offerId)
     {
-    $offer = Offer::find($offerId);
-    if ($offer) {
-        $offer->delete();
-
-        $this->offers = array_filter($this->offers, function ($o) use ($offerId) {
-            return $o['id'] !== $offerId;
-        });
-        $this->offers = array_values($this->offers);
+        $offer = Offer::find($offerId);
+        if ($offer) {
+            $offer->delete();
         
-        $this->loadData();
-
-        session()->flash('message', 'Offre supprimée avec succès.');
-    }
+            $this->offers = array_filter($this->offers, function ($o) use ($offerId) {
+                return $o['id'] !== $offerId;
+            });
+            $this->offers = array_values($this->offers);
+            
+            $this->loadData();
+        
+            session()->flash('message', 'Offre supprimée avec succès.');
+        }
     }
 
 
@@ -125,7 +128,7 @@ class ServicesManager extends Component
                 'price' => $this->price,
             ]);
 
-            // Update offers: soft delete by active false, update or create new offers
+            // Update offers
             foreach ($this->offers as $offerData) {
                 if (isset($offerData['id'])) {
                     $offer = Offer::find($offerData['id']);
@@ -159,8 +162,8 @@ class ServicesManager extends Component
         }
 
         $this->loadData();
-         $this->loadData();              // Refresh data
-        $this->resetForm();             // Clear form
+         $this->loadData();
+        $this->resetForm();
         session()->flash('message', 'Pack enregistré avec succès.');
         $this->dispatch('$refresh');   
     }

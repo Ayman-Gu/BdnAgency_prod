@@ -61,14 +61,12 @@ class PermissionsManagement extends Component
 
     public function updatedSelectedRoleId($roleId)
     {
-        Log::info("Role selected ID: {$roleId}");
         if ($roleId) {
             $role = Role::with('permissions')->find($roleId);
             $this->selectedPermissions = $role->permissions->pluck('id')->map(fn($id) => (int) $id)->toArray();
             $this->updateGroupSelectAllState();
         } else {
             $this->reset(['selectedPermissions', 'groupSelectAll']);
-            Log::info("Role deselected, permissions reset.");
         }
     }
 
@@ -106,18 +104,16 @@ class PermissionsManagement extends Component
     public function saveRolePermissions()
     {
         if (!$this->selectedRoleId) {
-            session()->flash('error', 'Please select a role before saving.');
+            session()->flash('error', 'Veuillez sélectionner un rôle avant d’enregistrer.');
             return;
         }
 
         try {
             $role = Role::findOrFail($this->selectedRoleId);
             $role->permissions()->sync($this->selectedPermissions);
-            session()->flash('success', "Permissions for '{$role->display_name}' have been updated successfully.");
-            Log::info("Permissions successfully synced for role ID {$this->selectedRoleId}.");
+            session()->flash('success', "Les permissions pour le rôle '{$role->display_name}' ont été mises à jour avec succès.");
         } catch (\Exception $e) {
-            session()->flash('error', 'An error occurred while saving permissions.');
-            Log::error("Error saving permissions for role ID {$this->selectedRoleId}: " . $e->getMessage());
+            session()->flash('error', 'Une erreur est survenue lors de l’enregistrement des permissions.');
         }
     }
 
@@ -137,7 +133,7 @@ class PermissionsManagement extends Component
             'table_name' => $validatedData['newPermissionTableName'],
         ]);
 
-        session()->flash('success', 'Permission created successfully.');
+        session()->flash('success', 'Permission créée avec succès.');
         $this->reset(['newPermissionName', 'newPermissionKey', 'newPermissionTableName']);
     }
 
@@ -171,7 +167,7 @@ class PermissionsManagement extends Component
             'table_name' => $validatedData['editingPermissionTableName'],
         ]);
 
-        session()->flash('success', 'Permission updated successfully.');
+        session()->flash('success', 'Permission mise à jour avec succès.');
         $this->cancelEdit();
     }
 
@@ -187,7 +183,7 @@ class PermissionsManagement extends Component
         $permission = Permission::findOrFail($permissionId);
         $permission->roles()->detach();
         $permission->delete();
-        session()->flash('success', 'Permission deleted successfully.');
+        session()->flash('success', 'Permission supprimée avec succès.');
     }
 
     public function render()

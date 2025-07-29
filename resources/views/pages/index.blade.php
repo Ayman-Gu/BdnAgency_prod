@@ -441,7 +441,7 @@
           </a>
             
         
-          <div class="services-item" data-aos="fade-left" data-aos-delay="500">
+          <a href="{{ route('serviceVisionnaire') }}" class="services-item"  data-aos="fade-left" data-aos-delay="500">
              <div class="service-icon">
               <img src="assets/img/service-icons/vision.png" alt="Site Auditing">
             </div>
@@ -449,9 +449,9 @@
               <h2 class="service-title">Le Visionnaire</h2>
               <p>Le média business qui connecte les idées, leaders et opportunités.Sponsorisez des contenus ou insérez votre pub dans notre newsletter des décideurs.</p>
             </div>
-          </div>
+          </a>
 
-           <div class="services-item" data-aos="fade-left" data-aos-delay="500">
+          <a href="{{ route('serviceBranding') }}" class="services-item"  data-aos="fade-left" data-aos-delay="500">
              <div class="service-icon">
               <img src="assets/img/service-icons/branding.png" alt="Site Auditing">
             </div>
@@ -459,7 +459,7 @@
               <h2 class="service-title">Branding & Identité Visuelle</h2>
               <p>Faites rayonner votre marque dès le premier regard.Nous créons pour vous une image cohérente, forte et mémorable.</p>
             </div>
-          </div>
+          </a>
 
         </div>
 
